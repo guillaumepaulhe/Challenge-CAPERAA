@@ -1,5 +1,6 @@
 <?php  
 include "base.php";
+include "fonctions.php";
 error_reporting (E_ALL ^ E_NOTICE);
 
 ?>
@@ -38,11 +39,17 @@ error_reporting (E_ALL ^ E_NOTICE);
 </form>
 
 <?php
+
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $sexe = $_POST['sexe'];
 $age = $_POST['age'];
 $taille = $_POST['taille'];
 $poids = $_POST['poids'];
-echo $sexe;
+
+if($nom!=NULL){
+    add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids);
+}
+
+
 ?>

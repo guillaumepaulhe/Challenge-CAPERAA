@@ -49,3 +49,46 @@ ul {
     text-align: center;
   
   }
+
+
+
+
+
+
+
+
+
+  ul.case {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #00000000;
+    margin-left:10%;
+  }
+  
+  li.case {
+    float: left;
+  }
+  
+  
+  p.case{
+    height: 5 px;
+  
+  }
+  
+  li a.case {
+    display: grid;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: 5px solid #3b3b3b;;
+    margin: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+  
+  li a:hover.case {
+    color: rgb(165, 165, 165);
+  }
