@@ -35,9 +35,9 @@ error_reporting (E_ALL ^ E_NOTICE);
     <input name="poids" type="text"  >
 </div>
 
-<input type="submit" name="" value="Se connecter">
+<input type="submit" name="" value="Valider l'inscription">
 </form>
-
+<a href="new_user.php">Autre inscriprion ?</a>
 <?php
 
 $nom = $_POST['nom'];

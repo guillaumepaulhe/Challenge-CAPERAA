@@ -9,7 +9,7 @@ h1{
     text-align: center;
 }
 
-ul {
+ul.menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -18,11 +18,11 @@ ul {
     max-height: 52px;
   }
   
-  li {
+  li.menu {
     float: left;
   }
   
-  li a {
+  li a.menu {
     display: block;
     color: white;
     text-align: center;
@@ -30,7 +30,7 @@ ul {
     text-decoration: none;
   }
   
-  li a:hover {
+  li a:hover.menu {
     background-color: #111;
   }
 
@@ -74,11 +74,11 @@ ul {
   
   p.case{
     height: 5 px;
+    display: inline-flex;
   
   }
   
-  li a.case {
-    display: grid;
+  li.case {
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -87,6 +87,9 @@ ul {
     margin: 10px;
     font-size: 15px;
     border-radius: 5px;
+    width: 80%;
+    height: 50px;
+    
   }
   
   li a:hover.case {

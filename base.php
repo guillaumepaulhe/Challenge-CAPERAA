@@ -12,12 +12,12 @@
 <body>
     <h1>Challenge CAPERAA</h1>
 
-  <ul>
-    <li><a href="index.php">Accueil</a></li>
-    <li><a href="inscription.php">Inscription</a></li>
-    <li><a href="classement.php">Classement</a></li>
-    <li><a href="participant.php">Participants</a></li>
-</ul>
+  <ul class="menu">
+    <li class="menu"><a class="menu" href="index.php">Accueil</a></li>
+    <li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>
+    <li class="menu"><a class="menu" href="classement.php">Classement</a></li>
+    <li class="menu"><a class="menu" href="participant.php">Participants</a></li>
+  </ul>
 
 
 <footer>
