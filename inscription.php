@@ -7,16 +7,16 @@ error_reporting (E_ALL ^ E_NOTICE);
 
 <form action="" method = "post">
 <div> 
-    <label  >Nom</label>
-    <input name="nom" type="text"  >
+    <label>Nom</label>
+    <input class="ecart_inscription" name="nom" type="text"  >
 </div>
 <div>
     <label>Prénom</label>
-    <input name="prenom" type="text"  >
+    <input class="ecart_inscription" name="prenom" type="text"  >
 </div>
 <div>
-    <label>Sexe :</label>
-    <select name="sexe" id="">
+    <label>Sexe</label>
+    <select class="ecart_inscription" name="sexe" id="">
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme">Homme</option>
         <option value="Femme">Femme</option>
@@ -24,20 +24,20 @@ error_reporting (E_ALL ^ E_NOTICE);
 </div>
 <div>
     <label>Age</label>
-    <input name="age" type="text"  >
+    <input class="ecart_inscription" name="age" type="text"  >
 </div>
 <div>
     <label>Taille</label>
-    <input name="taille" type="text"  >
+    <input class="ecart_inscription" name="taille" type="text"  >
 </div>
 <div>
     <label>Poids</label>
-    <input name="poids" type="text"  >
+    <input class="ecart_inscription" name="poids" type="text"  >
 </div>
 
-<input type="submit" name="" value="Valider l'inscription">
-</form>
+<input class="ecart_inscription" type="submit" name="" value="Valider l'inscription">
 <a href="new_user.php">Autre inscriprion ?</a>
+</form>
 <?php
 
 $nom = $_POST['nom'];

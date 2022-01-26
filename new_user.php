@@ -7,34 +7,39 @@ $email = $_POST['email'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $role = $_POST['role'];
+$club = $_POST['club']
 ?>
 
 <h1>Demande d'inscription en tant qu'entraineur</h1>
 <form action="" method = "post">
 <div> 
     <label  >Nom</label>
-    <input name="nom" type="text"  >
+    <input class="ecart_inscription" name="nom" type="text"  >
 </div>
 
 <div>
     <label>Prénom</label>
-    <input name="prenom" type="text"  >
+    <input class="ecart_inscription" name="prenom" type="text"  >
 </div>
 <div>
     <label>Adresse e-mail</label>
-    <input type="email" name="email" required>
+    <input class="ecart_inscription" type="email" name="email" required>
 </div>
 <div>
-    <label>Rôle :</label>
-    <select name="role"> 
+    <label>Rôle</label>
+    <select class="ecart_inscription" name="role"> 
         <option value="">Veuillez sélectionner un rôle</option>
         <option value="Entraineur">Entraineur</option>
         <option value="Organisateur">Organisateur</option>
         <option value="Jury">Jury</option>
     </select>
 </div>
+<div>
+    <label>Code du club</label>
+    <input class="ecart_inscription" name="club" type="number"  >
+</div>
 
-<input type="submit" name="" value="Valider la demande">
+<input class="ecart_inscription" type="submit" name="" value="Valider la demande">
 </form>
 <?php
 
@@ -44,7 +49,7 @@ if($email!=NULL){
 
 $data = [
     'text' => 'Demande d\'inscriprion pour :
-'.$nom.' '.$prenom.' '.$email.' '.'en tant que : '.$role,
+    '.$nom.' '.$prenom.' '.$email.' '.'en tant que : '.$role.' avec le code de club '.$club,
     'chat_id' => '1306487306'
 ];
 
