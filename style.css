@@ -57,15 +57,13 @@ ul.menu {
     padding: 0;
     overflow: hidden;
     background-color: #00000000;
-    margin-left:10%;
+    margin-left:7%;
   }
   
   
   p.case{
     margin: 5px;
-    height: 5 px;
-    display: inline-flex;
-  
+    display: inline-flex;  
   }
   
   li.case {
@@ -101,3 +99,7 @@ label{
   margin: 5px;
   float: left;
 }
+
+a:link { color: white; }        
+a:visited { color: white; }   
+a:active { color: white;}

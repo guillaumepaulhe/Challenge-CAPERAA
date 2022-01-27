@@ -1,5 +1,6 @@
 <?php  
 include "base.php";
+include "fonctions.php"
 ?>
 
 <ul class="case">

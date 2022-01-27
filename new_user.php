@@ -7,10 +7,14 @@ $email = $_POST['email'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $role = $_POST['role'];
-$club = $_POST['club']
+$club = $_POST['club'];
+$mdp = $_POST['mdp'];
+
+echo password_hash("salut", PASSWORD_DEFAULT);
+
 ?>
 
-<h1>Demande d'inscription en tant qu'entraineur</h1>
+<h1>Autre demande d'inscription</h1>
 <form action="" method = "post">
 <div> 
     <label  >Nom</label>
@@ -24,6 +28,10 @@ $club = $_POST['club']
 <div>
     <label>Adresse e-mail</label>
     <input class="ecart_inscription" type="email" name="email" required>
+</div>
+<div>
+    <label>Mot de passe</label>
+    <input class="ecart_inscription" type="password" name="mdp" required>
 </div>
 <div>
     <label>Rôle</label>
