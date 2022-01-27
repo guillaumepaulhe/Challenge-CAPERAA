@@ -5,6 +5,6 @@ include "fonctions.php"
 
 <ul class="case">
 	  <?php
-        affiche_classement($db);
+        get__classement($db);
 ?>
     </ul>

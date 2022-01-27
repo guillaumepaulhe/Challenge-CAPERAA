@@ -10,6 +10,18 @@ function affiche_classement($db){
     }
 }
 
+function get__classement($db){
+	$req_ma_table = $db->prepare("SELECT * FROM participants");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$res = '';
+	foreach ($result_req_ma_table as $result) {
+		$nom = $result['Nom'];
+		$prenom = $result['Prenom'];
+		echo '<li class="classement"> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prenom : '.$prenom.'</p> </li>';
+	}
+}
+
 function affiche_participants($db){
 	$req_ma_table = $db->prepare("SELECT Nom FROM participants");
 	$req_ma_table->execute();

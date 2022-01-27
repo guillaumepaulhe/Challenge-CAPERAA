@@ -103,3 +103,35 @@ label{
 a:link { color: white; }        
 a:visited { color: white; }   
 a:active { color: white;}
+
+/*-----------------classement------------------*/
+ul.classement{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #00000000;
+  margin-left:7%;
+}
+
+
+p.classement{
+  margin: 5px;
+  display: inline-flex;  
+}
+
+li.classement {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border: 5px solid #3b3b3b;;
+  margin: 10px;
+  border-radius: 5px;
+  width: 90%;  
+}
+
+li a:hover.classement {
+  color: rgb(165, 165, 165);
+}
