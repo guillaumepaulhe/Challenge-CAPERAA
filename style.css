@@ -1,8 +1,8 @@
 body{
+     margin: 0;
     background-color: #1B1B1B;
     color: white;
     font-family: 'Roboto', sans-serif;
-    
 }
 
 h1{
@@ -21,7 +21,7 @@ ul.menu {
   li.menu {
     float: left;
   }
-  
+
   li a.menu {
     display: block;
     color: white;
@@ -75,7 +75,7 @@ ul.menu {
     border: 5px solid #3b3b3b;;
     margin: 10px;
     border-radius: 5px;
-    width: 10%;  
+    width: 200px;  
   }
   
   li a:hover.case {
@@ -134,4 +134,10 @@ li.classement {
 
 li a:hover.classement {
   color: rgb(165, 165, 165);
+}
+
+.test{
+  margin-left: 20%;
+  margin-right: 20%;
+
 }
