@@ -22,16 +22,16 @@ function get__classement($db){
 		$prenom = $result['Prenom'];
 		$points = $result['points'];
 		if($i==1){
-			echo '<li class="classement"> <p class="classement">🥇'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prenom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
+			echo '<li class="classement"> <p class="classement">🥇'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
 		}
 		if($i==2){
-			echo '<li class="classement"> <p class="classement">🥈'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prenom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
+			echo '<li class="classement"> <p class="classement">🥈'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
 		}
 		if($i==3){
-			echo '<li class="classement"> <p class="classement">🥉'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prenom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
+			echo '<li class="classement"> <p class="classement">🥉'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
 		}
 		if($i >3)
-		echo '<li class="classement"> <p class="classement">'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prenom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
+		echo '<li class="classement"> <p class="classement">'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
 	}
 }
 

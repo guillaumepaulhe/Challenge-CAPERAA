@@ -21,6 +21,6 @@
 
 
 <footer>
-  <p>© FJEP Lempdes 2022</p>
+  <p>&copy; FJEP Lempdes 2022</p>
 </footer>
 
