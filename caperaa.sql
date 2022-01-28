@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 27 Janvier 2022 à 11:00
+-- Généré le :  Ven 28 Janvier 2022 à 08:52
 -- Version du serveur :  5.7.11
--- Version de PHP :  5.6.18
+-- Version de PHP :  7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -51,6 +51,18 @@ INSERT INTO `participants` (`idParticipant`, `Nom`, `Prenom`, `Sexe`, `Age`, `Ta
 (12, 'Ipek', 'Hasan', 'Homme', 19, 175, 58, '', 0),
 (13, 'Faucher', 'Gabriel', 'Homme', 19, 175, 70, '', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateurs`
+--
+
+CREATE TABLE `utilisateurs` (
+  `idUser` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Index pour les tables exportées
 --
@@ -62,6 +74,12 @@ ALTER TABLE `participants`
   ADD PRIMARY KEY (`idParticipant`);
 
 --
+-- Index pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  ADD PRIMARY KEY (`idUser`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -70,6 +88,11 @@ ALTER TABLE `participants`
 --
 ALTER TABLE `participants`
   MODIFY `idParticipant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
