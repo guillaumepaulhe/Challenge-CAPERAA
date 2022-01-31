@@ -3,6 +3,7 @@ body{
     background-color: #1B1B1B;
     color: white;
     font-family: 'Roboto', sans-serif;
+
 }
 
 h1{
@@ -50,38 +51,6 @@ ul.menu {
   
   }
 
-
-  ul.case {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #00000000;
-    margin-left:7%;
-  }
-  
-  
-  p.case{
-    margin: 5px;
-    display: inline-flex;  
-  }
-  
-  li.case {
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    border: 5px solid #3b3b3b;;
-    margin: 10px;
-    border-radius: 5px;
-    width: 200px;  
-  }
-  
-  li a:hover.case {
-    color: rgb(165, 165, 165);
-  }
-
 form{
     flex-direction: column;
     float: left;
@@ -104,7 +73,14 @@ a:link { color: white; }
 a:visited { color: white; }   
 a:active { color: white;}
 
+.test{
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: justify;
+}
+
 /*-----------------classement------------------*/
+
 ul.classement{
   list-style-type: none;
   margin: 0;
@@ -136,8 +112,35 @@ li a:hover.classement {
   color: rgb(165, 165, 165);
 }
 
-.test{
-  margin-left: 20%;
-  margin-right: 20%;
+/*----------------participants-----------------*/
 
+ul.case {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #00000000;
+  margin-left:7%;
+}
+
+
+p.case{
+  margin: 5px;
+  display: inline-flex;  
+}
+
+li.case {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border: 5px solid #3b3b3b;;
+  margin: 10px;
+  border-radius: 5px;
+  width: 200px;  
+}
+
+li a:hover.case {
+  color: rgb(165, 165, 165);
 }
