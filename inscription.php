@@ -43,7 +43,6 @@ error_reporting (E_ALL ^ E_NOTICE);
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $sexe = $_POST['sexe'];
-$age = $_POST['age'];
 $taille = $_POST['taille'];
 $poids = $_POST['poids'];
 
