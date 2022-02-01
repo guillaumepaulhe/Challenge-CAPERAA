@@ -73,9 +73,10 @@ function get__participants($db){
 		$file_handle = fopen($id.'.php', 'w');
 		// UPDATE participants SET Poids = '.$edit_poids.' WHERE idParticipant = '.id.'
 
-		
+
 		fwrite($file_handle,'
 		<?php
+		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
 		$edit_nom = $_POST[\'nom\'];
@@ -94,18 +95,11 @@ function get__participants($db){
 		echo $edit_prenom,"<br>";
 		echo $edit_sexe,"<br>";
 		echo $edit_age,"<br>";
-		
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Poids = 75 WHERE idParticipant = 7");
-		$edit_req_ma_table->execute();
-
 		echo $edit_poids,"<br>";
 		echo $edit_taille,"<br>";
-		
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Poids = '.$edit_poids.' WHERE idParticipant = '.$id.'");
+		$edit_req_ma_table->execute();
 
-	
-
-
-	
 
 		?>
 		');
