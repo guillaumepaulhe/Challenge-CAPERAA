@@ -54,19 +54,26 @@ function get__participants($db){
 	foreach ($result_req_ma_table as $result) {
 		$nom = $result['Nom'];
 		$prenom = $result['Prenom'];
-		$poids = $result['Poids'];
-		$taille = $result['Taille'];
 		$sexe = $result['Sexe'];
+		$age = $result['Age'];
+		$taille = $result['Taille'];		
+		$poids = $result['Poids'];
+
 
 		$edit_nom = $result['Nom'];
 		$edit_prenom = $result['Prenom'];
-		$edit_poids = $result['Poids'];
-		$edit_taille = $result['Taille'];
 		$edit_sexe = $result['Sexe'];
+		$edit_age = $result['Age'];		
+		$edit_taille = $result['Taille'];
+		$edit_poids = $result['Poids'];
+
+		
 
 		$id =  $result['idParticipant'];
 		$file_handle = fopen($id.'.php', 'w');
-		// UPDATE participants SET Poids = '105' WHERE idParticipant = '7'
+		// UPDATE participants SET Poids = '.$edit_poids.' WHERE idParticipant = '.id.'
+
+		
 		fwrite($file_handle,'
 		<?php
 		include "base.php";
@@ -79,20 +86,35 @@ function get__participants($db){
 		$edit_poids = $_POST[\'poids\'];?> 
 
 		<ul>
-		<li class="case"> <form method="post"> <input name="nom" class="case" type="text" value="'.$edit_nom.'"> <input name="prenom" type="text" value="'.$edit_prenom.'"> <input name="poids" type="number" value="'.$edit_poids.'"> <input name="taille" type="number" value="'.$edit_taille.'"> <input name="sexe" type="text" value="'.$edit_sexe.'"> <br><input type="submit" value="Valider"> </form> </li>
+		<li class="case"> <form method="post"> <input name="nom" class="case" type="text" value="'.$edit_nom.'"> <input name="prenom" type="text" value="'.$edit_prenom.'"> <input name="age" type="number" value="'.$edit_age.'"> <input name="poids" type="number" value="'.$edit_poids.'"> <input name="taille" type="number" value="'.$edit_taille.'"> <input name="sexe" type="text" value="'.$edit_sexe.'"> <br><input type="submit" value="Valider"> </form> </li>
 		</ul>
 		<?php
 
 		echo $edit_nom,"<br>"; 
 		echo $edit_prenom,"<br>";
+		echo $edit_sexe,"<br>";
+		echo $edit_age,"<br>";
+		
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Poids = 75 WHERE idParticipant = 7");
+		$edit_req_ma_table->execute();
+
 		echo $edit_poids,"<br>";
 		echo $edit_taille,"<br>";
-		echo $edit_sexe,"<br>";
+		
+
+	
+
+
+	
+
 		?>
 		');
+		
+		
 		fclose($file_handle);
 		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p><p class="case">Prenom : '.$prenom.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p><br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
 	}
+		
 }
 
 function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids){
