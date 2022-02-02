@@ -10,18 +10,45 @@
 		$edit_taille = $_POST['taille'];
 		$edit_poids = $_POST['poids'];?> 
 
-		<ul>
-		<li class="case"> <form method="post"> <input name="nom" class="case" type="text" value="Faucher"> <input name="prenom" type="text" value="Noa"> <input name="age" type="number" value="20"> <input name="poids" type="number" value="69"> <input name="taille" type="number" value="170"> <input name="sexe" type="text" value="Homme"> <br><input type="submit" value="Valider"> </form> </li>
-		</ul>
+		
+		
+		<form method="post"> 
+		<div>
+		<label>Nom</label>
+		<input class="ecart_inscription" name="nom" class="case" type="text" value="Faucher">
+		</div>
+		<div>
+		<label>Prénom</label> 
+		<input class="ecart_inscription" name="prenom" type="text" value="Noa">
+		</div>
+		<div>
+		<label>Age</label> 
+		<input class="ecart_inscription" name="age" type="number" value="20">
+		</div>
+		<div>
+		<label>Poids</label>
+		<input class="ecart_inscription" name="poids" type="number" value="69">
+		</div>
+		<div>
+		<label>Taille</label> 
+		<input class="ecart_inscription" name="taille" type="number" value="170"> 
+		</div>
+		<div>
+		<label>Sexe</label> 
+		<select class="ecart_inscription" name="sexe" id="" value=Homme>
+        <option value="">Sélectionnez votre sexe</option>
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+    </select> 
+		<br>
+		<div>
+		<input class="ecart_inscription" type="submit" value="Valider"> </form> </li>
+		</div>
+		
 		<?php
 
-		echo $edit_nom,"<br>"; 
-		echo $edit_prenom,"<br>";
-		echo $edit_sexe,"<br>";
-		echo $edit_age,"<br>";
-		echo $edit_poids,"<br>";
-		echo $edit_taille,"<br>";
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Poids = 69 WHERE idParticipant = 10");
+
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe'  WHERE idParticipant = 10");
 		$edit_req_ma_table->execute();
 
 
