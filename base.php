@@ -19,7 +19,6 @@
     <li class="menu"><a class="menu" href="participant.php">Participants</a></li>
   </ul>
 
-
 <footer>
   <p>&copy; FJEP Lempdes 2022</p>
 </footer>

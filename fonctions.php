@@ -110,11 +110,11 @@ function get__participants($db){
 		</div>
 		<div>
 		<label>Sexe</label> 
-		<select class="ecart_inscription" name="sexe" id="" value='.$edit_sexe.'>
+		<select class="ecart_inscription" name="sexe" id="" value='.$edit_sexe.' required>
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme">Homme</option>
         <option value="Femme">Femme</option>
-    </select> 
+    	</select> 
 		<br>
 		<div>
 		<input class="ecart_inscription" type="submit" value="Valider"> </form> </li>
