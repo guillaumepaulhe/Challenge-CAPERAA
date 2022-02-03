@@ -71,11 +71,11 @@ function get__participants($db){
 
 		$id =  $result['idParticipant'];
 		$file_handle = fopen($id.'.php', 'w');
+		// UPDATE participants SET Poids = '.$edit_poids.' WHERE idParticipant = '.id.'
 
-
+		
 		fwrite($file_handle,'
 		<?php
-		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
 		$edit_nom = $_POST[\'nom\'];
@@ -85,54 +85,34 @@ function get__participants($db){
 		$edit_taille = $_POST[\'taille\'];
 		$edit_poids = $_POST[\'poids\'];?> 
 
-		
-		
-		<form method="post"> 
-		<div>
-		<label>Nom</label>
-		<input class="ecart_inscription" name="nom" class="case" type="text" value="'.$edit_nom.'">
-		</div>
-		<div>
-		<label>Prénom</label> 
-		<input class="ecart_inscription" name="prenom" type="text" value="'.$edit_prenom.'">
-		</div>
-		<div>
-		<label>Age</label> 
-		<input class="ecart_inscription" name="age" type="number" value="'.$edit_age.'">
-		</div>
-		<div>
-		<label>Poids</label>
-		<input class="ecart_inscription" name="poids" type="number" value="'.$edit_poids.'">
-		</div>
-		<div>
-		<label>Taille</label> 
-		<input class="ecart_inscription" name="taille" type="number" value="'.$edit_taille.'"> 
-		</div>
-		<div>
-		<label>Sexe</label> 
-		<select class="ecart_inscription" name="sexe" id="" value='.$edit_sexe.'>
-        <option value="">Sélectionnez votre sexe</option>
-        <option value="Homme">Homme</option>
-        <option value="Femme">Femme</option>
-    </select> 
-		<br>
-		<div>
-		<input class="ecart_inscription" type="submit" value="Valider"> </form> </li>
-		</div>
-		
+		<ul>
+		<li class="case"> <form method="post"> <input name="nom" class="case" type="text" value="'.$edit_nom.'"> <input name="prenom" type="text" value="'.$edit_prenom.'"> <input name="age" type="number" value="'.$edit_age.'"> <input name="poids" type="number" value="'.$edit_poids.'"> <input name="taille" type="number" value="'.$edit_taille.'"> <input name="sexe" type="text" value="'.$edit_sexe.'"> <br><input type="submit" value="Valider"> </form> </li>
+		</ul>
 		<?php
 
-
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = \'$edit_sexe\'  WHERE idParticipant = '.$id.'");
+		echo $edit_nom,"<br>"; 
+		echo $edit_prenom,"<br>";
+		echo $edit_sexe,"<br>";
+		echo $edit_age,"<br>";
+		
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Poids = 75 WHERE idParticipant = 7");
 		$edit_req_ma_table->execute();
 
+		echo $edit_poids,"<br>";
+		echo $edit_taille,"<br>";
+		
+
+	
+
+
+	
 
 		?>
 		');
 		
-		//$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = "$edit_nom", Prenom = "$edit_prenom", Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = "$edit_sexe" WHERE idParticipant = '.$id.'");
+		
 		fclose($file_handle);
-		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p><br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
+		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p><p class="case">Prenom : '.$prenom.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p><br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
 	}
 		
 }
@@ -147,4 +127,19 @@ function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids){
 // 	$req_ma_table->execute();
 // }
 
+
+
+
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'root');
+define('DB_NAME', 'caperaa');
+ 
+// Connexion à la base de données MySQL 
+$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+// Vérifier la connexion
+if($conn === false){
+    die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
+}
     ?>

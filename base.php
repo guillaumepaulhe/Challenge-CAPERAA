@@ -17,6 +17,7 @@
     <li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>
     <li class="menu"><a class="menu" href="classement.php">Classement</a></li>
     <li class="menu"><a class="menu" href="participant.php">Participants</a></li>
+    <li style="float:right"><a class="menu" href="login.php">Se connecter</a></li>
   </ul>
 
 
