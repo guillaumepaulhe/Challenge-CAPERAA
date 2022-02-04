@@ -1,7 +1,7 @@
 <?php
 include "base.php";
 require('fonctions.php');
-session_start();
+
 $count ="";
 
 if (isset($_POST['email'])){

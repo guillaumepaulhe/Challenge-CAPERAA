@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,7 +21,18 @@
     <li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>
     <li class="menu"><a class="menu" href="classement.php">Classement</a></li>
     <li class="menu"><a class="menu" href="participant.php">Participants</a></li>
-    <li style="float:right"><a class="menu" href="login.php">Se connecter</a></li>
+    <?php
+    if(isset($_SESSION['email'])){
+      ?>
+      <li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>
+      <?php
+    }
+    if(!isset($_SESSION['email'])){
+      ?>
+      <li style="float:right"><a class="menu" href="login.php">Se connecter</a></li>
+      <?php
+    }
+    ?>
   </ul>
 
 <footer>

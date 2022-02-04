@@ -1,3 +1,4 @@
+
 		<?php
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
