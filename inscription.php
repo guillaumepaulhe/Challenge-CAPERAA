@@ -36,7 +36,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 </div>
 
 <input class="ecart_inscription" type="submit" name="" value="Valider l'inscription">
-<a class="ecart_inscription" href="new_user.php">Autre inscriprion ?</a>
+<a href="new_user.php">Autre inscriprion ?</a>
 </form>
 <?php
 

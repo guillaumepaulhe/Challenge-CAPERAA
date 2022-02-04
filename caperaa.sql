@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 28 Janvier 2022 à 08:52
+-- Généré le :  Jeu 03 Février 2022 à 07:52
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -64,6 +64,15 @@ CREATE TABLE `utilisateurs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Contenu de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`idUser`, `email`, `password`) VALUES
+(1, 'admin', 'admin'),
+(2, 'jsaispas@gmail.com', 'ed8779a2222dc578f2cffbf308411b41381a94ef25801f9dfbe04746ea0944cd'),
+(3, 'dorian@gmail.com', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9');
+
+--
 -- Index pour les tables exportées
 --
 
@@ -87,12 +96,12 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `participants`
 --
 ALTER TABLE `participants`
-  MODIFY `idParticipant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idParticipant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
