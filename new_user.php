@@ -9,9 +9,6 @@ $prenom = $_POST['prenom'];
 $role = $_POST['role'];
 $club = $_POST['club'];
 $mdp = $_POST['mdp'];
-
-echo password_hash("salut", PASSWORD_DEFAULT);
-
 ?>
 
 <h1>Autre demande d'inscription</h1>
