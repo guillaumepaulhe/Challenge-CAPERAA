@@ -20,20 +20,13 @@ if (isset($_POST['email'])){
   }
 }
 ?>
-<form class="box" action="" method="post" name="login">
-<h1 class="box-title">Connexion</h1>
-<input type="email" class="box-input" name="email" placeholder="Email">
-<input type="password" class="box-input" name="password" placeholder="Mot de passe">
-<input type="submit" value="Connexion " name="submit" class="box-button">
-<p class="box-register">Vous êtes nouveau ici? <a href="register.php">S'inscrire</a></p>
+<form action="" method="post" name="login">
+<h1>Connexion</h1>
+<input type="email" name="email" placeholder="Email">
+<input type="password" name="password" placeholder="Mot de passe">
+<input type="submit" value="Connexion " name="submit">
+<p>Vous êtes nouveau ici? <a href="register.php">S'inscrire</a></p>
 <?php if (! empty($message)) { ?>
     <p class="errorMessage"><?php echo $message; ?></p>
 <?php } ?>
 </form>
-<?php
-if($count==1){
-    session_start();
-    $_SESSION['loggedin'] = true;
-    $_SESSION['email'] = $email;
-}
-?>
