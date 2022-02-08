@@ -1,14 +1,6 @@
 <?php
 $db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root');
 
-// function affiche_classement($db){
-// 	$req_ma_table = $db->prepare("SELECT nom FROM classement ORDER BY 'points' ");
-// 	$req_ma_table->execute();
-// 	$result_req_ma_table = $req_ma_table->fetchAll();
-// 	foreach ($result_req_ma_table as $result) {
-// 		$res = $result['nom'];
-//     }
-// }
 
 function get__classement($db){
 	$req_ma_table = $db->prepare("SELECT * FROM participants ORDER BY points DESC");
@@ -34,15 +26,6 @@ function get__classement($db){
 		echo '<li class="classement"> <p class="classement">'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
 	}
 }
-
-// function affiche_participants($db){
-// 	$req_ma_table = $db->prepare("SELECT Nom FROM participants");
-// 	$req_ma_table->execute();
-// 	$result_req_ma_table = $req_ma_table->fetchAll();
-// 	foreach ($result_req_ma_table as $result) {
-// 		$res = $result['Nom'];
-// 	}
-// }
 
 
 function get__participants($db){
@@ -130,7 +113,7 @@ function get__participants($db){
 		?>
 		');
 		
-		//$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = "$edit_nom", Prenom = "$edit_prenom", Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = "$edit_sexe" WHERE idParticipant = '.$id.'");
+		
 		fclose($file_handle);
 		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p><br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
 	}
@@ -142,16 +125,27 @@ function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids){
 	$req_ma_table->execute();
 }
 
-// function get_id($db,$nom,$prenom){
-//     $req_ma_table = $db->prepare("SELECT idParticipant FROM `participants` WHERE `nom`='$nom' AND `prenom`='$prenom' AND `poids`='$poids'");
-// 	$req_ma_table->execute();
-// }
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'root');
 define('DB_NAME', 'caperaa');
  
+// Connexion à la base de données MySQL 
+$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+// Vérifier la connexion
+if($conn === false){
+    die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
+}
+
+    
+
+function add_demande_inscription($db,$nom,$prenom,$email,$mdp,$role,$code_club){
+    $req_ma_table = $db->prepare("INSERT INTO demande_inscription (Nom,Prenom,Email,Mdp,Role,Code_club) VALUES ('$nom','$prenom','$email','".hash('sha256', $mdp)."','$role','$code_club')");
+	$req_ma_table->execute();
+}
+
 // Connexion à la base de données MySQL 
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  

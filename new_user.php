@@ -1,5 +1,6 @@
 <?php
 include "base.php";
+include "fonctions.php";
 error_reporting (E_ALL ^ E_NOTICE);
 
 
@@ -7,7 +8,7 @@ $email = $_POST['email'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $role = $_POST['role'];
-$club = $_POST['club'];
+$code_club = $_POST['club'];
 $mdp = $_POST['mdp'];
 ?>
 
@@ -48,17 +49,8 @@ $mdp = $_POST['mdp'];
 </form>
 <?php
 
-if($email!=NULL){
-
-    $token = "5165689944:AAGBqKFtVLRqQkTDN53OlBRZKWJztUu-gJw";
-
-$data = [
-    'text' => 'Demande d\'inscriprion pour :
-    '.$nom.' '.$prenom.' '.$email.' '.'en tant que : '.$role.' avec le code de club '.$club,
-    'chat_id' => '1306487306'
-];
-
-file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($data) );
-}
+    if($email!=NULL){
+    add_demande_inscription($db,$nom,$prenom,$email,$mdp,$role,$code_club);
+    }
 
 ?>
