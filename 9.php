@@ -1,5 +1,7 @@
 
 		<?php
+		$s = "Homme";
+		echo $s;
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -35,11 +37,22 @@
 		</div>
 		<div>
 		<label>Sexe</label> 
-		<select class="ecart_inscription" name="sexe" id="" value=Homme required>
+		<?php
+		if ($s == "Homme"){
+		echo '<select class="ecart_inscription" name="sexe" id="" value=Homme required>
+        <option value="">Sélectionnez votre sexe</option>
+        <option value="Homme" selected >Homme</option>
+        <option value="Femme">Femme</option>
+    	</select>';
+		} 
+		if ($s == "Femme"){
+		echo '<select class="ecart_inscription" name="sexe" id="" value=Homme required>
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme">Homme</option>
-        <option value="Femme">Femme</option>
-    	</select> 
+        <option value="Femme" selected >Femme</option>
+    	</select>';
+	} 
+		?>
 		<br>
 		<div>
 		<input class="ecart_inscription" type="submit" value="Valider"> </form> </li>

@@ -8,7 +8,7 @@ $email = $_POST['email'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $role = $_POST['role'];
-$code_club = $_POST['club'];
+$nom_club = $_POST['club'];
 $mdp = $_POST['mdp'];
 ?>
 
@@ -41,16 +41,20 @@ $mdp = $_POST['mdp'];
     </select>
 </div>
 <div>
-    <label>Code du club</label>
-    <input class="ecart_inscription" name="club" type="number"  >
+    <label>Selectionner le club</label>
+    <select name="club" class="ecart_inscription">
+        <option value="">Entrer le club seulement pour les entraineurs</option>
+        <?php 
+        list_club($db);
+        ?>
+    </select>
 </div>
 
 <input class="ecart_inscription" type="submit" name="" value="Valider la demande">
 </form>
 <?php
-
     if($email!=NULL){
-    add_demande_inscription($db,$nom,$prenom,$email,$mdp,$role,$code_club);
+    add_demande_inscription($db,$nom,$prenom,$email,$mdp,$role,$nom_club);
     }
 
 ?>

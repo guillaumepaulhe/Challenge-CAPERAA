@@ -21,6 +21,8 @@ session_start();
     <li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>
     <li class="menu"><a class="menu" href="classement.php">Classement</a></li>
     <li class="menu"><a class="menu" href="participant.php">Participants</a></li>
+    <li class="menu"><a class="menu" href="new_inscription.php">Inscriptions en attentes</a></li>
+    
     <?php
     if(isset($_SESSION['email'])){
       ?>

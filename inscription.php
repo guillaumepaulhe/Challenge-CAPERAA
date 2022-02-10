@@ -49,7 +49,6 @@ $sexe = $_POST['sexe'];
 $taille = $_POST['taille'];
 $poids = $_POST['poids'];
 
-echo $_SESSION['email'] ;
 
 if($nom!=NULL){
     add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids);

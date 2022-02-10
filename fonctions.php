@@ -27,6 +27,47 @@ function get__classement($db){
 	}
 }
 
+function get__demandes($db){
+	$req_ma_table = $db->prepare("SELECT * FROM demande_inscription");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$res = '';
+	
+	foreach ($result_req_ma_table as $result) {
+		$nom = $result['Nom'];
+		$prenom = $result['Prenom'];
+		$email = $result['Email'];
+		$password = $result['Mdp'];
+		$role  = $result['Role'];
+		$nom_club = $result['Nom_club'];
+		$id = $result['ID'];
+		echo '<li class="classement"> 
+		<p class="classement">Nom : '.$nom.'</p>
+		<p class="classement">Prénom : '.$prenom.'</p>
+		<p class="classement">Email : '.$email.'</p>
+		<p class="classement">Role : '.$role.'</p>
+		<p class="classement">Nom du club : '.$nom_club.'</p> 
+		<br>
+		<form class="case" method="post">
+		<input type="submit" name="valider" class="case" value="✔" />
+		<input type="submit" name="refuser" class="case" value="❌" />
+		</form>
+		</li>';
+		
+	}
+
+}
+
+function valider_demande($db,$id,$nom,$prenom,$email,$password,$role,$nom_club) {
+	$req_ma_table = $db->prepare("INSERT INTO utilisateurs (Nom,Prenom,email,password,Role,Nom_club) VALUES ('$nom','$prenom','$email','$password','$role','$nom_club')");
+	$req_ma_table->execute();
+	
+}
+
+function refuser_demande($db){
+	$req_ma_table = $db->prepare("DELETE FROM utilisateurs WHERE `idUser` = '$id'");
+	$req_ma_table->execute();
+}
 
 function get__participants($db){
 	$req_ma_table = $db->prepare("SELECT * FROM participants");
@@ -58,6 +99,8 @@ function get__participants($db){
 
 		fwrite($file_handle,'
 		<?php
+		$s = "'.$sexe.'";
+		echo $s;
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -93,11 +136,22 @@ function get__participants($db){
 		</div>
 		<div>
 		<label>Sexe</label> 
-		<select class="ecart_inscription" name="sexe" id="" value='.$edit_sexe.' required>
+		<?php
+		if ($s == "Homme"){
+		echo \'<select class="ecart_inscription" name="sexe" id="" value=Homme required>
+        <option value="">Sélectionnez votre sexe</option>
+        <option value="Homme" selected >Homme</option>
+        <option value="Femme">Femme</option>
+    	</select>\';
+		} 
+		if ($s == "Femme"){
+		echo \'<select class="ecart_inscription" name="sexe" id="" value=Homme required>
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme">Homme</option>
-        <option value="Femme">Femme</option>
-    	</select> 
+        <option value="Femme" selected >Femme</option>
+    	</select>\';
+	} 
+		?>
 		<br>
 		<div>
 		<input class="ecart_inscription" type="submit" value="Valider"> </form> </li>
@@ -141,8 +195,8 @@ if($conn === false){
 
     
 
-function add_demande_inscription($db,$nom,$prenom,$email,$mdp,$role,$code_club){
-    $req_ma_table = $db->prepare("INSERT INTO demande_inscription (Nom,Prenom,Email,Mdp,Role,Code_club) VALUES ('$nom','$prenom','$email','".hash('sha256', $mdp)."','$role','$code_club')");
+function add_demande_inscription($db,$nom,$prenom,$email,$mdp,$role,$nom_club){
+    $req_ma_table = $db->prepare("INSERT INTO demande_inscription (Nom,Prenom,Email,Mdp,Role,Nom_club) VALUES ('$nom','$prenom','$email','".hash('sha256', $mdp)."','$role','$nom_club')");
 	$req_ma_table->execute();
 }
 
@@ -154,4 +208,15 @@ if($conn === false){
     die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
 }
 
+
+function list_club($db){
+        $req_ma_table = $db->prepare("SELECT `Nom-du-club` FROM `codes_clubs` ORDER BY `Nom-du-club`");
+        $req_ma_table->execute();
+        $result_req_ma_table = $req_ma_table->fetchAll();
+        foreach ($result_req_ma_table as $result) {
+            $club = $result['Nom-du-club'];
+            echo '<option value="'.$club.'"> '.$club.'</option>';
+
+		}
+}
     ?>
