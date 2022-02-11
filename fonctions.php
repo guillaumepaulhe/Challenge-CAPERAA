@@ -27,62 +27,9 @@ function get__classement($db){
 	}
 }
 
-function get__demandes($db){
-	$req_ma_table = $db->prepare("SELECT * FROM demande_inscription");
-	$req_ma_table->execute();
-	$result_req_ma_table = $req_ma_table->fetchAll();
-	$res = '';
-	
-	foreach ($result_req_ma_table as $result) {
-		$nom = $result['Nom'];
-		$prenom = $result['Prenom'];
-		$email = $result['Email'];
-		$password = $result['Mdp'];
-		$role  = $result['Role'];
-		$nom_club = $result['Nom_club'];
-		$id = $result['ID'];
-		if($nom_club!=NULL){
-		echo '<li class="classement"> 
-		<p class="classement">Nom : '.$nom.'</p>
-		<p class="classement">Prénom : '.$prenom.'</p>
-		<p class="classement">Email : '.$email.'</p>
-		<p class="classement">Role : '.$role.'</p>
-		<p class="classement">Nom du club : '.$nom_club.'</p> 
-		<br>
-		<form class="case" method="post">
-		<input type="submit" name="valider" class="case" value="✔" />
-		<input type="submit" name="refuser" class="case" value="❌" />
-		</form>
-		</li>';
-		}
-		if($nom_club == NULL){
-			echo '<li class="classement"> 
-			<p class="classement">Nom : '.$nom.'</p>
-			<p class="classement">Prénom : '.$prenom.'</p>
-			<p class="classement">Email : '.$email.'</p>
-			<p class="classement">Role : '.$role.'</p>
-			<br>
-			<form class="case" method="post">
-			<input type="submit" name="valider" class="case" value="✔" />
-			<input type="submit" name="refuser" class="case" value="❌" />
-			</form>
-			</li>';
-		}
-		
-	}
 
-}
 
-function valider_demande($db,$id,$nom,$prenom,$email,$password,$role,$nom_club) {
-	$req_ma_table = $db->prepare("INSERT INTO utilisateurs (Nom,Prenom,email,password,Role,Nom_club) VALUES ('$nom','$prenom','$email','$password','$role','$nom_club')");
-	$req_ma_table->execute();
-	
-}
 
-function refuser_demande($db){
-	$req_ma_table = $db->prepare("DELETE FROM utilisateurs WHERE `idUser` = '$id'");
-	$req_ma_table->execute();
-}
 
 function get__participants($db){
 	$req_ma_table = $db->prepare("SELECT * FROM participants");

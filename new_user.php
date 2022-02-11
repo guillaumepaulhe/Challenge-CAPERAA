@@ -12,7 +12,6 @@ $nom_club = $_POST['club'];
 $mdp = $_POST['mdp'];
 ?>
 
-<h1>Autre demande d'inscription</h1>
 <form action="" method = "post">
 <div> 
     <label  >Nom</label>

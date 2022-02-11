@@ -30,13 +30,25 @@ function get_rolee($db,$email){
 
   <ul class="menu">
     <li class="menu"><a class="menu" href="index.php">Accueil</a></li>
-    <li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>
     <li class="menu"><a class="menu" href="classement.php">Classement</a></li>
-    <li class="menu"><a class="menu" href="participant.php">Participants</a></li>
+    
     
     
 
     <?php
+
+    if(!isset($_SESSION['email']) || get_rolee($db,$_SESSION['email']) == "Administrateur"){
+      echo '<li class="menu"><a class="menu" href="new_user.php">Inscription</a></li>';
+    }
+
+    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Entraineur")) {
+      echo '<li class="menu"><a class="menu" href="inscription.php">Inscription combattants</a></li>';
+    }
+
+    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Organisateur")) {
+      echo '<li class="menu"><a class="menu" href="participant.php">Participants</a></li>';
+    }
+
     if (get_rolee($db,$_SESSION['email']) == "Administrateur") {
      echo '<li class="menu"><a class="menu" href="new_inscription.php">Inscriptions en attentes</a></li>';
     }
@@ -44,6 +56,7 @@ function get_rolee($db,$email){
     if(isset($_SESSION['email'])){
      echo '<li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>';
     }
+
     if(!isset($_SESSION['email'])){
      echo '<li style="float:right"><a class="menu" href="login.php">Se connecter</a></li>';
     }
