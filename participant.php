@@ -1,10 +1,9 @@
 <?php  
 include "base.php";
 include "fonctions.php";
-
-if(!isset($_SESSION['email'])){
-    header("location: login.php");
-  }
+if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Organisateur" )) {
+  header("location: login.php");
+}
 ?>
 
 <ul class="case">

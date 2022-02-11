@@ -41,6 +41,7 @@ function get__demandes($db){
 		$role  = $result['Role'];
 		$nom_club = $result['Nom_club'];
 		$id = $result['ID'];
+		if($nom_club!=NULL){
 		echo '<li class="classement"> 
 		<p class="classement">Nom : '.$nom.'</p>
 		<p class="classement">Prénom : '.$prenom.'</p>
@@ -53,6 +54,20 @@ function get__demandes($db){
 		<input type="submit" name="refuser" class="case" value="❌" />
 		</form>
 		</li>';
+		}
+		if($nom_club == NULL){
+			echo '<li class="classement"> 
+			<p class="classement">Nom : '.$nom.'</p>
+			<p class="classement">Prénom : '.$prenom.'</p>
+			<p class="classement">Email : '.$email.'</p>
+			<p class="classement">Role : '.$role.'</p>
+			<br>
+			<form class="case" method="post">
+			<input type="submit" name="valider" class="case" value="✔" />
+			<input type="submit" name="refuser" class="case" value="❌" />
+			</form>
+			</li>';
+		}
 		
 	}
 
@@ -218,5 +233,16 @@ function list_club($db){
             echo '<option value="'.$club.'"> '.$club.'</option>';
 
 		}
+}
+
+
+function get_role($db,$email){
+	$req_ma_table = $db->prepare("SELECT Role FROM utilisateurs WHERE email = '$email'");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	foreach ($result_req_ma_table as $result) {
+		$role = $result['Role'];
+	}
+	return $role;
 }
     ?>

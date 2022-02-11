@@ -1,5 +1,17 @@
 <?php
 session_start();
+error_reporting (E_ALL ^ E_NOTICE);
+$db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root');
+
+function get_rolee($db,$email){
+	$req_ma_table = $db->prepare("SELECT Role FROM utilisateurs WHERE email = '$email'");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	foreach ($result_req_ma_table as $result) {
+		$role = $result['Role'];
+	}
+	return $role;
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,18 +33,19 @@ session_start();
     <li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>
     <li class="menu"><a class="menu" href="classement.php">Classement</a></li>
     <li class="menu"><a class="menu" href="participant.php">Participants</a></li>
-    <li class="menu"><a class="menu" href="new_inscription.php">Inscriptions en attentes</a></li>
     
+    
+
     <?php
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur") {
+     echo '<li class="menu"><a class="menu" href="new_inscription.php">Inscriptions en attentes</a></li>';
+    }
+    
     if(isset($_SESSION['email'])){
-      ?>
-      <li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>
-      <?php
+     echo '<li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>';
     }
     if(!isset($_SESSION['email'])){
-      ?>
-      <li style="float:right"><a class="menu" href="login.php">Se connecter</a></li>
-      <?php
+     echo '<li style="float:right"><a class="menu" href="login.php">Se connecter</a></li>';
     }
     ?>
   </ul>
