@@ -31,7 +31,9 @@ function get__demandes($db){
 		<input type="submit" name="valider" class="case" value="✔" />
 		<input type="submit" name="refuser" class="case" value="❌" />
 		</form>
-		</li>';
+		</li>
+	    </ul>';
+
 		}
 		if($nom_club == NULL){
 			echo '<li class="classement"> 
@@ -44,8 +46,13 @@ function get__demandes($db){
 			<input type="submit" name="valider" class="case" value="✔" />
 			<input type="submit" name="refuser" class="case" value="❌" />
 			</form>
-			</li>';
+			</li>
+			</ul>';
+
 		}
+
+
+		
 		
 	}
     if(array_key_exists('valider', $_POST)) {
@@ -56,6 +63,10 @@ function get__demandes($db){
     if(array_key_exists('refuser', $_POST)) {
         refuser_demande($db,$id);
     }
+	if($nom == NULL){
+		echo '    </ul>';
+		echo '<p class=\'center\'> Aucune inscription en attente </p>';
+	}
 }
 
 function valider_demande($db,$id,$nom,$prenom,$email,$password,$role,$nom_club) {
@@ -78,4 +89,3 @@ function refuser_demande($db,$id){
         get__demandes($db);
         
 ?>
-    </ul>
