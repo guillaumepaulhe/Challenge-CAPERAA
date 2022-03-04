@@ -23,6 +23,7 @@ function get_rolee($db,$email){
   <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Logo(2).png">
   <title>Challenge CAPERAA</title>
 </head>
 <body>

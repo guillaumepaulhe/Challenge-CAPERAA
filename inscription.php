@@ -53,5 +53,7 @@ if($nom!=NULL){
     add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids);
 }
 
+$test = get_nom_club($db);
+echo $test;
 
 ?>

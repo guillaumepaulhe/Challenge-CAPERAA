@@ -137,7 +137,8 @@ function get__participants($db){
 }
 
 function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids){
-    $req_ma_table = $db->prepare("INSERT INTO participants (Nom,Prenom,Sexe,Age,Taille,Poids) VALUES ('$nom','$prenom','$sexe','$age','$taille','$poids')");
+	$nom_club = get_nom_club($db);
+    $req_ma_table = $db->prepare("INSERT INTO participants (Nom,Prenom,Sexe,Age,Taille,Poids,Nom_club) VALUES ('$nom','$prenom','$sexe','$age','$taille','$poids','$nom_club')");
 	$req_ma_table->execute();
 }
 
@@ -192,4 +193,17 @@ function get_role($db,$email){
 	}
 	return $role;
 }
+
+
+function get_nom_club($db){
+	$email = $_SESSION["email"];
+	$req_ma_table = $db->prepare("SELECT `Nom_club` FROM `utilisateurs` WHERE `email`= '$email' ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	foreach ($result_req_ma_table as $result) {
+		$nom_club = $result['Nom_club'];
+	}
+	return $nom_club;
+}
     ?>
+
