@@ -1,7 +1,7 @@
 
 		<?php
 		$s = "Homme";
-		$id = "8";
+		$id = "20";
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -17,23 +17,23 @@
 		<form method="post"> 
 		<div>
 		<label>Nom</label>
-		<input class="ecart_inscription" name="nom" class="case" type="text" value="Alonso">
+		<input class="ecart_inscription" name="nom" class="case" type="text" value="Test">
 		</div>
 		<div>
 		<label>Prénom</label> 
-		<input class="ecart_inscription" name="prenom" type="text" value="Dorian">
+		<input class="ecart_inscription" name="prenom" type="text" value="Testt">
 		</div>
 		<div>
 		<label>Age</label> 
-		<input class="ecart_inscription" name="age" type="number" value="19">
+		<input class="ecart_inscription" name="age" type="number" value="18">
 		</div>
 		<div>
 		<label>Poids</label>
-		<input class="ecart_inscription" name="poids" type="number" value="75">
+		<input class="ecart_inscription" name="poids" type="number" value="80">
 		</div>
 		<div>
 		<label>Taille</label> 
-		<input class="ecart_inscription" name="taille" type="number" value="175"> 
+		<input class="ecart_inscription" name="taille" type="number" value="185"> 
 		</div>
 		<div>
 		<label>Sexe</label> 
@@ -67,7 +67,7 @@
 		<?php
 
 
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe'  WHERE idParticipant = 8");
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe'  WHERE idParticipant = 20");
 		$edit_req_ma_table->execute();
 		function refuser_demande($db,$id){
 			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = '$id'");

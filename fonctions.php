@@ -44,6 +44,7 @@ function get__participants($db){
 		$age = $result['Age'];
 		$taille = $result['Taille'];		
 		$poids = $result['Poids'];
+		$club = $result['Nom_club'];
 
 
 		$edit_nom = $result['Nom'];
@@ -62,7 +63,7 @@ function get__participants($db){
 		fwrite($file_handle,'
 		<?php
 		$s = "'.$sexe.'";
-		echo $s;
+		$id = "'.$id.'";
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -113,10 +114,16 @@ function get__participants($db){
         <option value="Femme" selected >Femme</option>
     	</select>\';
 	} 
+	if(array_key_exists(\'refuser\', $_POST)) {
+		refuser_demande($db,$id);
+	}
 		?>
 		<br>
 		<div>
-		<input class="ecart_inscription" type="submit" value="Valider"> </form> </li>
+		<input class="ecart_inscription" type="submit" value="Valider"> 
+		<input type="submit" name="refuser" class="ecart_inscription" value="Retirer ce combatant" /> </form>
+
+
 		</div>
 		
 		<?php
@@ -124,23 +131,35 @@ function get__participants($db){
 
 		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = \'$edit_sexe\'  WHERE idParticipant = '.$id.'");
 		$edit_req_ma_table->execute();
-
+		function refuser_demande($db,$id){
+			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = \'$id\'");
+			$req_ma_table->execute();
+			header("location: participant.php");
+		}
 
 		?>
 		');
 		
 		
 		fclose($file_handle);
-		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p><br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
+		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p> <p class = "case">Club :  '.$club.'</p> <br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
 	}
 		
 }
 
-function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids){
+function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids,$ceinture){
 	$nom_club = get_nom_club($db);
-    $req_ma_table = $db->prepare("INSERT INTO participants (Nom,Prenom,Sexe,Age,Taille,Poids,Nom_club) VALUES ('$nom','$prenom','$sexe','$age','$taille','$poids','$nom_club')");
+	echo $nom;
+	echo $prenom;
+	echo $sexe;
+	echo $age;
+	echo $taille;
+	echo $poids;
+	echo $ceinture;
+    $req_ma_table = $db->prepare("INSERT INTO participants (Nom,Prenom,Sexe,Age,Taille,Poids,Nom_club,Ceinture) VALUES ('$nom','$prenom','$sexe','$age','$taille','$poids','$nom_club','$ceinture')");
 	$req_ma_table->execute();
 }
+
 
 
 define('DB_SERVER', 'localhost');

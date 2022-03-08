@@ -55,7 +55,8 @@ function get_rolee($db,$email){
     }
     
     if(isset($_SESSION['email'])){
-     echo '<li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>';
+    echo '<li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>';
+    echo '<li style="float:right"><a class="menu" href="">'.$_SESSION['email'].'</a></li>';
     }
 
     if(!isset($_SESSION['email'])){

@@ -1,7 +1,7 @@
 
 		<?php
 		$s = "Homme";
-		echo $s;
+		$id = "7";
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -52,10 +52,16 @@
         <option value="Femme" selected >Femme</option>
     	</select>';
 	} 
+	if(array_key_exists('refuser', $_POST)) {
+		refuser_demande($db,$id);
+	}
 		?>
 		<br>
 		<div>
-		<input class="ecart_inscription" type="submit" value="Valider"> </form> </li>
+		<input class="ecart_inscription" type="submit" value="Valider"> 
+		<input type="submit" name="refuser" class="ecart_inscription" value="Retirer ce combatant" /> </form>
+
+
 		</div>
 		
 		<?php
@@ -64,6 +70,11 @@
 		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe'  WHERE idParticipant = 7");
 		$edit_req_ma_table->execute();
 
+		function refuser_demande($db,$id){
+			$req_ma_table = $db->prepare("DELETE * FROM participants WHERE `ID` = '$id'");
+			$req_ma_table->execute();
+			header("location: participant.php");
+		}
 
 		?>
 		
