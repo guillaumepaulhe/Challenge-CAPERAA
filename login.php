@@ -23,9 +23,9 @@ if (isset($_POST['email'])){
 
 <form class="login" action="" method="post" name="login">
 <h1>Connexion</h1>
-<input class="login" type="email" name="email" placeholder="Email">
+<input class="login" type="email" name="email" placeholder="Adresse e-mail">
 <input class="login" type="password" name="password" placeholder="Mot de passe">
-<input class="login" type="submit" value="Connexion " name="submit">
+<input class="login" type="submit" value="Se connecter" name="submit">
 <p>Vous êtes nouveau ici? <a href="new_user.php">S'inscrire</a></p>
 <?php if (! empty($message)) { ?>
     <p class="errorMessage"><?php echo $message; ?></p>

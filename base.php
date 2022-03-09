@@ -20,6 +20,7 @@ function get_rolee($db,$email){
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+  <link href="http://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@ function get_rolee($db,$email){
   <title>Challenge CAPERAA</title>
 </head>
 <body>
-<img src="Banniere.png" width="100%">
+<img src="Banniere.png" width=100% id="baniere">
 
   <ul class="menu">
     <li class="menu"><a class="menu" href="index.php">Accueil</a></li>
@@ -67,6 +68,6 @@ function get_rolee($db,$email){
     ?>
   </ul>
 
-<footer>
+<!-- <footer>
   <p>&copy; FJEP Lempdes 2022</p>
-</footer>
+</footer> -->

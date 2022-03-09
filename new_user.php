@@ -12,44 +12,37 @@ $nom_club = $_POST['club'];
 $mdp = $_POST['mdp'];
 ?>
 
-<form action="" method = "post">
-<div> 
-    <label  >Nom</label>
-    <input class="ecart_inscription" name="nom" type="text"  >
-</div>
+<form class="inscription" action="" method = "post">
 
-<div>
-    <label>Prénom</label>
-    <input class="ecart_inscription" name="prenom" type="text"  >
-</div>
-<div>
-    <label>Adresse e-mail</label>
-    <input class="ecart_inscription" type="email" name="email" required>
-</div>
-<div>
-    <label>Mot de passe</label>
-    <input class="ecart_inscription" type="password" name="mdp" required>
-</div>
-<div>
-    <label>Rôle</label>
-    <select class="ecart_inscription" name="role"> 
+    <h1>Inscription</h1>
+    <input class="inscription" name="nom" type="text" placeholder="Nom" >
+
+    
+    <input class="inscription" name="prenom" type="text" placeholder="Prénom" >
+    <br>
+    
+    <input class="inscription" type="email" name="email" placeholder="Adresse e-mail" required>
+
+    
+    <input class="inscription" type="password" name="mdp" placeholder="Mot de passe" required>
+
+    
+    <select class="inscription" name="role"> 
         <option value="">Veuillez sélectionner un rôle</option>
         <option value="Entraineur">Entraineur</option>
         <option value="Organisateur">Organisateur</option>
         <option value="Jury">Jury</option>
     </select>
-</div>
-<div>
-    <label>Selectionner le club</label>
-    <select name="club" class="ecart_inscription">
+
+    
+    <select name="club" class="inscription">
         <option value="">Entrer le club seulement pour les entraineurs</option>
         <?php 
         list_club($db);
         ?>
     </select>
-</div>
 
-<input class="ecart_inscription" type="submit" name="" value="Valider la demande">
+<input class="inscription" type="submit" name="" value="Valider la demande">
 </form>
 <?php
     if($email!=NULL){
