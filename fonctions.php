@@ -45,6 +45,7 @@ function get__participants($db){
 		$taille = $result['Taille'];		
 		$poids = $result['Poids'];
 		$club = $result['Nom_club'];
+		$ceinture = $result['Ceinture'];
 
 
 		$edit_nom = $result['Nom'];
@@ -53,7 +54,7 @@ function get__participants($db){
 		$edit_age = $result['Age'];		
 		$edit_taille = $result['Taille'];
 		$edit_poids = $result['Poids'];
-
+		$edit_ceinture = $result['Ceinture'];
 		
 
 		$id =  $result['idParticipant'];
@@ -72,7 +73,16 @@ function get__participants($db){
 		$edit_sexe = $_POST[\'sexe\'];
 		$edit_age = $_POST[\'age\'];
 		$edit_taille = $_POST[\'taille\'];
-		$edit_poids = $_POST[\'poids\'];?> 
+		$edit_poids = $_POST[\'poids\'];
+		$edit_ceinture = $_POST[\'ceinture\'];
+		echo $edit_nom;
+		echo $edit_prenom;
+		echo $edit_sexe;
+		echo $edit_age;
+		echo $edit_taille;
+		echo $edit_poids;
+		echo $edit_ceinture;
+		?> 
 
 		
 		
@@ -114,13 +124,30 @@ function get__participants($db){
         <option value="Femme" selected >Femme</option>
     	</select>\';
 	} 
-	if(array_key_exists(\'refuser\', $_POST)) {
-		refuser_demande($db,$id);
+	if(array_key_exists(\'valider\', $_POST)) {
+		echo \'testtt\';
+		edit($db,$id);
 	}
 		?>
+		<div>
+		<label>Ceinture</label> 
+		<select class="ecart_inscription" name="ceinture" id="">
+        <option value="">Sélectionnez votre ceinture</option>
+        <option value="blanche">blanche</option>
+        <option value="blanche et jaune">blanche et jaune</option>
+        <option value="jaune">jaune</option>
+        <option value="jaune et orange">jaune et orange</option>
+        <option value="orange">orange</option>
+        <option value="orange et verte">orange et verte</option>
+        <option value="verte">verte</option>
+        <option value="verte et bleue">verte et bleue</option>
+        <option value="bleue">bleue</option>
+        <option value="marron">marron</option>
+    	</select>
+		</div>
 		<br>
 		<div>
-		<input class="ecart_inscription" type="submit" value="Valider"> 
+		<input class="ecart_inscription" name="valider" type="submit" value="Valider"> 
 		<input type="submit" name="refuser" class="ecart_inscription" value="Retirer ce combatant" /> </form>
 
 
@@ -128,21 +155,16 @@ function get__participants($db){
 		
 		<?php
 
-
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = \'$edit_sexe\'  WHERE idParticipant = '.$id.'");
+		function edit($db,$id){
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = \'$edit_sexe\', Ceinture = \'$edit_ceinture\'  WHERE idParticipant = '.$id.'");
 		$edit_req_ma_table->execute();
-		function refuser_demande($db,$id){
-			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = \'$id\'");
-			$req_ma_table->execute();
-			header("location: participant.php");
 		}
-
 		?>
 		');
 		
 		
 		fclose($file_handle);
-		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p> <p class = "case">Club :  '.$club.'</p> <br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
+		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p> <p class = "case">Club :  '.$club.'</p> <p class = "case">Ceinture : '.$ceinture.'</p> <br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="case">Modifier</button></li>';
 	}
 		
 }

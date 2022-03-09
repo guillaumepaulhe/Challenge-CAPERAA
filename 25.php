@@ -1,7 +1,7 @@
 
 		<?php
 		$s = "Homme";
-		$id = "19";
+		$id = "25";
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -26,23 +26,23 @@
 		<form method="post"> 
 		<div>
 		<label>Nom</label>
-		<input class="ecart_inscription" name="nom" class="case" type="text" value="Guillaume">
+		<input class="ecart_inscription" name="nom" class="case" type="text" value="testt">
 		</div>
 		<div>
 		<label>Prénom</label> 
-		<input class="ecart_inscription" name="prenom" type="text" value="PAULHE">
+		<input class="ecart_inscription" name="prenom" type="text" value="testttt">
 		</div>
 		<div>
 		<label>Age</label> 
-		<input class="ecart_inscription" name="age" type="number" value="19">
+		<input class="ecart_inscription" name="age" type="number" value="18">
 		</div>
 		<div>
 		<label>Poids</label>
-		<input class="ecart_inscription" name="poids" type="number" value="85">
+		<input class="ecart_inscription" name="poids" type="number" value="80">
 		</div>
 		<div>
 		<label>Taille</label> 
-		<input class="ecart_inscription" name="taille" type="number" value="195"> 
+		<input class="ecart_inscription" name="taille" type="number" value="180"> 
 		</div>
 		<div>
 		<label>Sexe</label> 
@@ -93,7 +93,7 @@
 		<?php
 
 		function edit($db,$id){
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe', Ceinture = '$edit_ceinture'  WHERE idParticipant = 19");
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe', Ceinture = '$edit_ceinture'  WHERE idParticipant = 25");
 		$edit_req_ma_table->execute();
 		}
 		?>

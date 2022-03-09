@@ -62,6 +62,7 @@ ul.menu {
   overflow: hidden;
   background-color: #1f1f1f;
   max-height: 52px;
+  transition: ease-in-out 0.25s;
 }
 
 li.menu {
@@ -77,7 +78,8 @@ li a.menu {
 }
 
 li a:hover.menu {
-  background-color: #111;
+  background-color: #407cff;
+  transition: ease-in-out 0.25s;
 }
 
 /*-----------------classement------------------*/
@@ -103,7 +105,7 @@ li.classement {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  border: 5px solid #3b3b3b;;
+  border: 3px solid #3b3b3b;;
   margin: 10px;
   border-radius: 5px;
   width: 90%;  
@@ -144,4 +146,85 @@ li.case {
 
 li a:hover.case {
   color: rgb(165, 165, 165);
+}
+
+
+
+input.login{
+  border-radius: 8px;
+  display: block;
+  margin: 20px auto;
+  
+
+
+  border: 2px solid #575757;;
+  padding: 7px 5px;
+  border-radius: 24px;
+  color: white;
+
+
+}
+
+.login input[type = "email"], .login input[type = "password"]{
+  width: 70%;
+  border:0;
+  background: none;
+  border: 2px solid #575757;
+  padding: 14px 10px;
+  border-radius: 24px;
+  color: white;
+  outline: none;
+  transition: ease-in-out 0.25s;
+}
+
+
+
+.login input[type = "submit"]{
+  background: none;
+  transition: ease-in-out 0.25s;
+  color: rgba(255, 255, 255, 0.623);
+
+
+}
+.login input[type = "submit"]:hover{
+  transition: ease-in-out 0.25s;
+  background-color: #407cff;
+  border: 2px solid #407cff;
+}
+
+
+.login input[type = "email"]:hover, .login input[type = "password"]:hover{
+  transition: ease-in-out 0.25s;
+  border: 2px solid #407cff;
+  
+}
+
+.login input[type = "email"]:focus, .login input[type = "password"]:focus{
+  border: 2px solid #407cff;
+}
+
+ul.login{
+  list-style-type: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  background-color: #00000000;
+
+}
+
+
+form.login{
+  float: left;
+  width: 300px;
+  border-radius: 25px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border: 3px solid #3b3b3b;;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
 }
