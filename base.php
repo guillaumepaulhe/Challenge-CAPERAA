@@ -20,7 +20,7 @@ function get_rolee($db,$email){
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
-  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="http://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
@@ -57,18 +57,17 @@ function get_rolee($db,$email){
     }
     
     if(isset($_SESSION['email'])){
-    echo '<li style="float:right"><a class="menu" href="">Compte ▼</a></li>';
+    echo '<li style="float:right"><a class="menu" href="logout.php">Se déconnecter <span class="material-icons icon">logout</span> </a></li>';
     // echo '<li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>';
-    echo '<li style="float:right"><a class="menu" >'.get_rolee($db,$_SESSION['email']).'</a></li>';
-    echo '<li style="float:right"><a class="menu" >'.$_SESSION['email'].'</a></li>';
+   // echo '<li style="float:right"><a class="menu" >'.get_rolee($db,$_SESSION['email']).'</a></li>';
+   // echo '<li style="float:right"><a class="menu" >'.$_SESSION['email'].'</a></li>';
     }
 
     if(!isset($_SESSION['email'])){
-     echo '<li style="float:right"><a class="menu" href="login.php">Se connecter</a></li>';
+     echo '<li style="float:right"><a class="menu" href="login.php">Se connecter <span class="material-icons icon">person</span></a></li>';
     }
     ?>
   </ul>
-
 <!-- <footer>
   <p>&copy; FJEP Lempdes 2022</p>
 </footer> -->

@@ -14,7 +14,7 @@ $mdp = $_POST['mdp'];
 
 <form class="inscription" action="" method = "post">
 
-    <h1>Inscription</h1>
+    <h1>S'inscrire</h1>
     <input class="inscription" name="nom" type="text" placeholder="Nom" required>
 
     
@@ -44,7 +44,6 @@ $mdp = $_POST['mdp'];
 
 <input class="inscription" type="submit" name="" value="Valider la demande">
 </form>
-<a class="material-icons">done</a>
 
 <?php
     if($email!=NULL){
