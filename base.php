@@ -20,6 +20,7 @@ function get_rolee($db,$email){
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+  
   <link href="http://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">

@@ -120,10 +120,12 @@ li.classement {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  border: 3px solid #3b3b3b;;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 50px;
   width: 90%;  
+  box-shadow: 0px 0px 20px rgb(17, 17, 17);
+  background-color: rgb(46, 46, 46);
+}
 }
 
 li a:hover.classement {
@@ -217,29 +219,40 @@ ul.login{
 
 }
 
+
+
 form.login{
-  float: left;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   width: 300px;
   border-radius: 25px;
-  
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   background-color: rgb(46, 46, 46);
-  margin-top: 7%;
-  margin-left: 41%;
+  margin-top: 5%;
   box-shadow: 0px 0px 20px rgb(17, 17, 17);
+  background: #333;
+  padding: 30px;
 }
+
+
 
 /*-----------------inscription------------------*/
 
 form.inscription{
-  float: left;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   width: 500px;
   border-radius: 25px;
   color: white;
   text-align: center;
   padding: 14px 16px;
+  margin-top: 5%;
   text-decoration: none;
   background-color: rgb(46, 46, 46);
   box-shadow: 0px 0px 20px rgb(17, 17, 17);
@@ -252,7 +265,8 @@ select.inscription{
   border: 1px solid #575757;;
   padding: 7px 5px;
   border-radius: 24px;
-  color: rgb(0, 0, 0); 
+  color: rgb(117, 117, 117); 
+  background-color: #1B1B1B;
 }
 
 input.inscription{
@@ -260,7 +274,6 @@ input.inscription{
   border: 1px solid #575757;;
   padding: 7px 5px;
   border-radius: 24px;
-  color: rgb(0, 0, 0);
   background-color: none;
   color: white;
   outline: none;
@@ -292,3 +305,6 @@ input.inscription{
 .inscription input:focus{
   border: 1px solid #407cff;
 }
+
+
+
