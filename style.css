@@ -320,6 +320,18 @@ input.inscription{
   
 }
 
+.inscription select:hover{
+  transition: ease-in-out 0.25s;
+  border-color: #3168dd;
+  
+}
+
+.inscription select:focus{
+  transition: ease-in-out 0.25s;
+  border-color: #3168dd;
+  
+}
+
 
 
 .inscription input:hover{
