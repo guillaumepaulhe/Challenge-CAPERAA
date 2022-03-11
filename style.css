@@ -377,6 +377,11 @@ input.inscription{
   border: 1px solid #407cff;
 }
 
+a.inscription{
+  text-decoration: none;
+  float: left;
+}
+
 
 
 span.icon{

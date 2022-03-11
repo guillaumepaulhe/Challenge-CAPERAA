@@ -87,6 +87,7 @@ function get__participants($db){
 		
 		
 		<form method="post" class="inscription"> 
+		<a class="inscription" href="participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
 		<div>
 		<label>Nom</label>
 		<input class="inscription" name="nom" class="case" type="text" value="'.$edit_nom.'">
