@@ -159,7 +159,24 @@ input.case#refuser:hover{
   background-color: red;
 }
 
+button.modifier{
+  display: block;
+  margin: 10px auto;
+  border: 1px solid #575757;;
+  padding: 7px 5px;
+  border-radius: 24px;
+  color: white;
+  text-align: center;
+  transition: ease-in-out 0.25s;
+  background-color: #407cff;
+  border: 1px solid #407cff;
+}
 
+button.modifier:hover{
+  transition: ease-in-out 0.25s;
+  background-color: #3168dd;
+  border: 1px solid #407cff;
+}
 
 form.case{
   position: relative;
@@ -180,10 +197,11 @@ li.case {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  border: 5px solid #3b3b3b;;
   margin: 10px;
-  border-radius: 50px;
+  border-radius: 20px;
   width: 165px;  
+  background-color: rgb(46, 46, 46);
+  box-shadow: 0px 0px 20px rgb(17, 17, 17);
 }
 
 li a:hover.case {
@@ -200,6 +218,7 @@ input.login{
   padding: 7px 5px;
   border-radius: 24px;
   color: white;
+  text-align: center;
 }
 
 .login input[type = "email"], .login input[type = "password"]{
@@ -233,6 +252,11 @@ input.login{
 
 .login input[type = "email"]:focus, .login input[type = "password"]:focus{
   border: 1px solid #407cff;
+}
+
+.login input[type = "number"]{
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
 }
 
 ul.login{
@@ -290,7 +314,7 @@ select.inscription{
   border: 1px solid #575757;;
   padding: 7px 5px;
   border-radius: 24px;
-  color: rgb(117, 117, 117); 
+  color: rgb(166, 166, 166); 
   background-color: #1B1B1B;
 }
 
@@ -304,6 +328,7 @@ input.inscription{
   outline: none;
   background: #1B1B1B;
   margin: 5px;
+  text-align: center;
 }
 
 .inscription input[type = "submit"]{
