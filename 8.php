@@ -23,39 +23,39 @@
 
 		
 		
-		<form method="post"> 
+		<form method="post" class="inscription"> 
 		<div>
 		<label>Nom</label>
-		<input class="ecart_inscription" name="nom" class="case" type="text" value="Alonso">
+		<input class="inscription" name="nom" class="case" type="text" value="Alonso">
 		</div>
 		<div>
 		<label>Prénom</label> 
-		<input class="ecart_inscription" name="prenom" type="text" value="Dorian">
+		<input class="inscription" name="prenom" type="text" value="Dorian">
 		</div>
 		<div>
 		<label>Age</label> 
-		<input class="ecart_inscription" name="age" type="number" value="19">
+		<input class="inscription" name="age" type="number" value="19">
 		</div>
 		<div>
 		<label>Poids</label>
-		<input class="ecart_inscription" name="poids" type="number" value="78">
+		<input class="inscription" name="poids" type="number" value="78">
 		</div>
 		<div>
 		<label>Taille</label> 
-		<input class="ecart_inscription" name="taille" type="number" value="177"> 
+		<input class="inscription" name="taille" type="number" value="177"> 
 		</div>
 		<div>
 		<label>Sexe</label> 
 		<?php
 		if ($s == "Homme"){
-		echo '<select class="ecart_inscription" name="sexe" id="" value=Homme required>
+		echo '<select class="inscription" name="sexe" id="" value=Homme required>
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme" selected >Homme</option>
         <option value="Femme">Femme</option>
     	</select>';
 		} 
 		if ($s == "Femme"){
-		echo '<select class="ecart_inscription" name="sexe" id="" value=Homme required>
+		echo '<select class="inscription" name="sexe" id="" value=Homme required>
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme">Homme</option>
         <option value="Femme" selected >Femme</option>
@@ -68,7 +68,7 @@
 		?>
 		<div>
 		<label>Ceinture</label> 
-		<select class="ecart_inscription" name="ceinture" id="">
+		<select class="inscription" name="ceinture" id="">
         <option value="">Sélectionnez votre ceinture</option>
         <option value="blanche">blanche</option>
         <option value="blanche et jaune">blanche et jaune</option>
@@ -84,8 +84,8 @@
 		</div>
 		<br>
 		<div>
-		<input class="ecart_inscription" name="valider" type="submit" value="Valider"> 
-		<input type="submit" name="refuser" class="ecart_inscription" value="Retirer ce combatant" /> </form>
+		<input class="inscription" name="valider" type="submit" value="Valider"> 
+		<input type="submit" name="refuser" class="inscription" value="Retirer ce combatant" /> </form>
 
 
 		</div>

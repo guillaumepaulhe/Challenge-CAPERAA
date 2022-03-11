@@ -10,36 +10,22 @@ error_reporting (E_ALL ^ E_NOTICE);
 
 <form action="" method = "post" class="inscription">
     <h1>Inscrire un combatant</h1>
-<div> 
-    <label>Nom</label>
-    <input class="inscription" name="nom" type="text">
-</div>
-<div>
-    <label>Prénom</label>
-    <input class="inscription" name="prenom" type="text"  >
-</div>
-<div>
-    <label>Sexe</label>
+
+    <input class="inscription" name="nom" type="text" placeholder="Nom">
+<br>
+    <input class="inscription" name="prenom" type="text" placeholder="Prenom">
+  <br>
+    <input class="inscription" name="age" type="text" placeholder="Age" >
+<br>
+    <input class="inscription" name="taille" type="text" placeholder="Taille" >
+<br>
+    <input class="inscription" name="poids" type="text" placeholder="Poids" >
+<br>
     <select class="inscription" name="sexe" id="">
-        <option value="">Sélectionnez votre sexe</option>
+        <option value="">Sélectionnez le sexe</option>
         <option value="Homme">Homme</option>
         <option value="Femme">Femme</option>
     </select>
-</div>
-<div>
-    <label>Age</label>
-    <input class="inscription" name="age" type="text"  >
-</div>
-<div>
-    <label>Taille</label>
-    <input class="inscription" name="taille" type="text"  >
-</div>
-<div>
-    <label>Poids</label>
-    <input class="inscription" name="poids" type="text"  >
-</div>
-<div>
-    <label>Ceinture</label>
     <select class="inscription" name="Ceinture" id="">
         <option value="">Sélectionnez votre ceinture</option>
         <option value="blanche">blanche</option>
@@ -53,7 +39,7 @@ error_reporting (E_ALL ^ E_NOTICE);
         <option value="bleue">bleue</option>
         <option value="marron">marron</option>
     </select>
-</div>
+
 
 
 <input class="inscription" type="submit" name="" value="Valider l'inscription">
