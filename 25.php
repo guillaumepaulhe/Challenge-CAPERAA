@@ -1,9 +1,13 @@
 
 		<?php
+		include "base.php";
+		include "fonctions.php";
+		if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Organisateur" )) {
+			header("location: login.php");
+		  }
 		$s = "Homme";
 		$id = "25";
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
-		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
 		$edit_nom = $_POST['nom'];
 		$edit_prenom = $_POST['prenom'];
@@ -24,6 +28,7 @@
 		
 		
 		<form method="post" class="inscription"> 
+		<a class="inscription" href="participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
 		<div>
 		<label>Nom</label>
 		<input class="inscription" name="nom" class="case" type="text" value="testt">
@@ -65,6 +70,9 @@
 		echo 'testtt';
 		edit($db,$id);
 	}
+	if(array_key_exists('refuser', $_POST)) {
+		refuser_demande($db,$id);
+	}
 		?>
 		<div>
 		<label>Ceinture</label> 
@@ -85,12 +93,18 @@
 		<br>
 		<div>
 		<input class="inscription" name="valider" type="submit" value="Valider"> 
-		<input type="submit" name="refuser" class="inscription" value="Retirer ce combatant" /> </form>
+		<input type="submit" name="refuser" class="inscription" id="refuser" value="Retirer ce combatant" /> </form>
 
 
 		</div>
 		
 		<?php
+
+		function refuser_demande($db,$id){
+			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = '$id'");
+			$req_ma_table->execute();
+			header("location: participant.php");
+		}
 
 		function edit($db,$id){
 		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe', Ceinture = '$edit_ceinture'  WHERE idParticipant = 25");
