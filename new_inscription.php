@@ -2,6 +2,7 @@
 <?php
 include "base.php";
 include "fonctions.php";
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 if (get_role($db,$_SESSION['email']) != "Administrateur") {
         header("location: login.php");
 }

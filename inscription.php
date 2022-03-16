@@ -2,7 +2,7 @@
 include "base.php";
 include "fonctions.php";
 error_reporting (E_ALL ^ E_NOTICE);
-
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
   if(!isset($_SESSION['email'])){
     header("location: login.php");
   }

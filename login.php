@@ -4,6 +4,9 @@ require('fonctions.php');
 
 $count ="";
 
+$url = $_SESSION['url'];
+
+
 if (isset($_POST['email'])){
   $email = stripslashes($_REQUEST['email']);
   $email = mysqli_real_escape_string($conn, $email);
@@ -14,7 +17,7 @@ if (isset($_POST['email'])){
   $rows = mysqli_num_rows($result);
   if($rows==1){
       $_SESSION['email'] = $email;
-      header("Location: index.php");
+      header("Location: ".$url."");
   }else{
     $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
   }
