@@ -26,14 +26,14 @@ footer {
 
 }
 
-form{
+/* form{
   flex-direction: column;
   float: left;
   clear: left;
   width: 8%;
   text-align: left;
   margin: 5px;
-}
+} */
 
 label{
   padding-left: 3px;
@@ -419,3 +419,38 @@ iframe:hover{
   height: 648px; 
   width: 1152px;
 }
+
+
+form.search{
+  float: right;
+}
+
+input.search{
+  padding: 7px 5px;
+  border: none;
+  background-color: none;
+  color: rgb(116, 116, 116);
+  outline: none;
+  background: #1B1B1B;
+  margin: 5px;
+  text-align: center;
+}
+
+span.search{
+  margin: 10px;
+}
+
+form.search{
+  border-radius: 50px;
+  border: 2px solid #575757;
+  margin-right: 95px;
+  padding-right: 20px;
+  transition: ease-in-out 0.25s;
+}
+form.search:hover{
+  transition: ease-in-out 0.25s;
+  border-color: #407cff;
+}
+
+
+

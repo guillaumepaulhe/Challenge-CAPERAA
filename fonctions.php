@@ -31,8 +31,11 @@ function get__classement($db){
 
 
 
-function get__participants($db){
-	$req_ma_table = $db->prepare("SELECT * FROM participants");
+function get__participants($db,$search){
+	if($search==""){
+		$search = "%";
+	}
+	$req_ma_table = $db->prepare("SELECT * FROM participants WHERE Nom LIKE '$search' OR Prenom LIKE '$search'");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
 	$res = '';
