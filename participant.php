@@ -13,7 +13,6 @@ search
   <input type="search" name="search" id="" class="search" placeholder="Rechercher">
 </form>
 <ul class="case">
-  <br>
 <?php
   $search = $_POST['search'];
   if($search == ""){
