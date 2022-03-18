@@ -26,30 +26,18 @@
 		?> 
 
 		
-		
 		<form method="post" class="inscription"> 
 		<a class="inscription" href="participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
-		<div>
 		<label>Nom</label>
 		<input class="inscription" name="nom" class="case" type="text" value="test ceinture">
-		</div>
-		<div>
 		<label>Prénom</label> 
 		<input class="inscription" name="prenom" type="text" value="test">
-		</div>
-		<div>
 		<label>Age</label> 
 		<input class="inscription" name="age" type="number" value="19">
-		</div>
-		<div>
 		<label>Poids</label>
 		<input class="inscription" name="poids" type="number" value="90">
-		</div>
-		<div>
 		<label>Taille</label> 
 		<input class="inscription" name="taille" type="number" value="190"> 
-		</div>
-		<div>
 		<label>Sexe</label> 
 		<?php
 		if ($s == "Homme"){
@@ -74,7 +62,6 @@
 		refuser_demande($db,$id);
 	}
 		?>
-		<div>
 		<label>Ceinture</label> 
 		<select class="inscription" name="ceinture" id="">
         <option value="">Sélectionnez votre ceinture</option>
@@ -89,15 +76,12 @@
         <option value="bleue">bleue</option>
         <option value="marron">marron</option>
     	</select>
-		</div>
-		<br>
 		<div>
 		<input class="inscription" name="valider" type="submit" value="Valider"> 
 		<input type="submit" name="refuser" class="inscription" id="refuser" value="Retirer ce combatant" /> </form>
 
 
-		</div>
-		
+
 		<?php
 
 		function refuser_demande($db,$id){

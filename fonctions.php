@@ -92,30 +92,18 @@ function get__participants($db,$search){
 		?> 
 
 		
-		
 		<form method="post" class="inscription"> 
 		<a class="inscription" href="participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
-		<div>
-		<label>Nom</label>
-		<input class="inscription" name="nom" class="case" type="text" value="'.$edit_nom.'">
-		</div>
-		<div>
 		<label>Prénom</label> 
 		<input class="inscription" name="prenom" type="text" value="'.$edit_prenom.'">
-		</div>
-		<div>
+		<label>Nom</label>
+		<input class="inscription" name="nom" class="case" type="text" value="'.$edit_nom.'">
 		<label>Age</label> 
 		<input class="inscription" name="age" type="number" value="'.$edit_age.'">
-		</div>
-		<div>
 		<label>Poids</label>
 		<input class="inscription" name="poids" type="number" value="'.$edit_poids.'">
-		</div>
-		<div>
 		<label>Taille</label> 
 		<input class="inscription" name="taille" type="number" value="'.$edit_taille.'"> 
-		</div>
-		<div>
 		<label>Sexe</label> 
 		<?php
 		if ($s == "Homme"){
@@ -140,7 +128,6 @@ function get__participants($db,$search){
 		refuser_demande($db,$id);
 	}
 		?>
-		<div>
 		<label>Ceinture</label> 
 		<select class="inscription" name="ceinture" id="">
         <option value="">Sélectionnez votre ceinture</option>
@@ -155,15 +142,12 @@ function get__participants($db,$search){
         <option value="bleue">bleue</option>
         <option value="marron">marron</option>
     	</select>
-		</div>
-		<br>
 		<div>
 		<input class="inscription" name="valider" type="submit" value="Valider"> 
 		<input type="submit" name="refuser" class="inscription" id="refuser" value="Retirer ce combatant" /> </form>
 
 
-		</div>
-		
+
 		<?php
 
 		function refuser_demande($db,$id){
@@ -230,7 +214,6 @@ function list_club($db){
         foreach ($result_req_ma_table as $result) {
             $club = $result['Nom-du-club'];
             echo '<option value="'.$club.'"> '.$club.'</option>';
-
 		}
 }
 

@@ -8,4 +8,4 @@ include "fonctions.php";
         get__classement($db);
 ?>
     </ul>
-<h1>Classement par poules</h1>
+<h1>Classement par clubs</h1>

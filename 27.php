@@ -1,9 +1,13 @@
 
 		<?php
+		include "base.php";
+		include "fonctions.php";
+		if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Organisateur" )) {
+			header("location: login.php");
+		  }
 		$s = "Homme";
 		$id = "27";
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
-		include "base.php";
 		error_reporting (E_ALL ^ E_NOTICE);
 		$edit_nom = $_POST['nom'];
 		$edit_prenom = $_POST['prenom'];
@@ -22,30 +26,18 @@
 		?> 
 
 		
-		
 		<form method="post" class="inscription"> 
 		<a class="inscription" href="participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
-		<div>
-		<label>Nom</label>
-		<input class="inscription" name="nom" class="case" type="text" value="Test ">
-		</div>
-		<div>
 		<label>Prénom</label> 
-		<input class="inscription" name="prenom" type="text" value="iojfs">
-		</div>
-		<div>
+		<input class="inscription" name="prenom" type="text" value="Virgil">
+		<label>Nom</label>
+		<input class="inscription" name="nom" class="case" type="text" value="Garot">
 		<label>Age</label> 
-		<input class="inscription" name="age" type="number" value="80">
-		</div>
-		<div>
+		<input class="inscription" name="age" type="number" value="9">
 		<label>Poids</label>
-		<input class="inscription" name="poids" type="number" value="90">
-		</div>
-		<div>
+		<input class="inscription" name="poids" type="number" value="40">
 		<label>Taille</label> 
-		<input class="inscription" name="taille" type="number" value="190"> 
-		</div>
-		<div>
+		<input class="inscription" name="taille" type="number" value="134"> 
 		<label>Sexe</label> 
 		<?php
 		if ($s == "Homme"){
@@ -70,7 +62,6 @@
 		refuser_demande($db,$id);
 	}
 		?>
-		<div>
 		<label>Ceinture</label> 
 		<select class="inscription" name="ceinture" id="">
         <option value="">Sélectionnez votre ceinture</option>
@@ -85,15 +76,12 @@
         <option value="bleue">bleue</option>
         <option value="marron">marron</option>
     	</select>
-		</div>
-		<br>
 		<div>
 		<input class="inscription" name="valider" type="submit" value="Valider"> 
-		<input type="submit" name="refuser" class="inscription" value="Retirer ce combatant" /> </form>
+		<input type="submit" name="refuser" class="inscription" id="refuser" value="Retirer ce combatant" /> </form>
 
 
-		</div>
-		
+
 		<?php
 
 		function refuser_demande($db,$id){

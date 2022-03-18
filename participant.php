@@ -12,7 +12,7 @@ search
 </span>
   <input type="search" name="search" id="" class="search" placeholder="Rechercher">
 </form>
-<ul class="case">
+<ul class="case-participant">
 <?php
   $search = $_POST['search'];
   if($search == ""){

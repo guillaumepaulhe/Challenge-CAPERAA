@@ -6,7 +6,7 @@
 			header("location: login.php");
 		  }
 		$s = "Homme";
-		$id = "10";
+		$id = "34";
 		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		error_reporting (E_ALL ^ E_NOTICE);
 		$edit_nom = $_POST['nom'];
@@ -28,16 +28,16 @@
 		
 		<form method="post" class="inscription"> 
 		<a class="inscription" href="participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
-		<label>Nom</label>
-		<input class="inscription" name="nom" class="case" type="text" value="Faucher">
 		<label>Prénom</label> 
-		<input class="inscription" name="prenom" type="text" value="Noa">
+		<input class="inscription" name="prenom" type="text" value="Gérard">
+		<label>Nom</label>
+		<input class="inscription" name="nom" class="case" type="text" value="Manssoif">
 		<label>Age</label> 
-		<input class="inscription" name="age" type="number" value="20">
+		<input class="inscription" name="age" type="number" value="7">
 		<label>Poids</label>
-		<input class="inscription" name="poids" type="number" value="69">
+		<input class="inscription" name="poids" type="number" value="32">
 		<label>Taille</label> 
-		<input class="inscription" name="taille" type="number" value="170"> 
+		<input class="inscription" name="taille" type="number" value="115"> 
 		<label>Sexe</label> 
 		<?php
 		if ($s == "Homme"){
@@ -91,7 +91,7 @@
 		}
 
 		function edit($db,$id){
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe', Ceinture = '$edit_ceinture'  WHERE idParticipant = 10");
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe', Ceinture = '$edit_ceinture'  WHERE idParticipant = 34");
 		$edit_req_ma_table->execute();
 		}
 		?>

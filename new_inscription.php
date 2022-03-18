@@ -30,8 +30,8 @@ function get__demandes($db){
 		<p class="classement">Nom du club : '.$nom_club.'</p> 
 		<br>
 		<form class="case" method="post">
-		<input type="submit" name="valider" class="case" value="✔" />
-		<input type="submit" name="refuser" class="case" value="❌" />
+		<input type="submit" name="valider" class="case material-icons" value="done" id="valider" />
+		<input type="submit" name="refuser" class="case material-icons" value="close" id="refuser"/>
 		</form>
 		</li>
 	    </ul>';
@@ -49,7 +49,7 @@ function get__demandes($db){
 			<input type="submit" name="refuser" class="case material-icons" value="close" id="refuser"/>
 			</form>
 			</li>
-			</ul>';
+			';
 
 		}
 
@@ -91,3 +91,4 @@ function refuser_demande($db,$id){
         get__demandes($db);
         
 ?>
+</ul>

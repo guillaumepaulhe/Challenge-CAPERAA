@@ -3,8 +3,9 @@ include "base.php";
 require('fonctions.php');
 
 $count ="";
-
 $url = $_SESSION['url'];
+
+echo $url;
 
 
 if (isset($_POST['email'])){
