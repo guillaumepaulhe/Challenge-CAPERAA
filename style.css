@@ -493,31 +493,42 @@ background-color: rgb(0, 0, 0);
 
 }
 div.grid-btn{
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 20%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
   width: 200px;
   display : grid;
   grid-template-columns: repeat(auto-fill, minmax(0px,50px));
 }
 
 div.grid-btn2{
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
   width: 300px;
   display : grid;
   grid-template-columns: repeat(auto-fill, minmax(0px,50px));
 }
 
 div.grid-btn3{
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 76%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
   width: 150px;
   display : grid;
   grid-template-columns: repeat(auto-fill, minmax(0px,50px));
+}
+
+div.feuille{
+  display: inline-flex;
+  gap: 25px;
+  top: 50%;
+}
+
+div.text_feuille{
+  display: contents;
+  
 }

@@ -1,6 +1,17 @@
 <?php  
 include "base.php";
 ?>
+
+<div class="feuille"> 
+<p class="text_feuille">A1 : Alonso Dorian</p>
+<br>
+<p class="text_feuille">A2 : Paulhe Guillaume</p>
+<br>
+<p class="text_feuille">A3 : Chassaing Arthur</p>
+<br>
+</div>
+
+<div class="feuille">
 <div class="grid-btn">
 <input class="grid-btn" id="noir"></input>
 <input type="number" class="grid-btn"></input>
@@ -47,5 +58,5 @@ include "base.php";
 <input type="number" class="grid-btn"></input>
 <input type="number" class="grid-btn"></input>
 <input type="number" class="grid-btn"></input>
-
+</div>
 </div>
