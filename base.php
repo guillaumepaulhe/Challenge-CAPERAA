@@ -55,6 +55,10 @@ function get_rolee($db,$email){
     if (get_rolee($db,$_SESSION['email']) == "Administrateur") {
      echo '<li class="menu"><a class="menu" href="new_inscription.php">Inscriptions en attentes</a></li>';
     }
+
+    if (get_rolee($db,$_SESSION['email']) == "Jury") {
+      echo '<li class="menu"><a class="menu" href="feuilles-combats.php">Feuilles de combats</a></li>';
+     }
     
     if(isset($_SESSION['email'])){
     echo '<li style="float:right"><a class="menu" href="logout.php">Se déconnecter <span class="material-icons icon">logout</span> </a></li>';
