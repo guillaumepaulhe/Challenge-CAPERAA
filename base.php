@@ -41,11 +41,11 @@ function get_rolee($db,$email){
     <?php
 
     if(!isset($_SESSION['email']) || get_rolee($db,$_SESSION['email']) == "Administrateur"){
-      echo '<li class="menu"><a class="menu" href="new_user.php">Inscription</a></li>';
+      echo '<li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>';
     }
 
     if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Entraineur")) {
-      echo '<li class="menu"><a class="menu" href="inscription.php">Inscription combattants</a></li>';
+      echo '<li class="menu"><a class="menu" href="inscription-combatant.php">Inscription combattants</a></li>';
     }
 
     if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Organisateur")) {
@@ -53,10 +53,10 @@ function get_rolee($db,$email){
     }
 
     if (get_rolee($db,$_SESSION['email']) == "Administrateur") {
-     echo '<li class="menu"><a class="menu" href="new_inscription.php">Inscriptions en attentes</a></li>';
+     echo '<li class="menu"><a class="menu" href="demande-inscription.php">Inscriptions en attentes</a></li>';
     }
 
-    if (get_rolee($db,$_SESSION['email']) == "Jury") {
+    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
       echo '<li class="menu"><a class="menu" href="feuilles-combats.php">Feuilles de combats</a></li>';
      }
     

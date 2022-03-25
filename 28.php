@@ -48,18 +48,17 @@
     	</select>';
 		} 
 		if ($s == "Femme"){
-		echo '<select class="inscription" name="sexe" id="" value=Homme required>
+		echo '<select class="inscription" name="sexe" id="" value=Femme required>
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme">Homme</option>
         <option value="Femme" selected >Femme</option>
     	</select>';
 	} 
 	if(array_key_exists('valider', $_POST)) {
-		echo 'testtt';
-		edit($db,$id);
+		edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_taille,$edit_sexe,$edit_ceinture);
 	}
 	if(array_key_exists('refuser', $_POST)) {
-		refuser_demande($db,$id);
+		delete_participant_id($db,$id);
 	}
 		?>
 		<label>Ceinture</label> 
@@ -84,14 +83,15 @@
 
 		<?php
 
-		function refuser_demande($db,$id){
+		function delete_participant_id($db,$id){
 			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = '$id'");
 			$req_ma_table->execute();
+			unlink($id . '.php');
 			header("location: participant.php");
 		}
 
-		function edit($db,$id){
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe', Ceinture = '$edit_ceinture'  WHERE idParticipant = 28");
+		function edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_taille,$edit_sexe,$edit_ceinture){
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = '$edit_nom', Prenom = '$edit_prenom', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = '$edit_sexe', Ceinture = '$edit_ceinture'  WHERE idParticipant =  '$id'");
 		$edit_req_ma_table->execute();
 		}
 		?>

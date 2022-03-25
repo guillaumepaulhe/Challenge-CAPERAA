@@ -114,18 +114,17 @@ function get__participants($db,$search){
     	</select>\';
 		} 
 		if ($s == "Femme"){
-		echo \'<select class="inscription" name="sexe" id="" value=Homme required>
+		echo \'<select class="inscription" name="sexe" id="" value=Femme required>
         <option value="">Sélectionnez votre sexe</option>
         <option value="Homme">Homme</option>
         <option value="Femme" selected >Femme</option>
     	</select>\';
 	} 
 	if(array_key_exists(\'valider\', $_POST)) {
-		echo \'testtt\';
-		edit($db,$id);
+		edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_taille,$edit_sexe,$edit_ceinture);
 	}
 	if(array_key_exists(\'refuser\', $_POST)) {
-		refuser_demande($db,$id);
+		delete_participant_id($db,$id);
 	}
 		?>
 		<label>Ceinture</label> 
@@ -150,14 +149,15 @@ function get__participants($db,$search){
 
 		<?php
 
-		function refuser_demande($db,$id){
+		function delete_participant_id($db,$id){
 			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = \'$id\'");
 			$req_ma_table->execute();
+			unlink($id . \'.php\');
 			header("location: participant.php");
 		}
 
-		function edit($db,$id){
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = \'$edit_sexe\', Ceinture = \'$edit_ceinture\'  WHERE idParticipant = '.$id.'");
+		function edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_taille,$edit_sexe,$edit_ceinture){
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = \'$edit_sexe\', Ceinture = \'$edit_ceinture\'  WHERE idParticipant =  \'$id\'");
 		$edit_req_ma_table->execute();
 		}
 		?>
@@ -239,5 +239,70 @@ function get_nom_club($db){
 	}
 	return $nom_club;
 }
-    ?>
+
+
+
+function poule($db){
+	$req_max_poids = $db->prepare("SELECT MAX(Poids) FROM participants ");
+	$req_max_poids->execute();
+	$result_req_max_poids = $req_max_poids->fetchAll();
+	foreach ($result_req_max_poids as $result) {
+	 $max_poids = $result['MAX(Poids)'];
+	}
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		echo '<br>';
+	}
+	echo '<br>';
+	$max_poids = $max_poids*0.8;
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		echo '<br>';
+	}
+	echo '<br>';
+	$max_poids = $max_poids*0.8;
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		echo '<br>';
+	}
+	echo '<br>';
+	$max_poids = $max_poids*0.8;
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		echo '<br>';
+	}
+	echo '<br>';
+	$max_poids = $max_poids*0.8;
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		echo '<br>';
+	}
+}
+
+?>
 
