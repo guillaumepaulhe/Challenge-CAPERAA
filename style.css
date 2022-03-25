@@ -364,6 +364,7 @@ input.inscription{
   color: white;
   border-color: #407cff;
   background-color: #407cff;
+  cursor: pointer;
 }
 
 .inscription input[type = "submit"]:hover{
@@ -409,7 +410,7 @@ a.inscription{
   text-decoration: none;
   float: left;
   position: absolute;
-  margin-left: -240px;
+  margin-left: -220px;
 }
 
 
