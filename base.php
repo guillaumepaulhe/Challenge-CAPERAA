@@ -35,9 +35,6 @@ function get_rolee($db,$email){
     <li class="menu"><a class="menu" href="index.php">Accueil</a></li>
     <li class="menu"><a class="menu" href="classement.php">Classement</a></li>
     
-    
-    
-
     <?php
 
     if(!isset($_SESSION['email']) || get_rolee($db,$_SESSION['email']) == "Administrateur"){
@@ -72,6 +69,3 @@ function get_rolee($db,$email){
     }
     ?>
   </ul>
-<!-- <footer>
-  <p>&copy; FJEP Lempdes 2022</p>
-</footer> -->

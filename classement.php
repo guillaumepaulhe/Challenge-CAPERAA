@@ -9,3 +9,7 @@ include "fonctions.php";
 ?>
     </ul>
 <h1>Classement par clubs</h1>
+<?php
+classement_par_club($db);
+
+?>
