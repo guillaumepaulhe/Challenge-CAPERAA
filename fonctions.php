@@ -253,9 +253,11 @@ function poule($db){
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
 	$nb_participant = 0;
+	$echo = 0;
 	foreach ($result_req_ma_table as $result) {
 		$nb_participant++;
 		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		$echo++;
 		echo '<br>';
 	}
 	echo '<br>';
@@ -267,6 +269,8 @@ function poule($db){
 	foreach ($result_req_ma_table as $result) {
 		$nb_participant++;
 		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		
+		$echo++;
 		echo '<br>';
 	}
 	echo '<br>';
@@ -278,6 +282,7 @@ function poule($db){
 	foreach ($result_req_ma_table as $result) {
 		$nb_participant++;
 		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		$echo++;
 		echo '<br>';
 	}
 	echo '<br>';
@@ -289,6 +294,7 @@ function poule($db){
 	foreach ($result_req_ma_table as $result) {
 		$nb_participant++;
 		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		$echo++;
 		echo '<br>';
 	}
 	echo '<br>';
@@ -300,15 +306,38 @@ function poule($db){
 	foreach ($result_req_ma_table as $result) {
 		$nb_participant++;
 		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		$echo++;
+
 		echo '<br>';
 	}
+	echo '<br>';
+	$max_poids = $max_poids*0.8;
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		$echo++;
+		echo '<br>';
+		echo '<br>';}
+	$max_poids = $max_poids*0.8;
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		$echo++;
+		echo '<br>';}
 }
 
 function classement_par_club($db){
-
-$req_ma_table = $db->prepare("SELECT Nom_du_club FROM codes_clubs ORDER BY Nom_du_club ASC ");
-$req_ma_table->execute();
-$result_req_ma_table = $req_ma_table->fetchAll();
+	$req_ma_table = $db->prepare("SELECT Nom_du_club FROM codes_clubs ORDER BY Nom_du_club ASC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
 	foreach ($result_req_ma_table as $result) {
 		$club = $result['Nom_du_club'];
 		$req_ma_table2 = $db->prepare("SELECT * FROM participants WHERE Nom_club = '$club' ORDER BY points DESC  ");
@@ -345,10 +374,21 @@ $result_req_ma_table = $req_ma_table->fetchAll();
 		}
 	if($result_req_ma_table2!=NULL){
 	echo '</div>';
+		}
 	}
-}
-		
+}	
 
+
+
+
+function get_nb_participants($db){
+	$req_ma_table = $db->prepare("SELECT COUNT(Nom)AS nb_participants FROM participants");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant = $result['nb_participants'];
+	}
+	return $nb_participant;
 }
 ?>
 

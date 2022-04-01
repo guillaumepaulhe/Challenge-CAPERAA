@@ -179,7 +179,7 @@ ul.case-participant {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #00000000;
+  background-color:   00000000;
   margin-left:5%;
   margin-right: 5px;
   margin-top: 50px;
@@ -587,9 +587,36 @@ div.cc{
 
 }
 
+div.infos_combat{
+  display: flex;
+  gap: 100px;
+}
 
+div.score_combat{
+  display: flex;
+}
+p.score_combat#exp{
+  width: 150px;
+}
 
+p.score_combat#total{
+  width: 50px;
+}
 
+div.total_combat{
+  display: inline-flex;
+}
+
+p.total_combat{
+  font-size: 10px;
+  width: 50px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+div.zebi{
+  margin-left: 5%;
+}
 
 /* --------------Grid Classement-------------- */
 .container {
@@ -599,4 +626,5 @@ div.cc{
   gap: 0px 0px; 
 
 }
+
 
