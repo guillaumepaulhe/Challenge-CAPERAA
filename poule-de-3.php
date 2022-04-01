@@ -33,34 +33,34 @@ include "base.php";
 
 <div class="case-1">
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" name="qty" class="grid-btn" min=0 max=10 onblur="findTotal()"></input>
+<input type="number" name="qty" class="grid-btn" min=0 max=10 onblur="findTotal()"></input>
+<input type="number" name="total" id="total" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn"id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 </div>
 
 <div class="case-2">
 <input class="grid-btn" id="noir" disabled ></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10 ></input>
+<input type="number" class="grid-btn" min=0 max=10 ></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
@@ -68,14 +68,27 @@ include "base.php";
 </div>
 
 <div class="case-3">
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 </div>
 </div>
+
+<script type="text/javascript">
+function findTotal(){
+    var arr = document.getElementsByName('qty');
+    var tot=0;
+    for(var i=0;i<arr.length;i++){
+        if(parseInt(arr[i].value))
+            tot += parseInt(arr[i].value);
+    }
+    document.getElementById('total').value = tot;
+}
+
+    </script>

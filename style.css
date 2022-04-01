@@ -135,6 +135,7 @@ li a:hover.classement {
   color: rgb(165, 165, 165);
 }
 /*----------------classement-club-----------------*/
+
 li.classement-club {
   float: left;
   color: white;
@@ -143,12 +144,19 @@ li.classement-club {
   text-decoration: none;
   margin: 10px;
   border-radius: 50px;
-  width: 50%;  
+  width: 90%;  
   box-shadow: 0px 0px 20px rgb(17, 17, 17);
   background-color: rgb(46, 46, 46);
 }
 
-
+ul.case_club {
+list-style-type: none;
+margin: 0;
+margin-left: 5%;
+padding: 0;
+overflow: hidden;
+background-color: #00000000;
+}
 
 /*----------------participants-----------------*/
 
@@ -333,8 +341,6 @@ form.login{
   padding: 30px;
 }
 
-
-
 /*-----------------inscription------------------*/
 
 form.inscription{
@@ -432,8 +438,6 @@ a.inscription{
   margin-left: -220px;
 }
 
-
-
 span.icon{
   font-size: 15px;
 text-align: center;
@@ -456,7 +460,7 @@ iframe:hover{
   width: 1152px;
 }
 
-/*-----------------searcch------------------*/
+/*-----------------search------------------*/
 
 form.search{
   float: right;
@@ -578,8 +582,21 @@ div.bb{
 }
 
 div.cc{
-  display: flex;
+  display: inline-flex;
   position: absolute;
-  flex-grow: 1;
-  flex-direction: column;
+
 }
+
+
+
+
+
+/* --------------Grid Classement-------------- */
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 0px 0px; 
+
+}
+

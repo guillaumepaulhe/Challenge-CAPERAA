@@ -35,44 +35,44 @@ include "base.php";
 
 <div class="case-1">
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 </div>
 
 <div class="case-2">
 <input class="grid-btn" id="noir" disabled ></input>
 <input class="grid-btn" id="noir" disabled ></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled ></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10 ></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10 ></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
 <input class="grid-btn" id="noir" disabled></input>
@@ -80,18 +80,18 @@ include "base.php";
 </div>
 
 <div class="case-3">
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
-<input type="number" class="grid-btn" min=1 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
+<input type="number" class="grid-btn" min=0 max=10></input>
 </div>
 </div>
 </div>
