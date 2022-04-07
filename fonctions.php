@@ -268,8 +268,7 @@ function poule($db){
 	$nb_participant = 0;
 	foreach ($result_req_ma_table as $result) {
 		$nb_participant++;
-		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
-		
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];		
 		$echo++;
 		echo '<br>';
 	}
@@ -307,7 +306,6 @@ function poule($db){
 		$nb_participant++;
 		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
 		$echo++;
-
 		echo '<br>';
 	}
 	echo '<br>';
@@ -323,6 +321,16 @@ function poule($db){
 		echo '<br>';
 		echo '<br>';}
 	$max_poids = $max_poids*0.8;
+	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	$nb_participant = 0;
+	foreach ($result_req_ma_table as $result) {
+		$nb_participant++;
+		echo $result['Nom'] . " " . $result['Poids'] . " " . $result['Taille'] . " " . $result['Age'];
+		$echo++;
+		echo '<br>';}
+		$max_poids = $max_poids*0.8;
 	$req_ma_table = $db->prepare("SELECT * FROM `participants` WHERE Poids BETWEEN '$max_poids'*0.8 AND '$max_poids' ORDER BY Poids DESC ");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
