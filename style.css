@@ -637,3 +637,10 @@ div.combatant{
   grid-template-columns: 0.5fr 1fr 1fr 1fr;
   text-align: left;
 }
+
+div.duree{
+  position: absolute;
+  margin-left: 40%;
+  margin-top: 100px;
+
+}
