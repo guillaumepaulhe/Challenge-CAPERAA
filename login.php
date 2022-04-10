@@ -1,21 +1,16 @@
 <?php
 include "base.php";
 require('fonctions.php');
-
-$count ="";
-
-echo $url;
-
-
+  
 if (isset($_POST['email'])){
   $email = stripslashes($_REQUEST['email']);
-  $email = mysqli_real_escape_string($conn, $email);
   $password = stripslashes($_REQUEST['password']);
-  $password = mysqli_real_escape_string($conn, $password);
-    $query = "SELECT * FROM `utilisateurs` WHERE email='$email' and password='".hash('sha256', $password)."'";
-  $result = mysqli_query($conn,$query) or die(mysql_error());
-  $rows = mysqli_num_rows($result);
-  if($rows==1){
+  $req_ma_table = $db->prepare("SELECT * FROM `utilisateurs` WHERE email='$email' and password='".hash('sha256', $password)."'");
+  $req_ma_table->execute();
+  $result_req_ma_table = $req_ma_table->fetchAll();
+  foreach ($result_req_ma_table as $result) {
+}
+  if($result['email'] == $email && $result['password'] == hash('sha256', $password)){
       $_SESSION['email'] = $email;
       header("Location: index.php");
   }else{
@@ -34,3 +29,5 @@ if (isset($_POST['email'])){
     <p class="errorMessage"><?php echo $message; ?></p>
 <?php } ?>
 </form>
+
+

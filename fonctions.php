@@ -174,38 +174,12 @@ function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids,$ceinture){
 	$nom_club = get_nom_club($db);
     $req_ma_table = $db->prepare("INSERT INTO participants (Nom,Prenom,Sexe,Age,Taille,Poids,Nom_club,Ceinture) VALUES ('$nom','$prenom','$sexe','$age','$taille','$poids','$nom_club','$ceinture')");
 	$req_ma_table->execute();
-}
-
-
-
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
-define('DB_NAME', 'caperaa');
- 
-// Connexion à la base de données MySQL 
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
-// Vérifier la connexion
-if($conn === false){
-    die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
-}
-
-    
+} 
 
 function add_demande_inscription($db,$nom,$prenom,$email,$mdp,$role,$nom_club){
     $req_ma_table = $db->prepare("INSERT INTO demande_inscription (Nom,Prenom,Email,Mdp,Role,Nom_club) VALUES ('$nom','$prenom','$email','".hash('sha256', $mdp)."','$role','$nom_club')");
 	$req_ma_table->execute();
 }
-
-// Connexion à la base de données MySQL 
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
-// Vérifier la connexion
-if($conn === false){
-    die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
-}
-
 
 function list_club($db){
         $req_ma_table = $db->prepare("SELECT `Nom_du_club` FROM `codes_clubs` ORDER BY `Nom_du_club`");
