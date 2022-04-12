@@ -28,9 +28,6 @@ function get__classement($db){
 }
 
 
-
-
-
 function get__participants($db,$search){
 	if($search==""){
 		$search = "%";
@@ -202,7 +199,6 @@ function get_role($db,$email){
 	return $role;
 }
 
-
 function get_nom_club($db){
 	$email = $_SESSION["email"];
 	$req_ma_table = $db->prepare("SELECT `Nom_club` FROM `utilisateurs` WHERE `email`= '$email' ");
@@ -213,8 +209,6 @@ function get_nom_club($db){
 	}
 	return $nom_club;
 }
-
-
 
 function poule($db){
 	$req_max_poids = $db->prepare("SELECT MAX(Poids) FROM participants ");

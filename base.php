@@ -59,14 +59,53 @@ function get_rolee($db,$email){
      }
     
     if(isset($_SESSION['email'])){
-    echo '<li style="float:right"><a class="menu" href="logout.php">Se déconnecter <span class="material-icons icon">logout</span> </a></li>';
-    // echo '<li style="float:right"><a class="menu" href="logout.php">Déconnexion</a></li>';
-   // echo '<li style="float:right"><a class="menu" >'.get_rolee($db,$_SESSION['email']).'</a></li>';
-   // echo '<li style="float:right"><a class="menu" >'.$_SESSION['email'].'</a></li>';
+      echo '<li style="float:right"><a class="menu" href="logout.php">Se déconnecter <span class="material-icons icon">logout</span> </a></li>';
     }
 
     if(!isset($_SESSION['email'])){
-     echo '<li style="float:right"><a class="menu" href="login.php">Se connecter <span class="material-icons icon">person</span></a></li>';
+      echo '<li style="float:right"><a class="menu" href="login.php">Se connecter <span class="material-icons icon">person</span></a></li>';
     }
     ?>
   </ul>
+
+  <nav role="navigation">
+  <div id="menuToggle">
+    <input type="checkbox" />
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+    <li class=""><a class="" href="index.php">Accueil</a></li>
+    <li class=""><a class="" href="classement.php">Classement</a></li>
+      <?php
+    if(!isset($_SESSION['email']) || get_rolee($db,$_SESSION['email']) == "Administrateur"){
+      echo '<li class=""><a class="" href="inscription.php">Inscription</a></li>';
+    }
+
+    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Entraineur")) {
+      echo '<li class=""><a class="" href="inscription-combatant.php">Inscription combattants</a></li>';
+    }
+
+    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Organisateur")) {
+      echo '<li class=""><a class="" href="participant.php">Participants</a></li>';
+    }
+
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur") {
+     echo '<li class=""><a class="" href="demande-inscription.php">Inscriptions en attentes</a></li>';
+    }
+
+    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
+      echo '<li class=""><a class="" href="feuilles-combats.php">Feuilles de combats</a></li>';
+     }
+    
+    if(isset($_SESSION['email'])){
+      echo '<li><a class="" href="logout.php">Se déconnecter </a></li>';
+    }
+
+    if(!isset($_SESSION['email'])){
+      echo '<li ><a class="" href="login.php">Se connecter</a></li>';
+    }
+      ?>
+    </ul>
+  </div>
+</nav>

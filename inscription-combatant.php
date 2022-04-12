@@ -13,9 +13,9 @@ $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
     <input class="inscription" name="nom" type="text" placeholder="Nom">
     <input class="inscription" name="prenom" type="text" placeholder="Prenom">
-    <input class="inscription" name="age" type="text" placeholder="Age" >
-    <input class="inscription" name="taille" type="text" placeholder="Taille" >
-    <input class="inscription" name="poids" type="text" placeholder="Poids" >
+    <input class="inscription" name="age" type="number" placeholder="Age" >
+    <input class="inscription" name="taille" type="number" placeholder="Taille" >
+    <input class="inscription" name="poids" type="number" placeholder="Poids" >
     <select class="inscription" name="sexe" id="">
         <option value="">Sélectionnez le sexe</option>
         <option value="Homme">Homme</option>

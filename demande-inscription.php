@@ -34,7 +34,7 @@ function get__demandes($db){
 		<input type="submit" name="refuser" class="case material-icons" value="close" id="refuser"/>
 		</form>
 		</li>
-	    </ul>';
+	    ';
 
 		}
 		if($nom_club == NULL){

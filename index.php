@@ -7,6 +7,5 @@ décembre. Il s’agit d’un tournoi de judo pour les benjamins et les poussins
 dans la mesure ou le classement des combattants se fait sur 2 critères, l’expression technique (Yaku Soku
 Geiko) et un combat (Randori).
 </p>
-</div>
 
 <img src="test.png" width= 50% class="center">
