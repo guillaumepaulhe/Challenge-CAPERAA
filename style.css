@@ -710,7 +710,7 @@ div.duree{
 /*
  * Just a quick hamburger
  */
-#menuToggle span
+#menuToggle span#test
 {
   display: block;
   width: 33px;
@@ -730,12 +730,12 @@ div.duree{
               opacity 0.55s ease;
 }
 
-#menuToggle span:first-child
+#menuToggle span#test:first-child
 {
   transform-origin: 0% 0%;
 }
 
-#menuToggle span:nth-last-child(2)
+#menuToggle span#test:nth-last-child(2)
 {
   transform-origin: 0% 100%;
 }
@@ -754,7 +754,7 @@ div.duree{
 /*
  * But let's hide the middle one.
  */
-#menuToggle input:checked ~ span:nth-last-child(3)
+#menuToggle input:checked ~ span#test:nth-last-child(3)
 {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
@@ -763,7 +763,7 @@ div.duree{
 /*
  * Ohyeah and the last one should go the other direction
  */
-#menuToggle input:checked ~ span:nth-last-child(2)
+#menuToggle input:checked ~ span#test:nth-last-child(2)
 {
   transform: rotate(-45deg) translate(0, -1px);
 }

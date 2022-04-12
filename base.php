@@ -71,15 +71,15 @@ function get_rolee($db,$email){
   <nav role="navigation">
   <div id="menuToggle">
     <input type="checkbox" />
-    <span></span>
-    <span></span>
-    <span></span>
+    <span id="test"></span>
+    <span id="test"></span>
+    <span id="test"></span>
     <ul id="menu">
-    <li class=""><a class="" href="index.php">Accueil</a></li>
-    <li class=""><a class="" href="classement.php">Classement</a></li>
+    <li class=""><a class="" href="index.php"><span class="material-icons icon">home</span> Accueil </a></li>
+    <li class=""><a class="" href="classement.php"><span class="material-icons icon">format_list_bulleted</span> Classement </a></li>
       <?php
     if(!isset($_SESSION['email']) || get_rolee($db,$_SESSION['email']) == "Administrateur"){
-      echo '<li class=""><a class="" href="inscription.php">Inscription</a></li>';
+      echo '<li class=""><a class="" href="inscription.php"> <span class="material-icons icon">assignment</span> Inscription </a></li>';
     }
 
     if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Entraineur")) {
@@ -103,7 +103,7 @@ function get_rolee($db,$email){
     }
 
     if(!isset($_SESSION['email'])){
-      echo '<li ><a class="" href="login.php">Se connecter</a></li>';
+      echo '<li > <a class="" href="login.php"><span class="material-icons icon">person</span> Se connecter  </a></li>';
     }
       ?>
     </ul>
