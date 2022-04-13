@@ -657,7 +657,14 @@ div.duree{
 
   li.case{
     width: auto;
+  }
 
+  nav{
+    width: 90%;
+  }
+
+  form.inscription{
+    width: 80%;
   }
 }
 
@@ -683,7 +690,15 @@ div.duree{
 #menuToggle a
 {
   text-decoration: none;
-  color: #232323;
+  color: white;
+  
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover
+{
+  text-decoration: none;
+  color: #407cff;
   
   transition: color 0.3s ease;
 }
@@ -781,7 +796,7 @@ div.duree{
   padding: 50px;
   padding-top: 125px;
   color: white;
-  background: #407cff;
+  background: #111111;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
