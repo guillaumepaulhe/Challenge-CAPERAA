@@ -532,6 +532,7 @@ div.grid-container{
 div.cases{
   display: flex;
   gap: 25px;
+  height: 150px;
 }
 
 div.case-1{
@@ -548,6 +549,7 @@ div.case-2{
 
 div.case-3{
   width: 150px;
+  height: 150px;
   display : grid;
   grid-template-columns: repeat(auto-fill, minmax(0px,50px));
 }
