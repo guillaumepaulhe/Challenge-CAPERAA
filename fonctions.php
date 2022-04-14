@@ -357,8 +357,8 @@ function classement_par_club($db){
 
 
 
-function get_nb_participants($db){
-	$req_ma_table = $db->prepare("SELECT COUNT(Nom)AS nb_participants FROM participants");
+function get_nb_participants($db,$sexe){
+	$req_ma_table = $db->prepare("SELECT COUNT(Nom)AS nb_participants FROM participants WHERE Sexe = '$sexe' ");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
 	foreach ($result_req_ma_table as $result) {
