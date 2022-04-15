@@ -8,4 +8,4 @@ dans la mesure ou le classement des combattants se fait sur 2 critères, l’exp
 Geiko) et un combat (Randori).
 </p>
 
-<img src="test.png" width= 50% class="center">
+<img id="test" src="test.png" width= 50% class="center">
