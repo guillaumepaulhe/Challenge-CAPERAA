@@ -689,10 +689,10 @@ div.duree{
 
     }
     li.classement{
-      /* width: auto; */
+      /* width: auto; 
       display: flex;
-      flex-direction: column;
-  } */
+      flex-direction: column;*/
+  } 
 
 @media screen and (min-width: 767px) {
   nav {
