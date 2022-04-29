@@ -366,5 +366,22 @@ function get_nb_participants($db,$sexe){
 	}
 	return $nb_participant;
 }
+
+function poules($db){
+	echo '<ul class="poules" style="text-align: center;">';
+	$req_ma_table = $db->prepare("SELECT MAX(Poule) FROM participants");
+    $req_ma_table->execute();
+    $result_req_ma_table = $req_ma_table->fetchAll();
+	foreach ($result_req_ma_table as $result) {
+		$max_poule = $result['MAX(Poule)'];
+	}
+	for($i=1;$i<=$max_poule;$i++){
+		echo '<li class="poule">';
+		echo '<a href=\'poule' . $i .'.php\'>Fiche Poule n° '.$i.'</a>';
+		echo '</li>';
+	}
+	echo '</ul>';
+
+} 
 ?>
 

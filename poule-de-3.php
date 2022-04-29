@@ -1,9 +1,8 @@
 <?php  
 include "base.php";
-include "fonctions.php";
 ?>
 
-<h1>Poule   n° </h1>
+<h1>Poule   n° <?php echo $poule?></h1>
 <div class="duree">
 <p>Durée d'un Randori technique: 1 minute</p>
 <p>Durée d'un Randoricompétition: 1 minute30secondes</p>
@@ -44,24 +43,51 @@ include "fonctions.php";
 <div class="grid-text"> 
         <div class="combatant">
             <p class="text_feuille">A1 :  </p>
-            <p>Guillaume</p>
-            <p>Paulhe</p>
-            <p>AL CROIX DE NEYRAT</p>
+            <p><?php
+            echo $prenom1;
+            ?>
+            </p>
+            <p><?php
+            echo $nom1;
+            ?>
+            </p>
+            <p><?php
+            echo $club1;
+            ?>
+            </p>
         </div>
 
         <div class="combatant">
             <p class="text_feuille">A2 :  </p>
-            <p>Nom</p>
-            <p>Prenom</p>
-            <p>Club</p>
+            <p><?php
+            echo $prenom2;
+            ?>
+            </p>
+            <p><?php
+            echo $nom2;
+            ?>
+            </p>
+            <p><?php
+            echo $club2;
+            ?>
+            </p>
 
         </div>
 
         <div class="combatant">
             <p class="text_feuille">B3 :  </p>
-            <p>Nom</p>
-            <p>Prenom</p>
-            <p>Club</p>
+            <p><?php
+            echo $prenom3;
+            ?>
+            </p>
+            <p><?php
+            echo $nom3;
+            ?>
+            </p>
+            <p><?php
+            echo $club3;
+            ?>
+            </p>
 
         </div>  
 </div>
@@ -97,7 +123,7 @@ include "fonctions.php";
 <input class="grid-btn" id="noir" disabled> 
 <input class="grid-btn" id="noir" disabled> 
 <input type="number" name="qtyrandb3" class="grid-btn" min=0 max=10 onchange="findTotal('qtyrandb3','totalrandb3'),total('totalb3','totalrandb3','totalrandtechb3')"> 
-<input type="number" name="qtyrandb3" class="grid-btn" min=0 max=10 onchange="findTotal('qtyrandb3','totalrandb3'),total('totalb3','totalrandb3','totalrandtechb3'),classement('totalrandtecha1','totalrandtecha2','totalrandtechb3')"> 
+<input type="number" name="qtyrandb3" class="grid-btn" min=0 max=10 onchange="findTotal('qtyrandb3','totalrandb3'),total('totalb3','totalrandb3','totalrandtechb3'),classement3('totalrandtecha1','totalrandtecha2','totalrandtechb3')"> 
 <input class="grid-btn" id="noir" disabled> 
 <input class="grid-btn" id="noir" disabled> 
 <input class="grid-btn" id="noir" disabled>     
@@ -125,4 +151,3 @@ include "fonctions.php";
     <p>Randoris Techniques : Couples A1A2 A1B3 A2B3</p>
     <p>Randoris compétition : 1/3 1/2 2/3</p>
 </div>
-

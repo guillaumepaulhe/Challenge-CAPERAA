@@ -5,12 +5,12 @@ require('fonctions.php');
 if (isset($_POST['email'])){
   $email = stripslashes($_REQUEST['email']);
   $password = stripslashes($_REQUEST['password']);
-  $req_ma_table = $db->prepare("SELECT * FROM `utilisateurs` WHERE email='$email' OR Nom='$email' AND password='".hash('sha256', $password)."'");
+  $req_ma_table = $db->prepare("SELECT * FROM `utilisateurs` WHERE email='$email' OR Prenom='$email' AND password='".hash('sha256', $password)."'");
   $req_ma_table->execute();
   $result_req_ma_table = $req_ma_table->fetchAll();
   foreach ($result_req_ma_table as $result) {
 }
-  if( ($result['email'] == $email || $result['Nom'] == $email )&& $result['password'] == hash('sha256', $password)){
+  if( ($result['email'] == $email || $result['Prenom'] == $email )&& $result['password'] == hash('sha256', $password)){
       $_SESSION['email'] = $result['email'];
       header("Location: index.php");
   }else{

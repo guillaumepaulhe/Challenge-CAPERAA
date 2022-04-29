@@ -66,6 +66,8 @@ function get_rolee($db,$email){
       echo '<li style="float:right"><a class="menu" href="login.php">Se connecter <span class="material-icons icon">person</span></a></li>';
     }
     ?>
+        <li class="menu"><a class="menu" href="poules.php">Poules</a></li>
+
   </ul>
 
   <nav role="navigation">

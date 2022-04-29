@@ -59,7 +59,7 @@ function create_poule($db,$nb6,$nb4,$nb5,$nb3,$sexe){
             $result_req_ma_table = $req_ma_table->fetchAll();
             foreach ($result_req_ma_table as $result) {
                 $id = $result['idParticipant'];
-                $req_ma_table = $db->prepare("UPDATE participants SET Poule = 14 WHERE idParticipant = '$id'");
+                $req_ma_table = $db->prepare("UPDATE participants SET Poule = '$poules' WHERE idParticipant = '$id'");
                 $req_ma_table->execute();   
                 echo 'Nom : '. $result["Nom"] . ' => Poule : ' . $result['Poule'];  
                 echo '<br>';
@@ -69,6 +69,8 @@ function create_poule($db,$nb6,$nb4,$nb5,$nb3,$sexe){
             echo '<br>';
         }
 }
+
+
 
 
 echo 'Homme : <br>';
@@ -180,7 +182,7 @@ else{
 
 }
 
-
+creat
 
 ?>
 
