@@ -10,6 +10,8 @@ $prenom = $_POST['prenom'];
 $role = $_POST['role'];
 $nom_club = $_POST['club'];
 $mdp = $_POST['mdp'];
+
+echo $nom_club;
 ?>
 
 <form class="inscription" action="" method = "post">
@@ -27,20 +29,22 @@ $mdp = $_POST['mdp'];
     <input class="inscription" type="password" name="mdp" placeholder="Mot de passe" required>
 
     
-    <select class="inscription" name="role" required> 
+    <select class="inscription" id="role" name="role" onchange="changed_role()" required> 
         <option value="">Veuillez sélectionner un rôle</option>
         <option value="Entraineur">Entraineur</option>
         <option value="Organisateur">Organisateur</option>
         <option value="Jury">Jury</option>
     </select>
 
-    
-    <select name="club" class="inscription" >
-        <option value="">Entrer le club seulement pour les entraineurs</option>
-        <?php 
-        list_club($db);
+        <input class="inscription" list="clubs" name="club" id="club" placeholder="Selectionez votre club">
+        <datalist id="clubs">
+        <?php
+        $req = $db->query("SELECT * FROM clubs ORDER BY nom ASC ");
+        while($data = $req->fetch()){
+        echo '<option value="'.$data['nom'].'">';
+        }
         ?>
-    </select>
+        </datalist>
 
 <input class="inscription" type="submit" name="" value="Valider la demande">
 </form>
@@ -51,3 +55,16 @@ $mdp = $_POST['mdp'];
     }
 
 ?>
+
+<script>
+    function changed_role(){
+        var role = document.getElementById("role").value;
+        console.log(role);
+        if(role=="Organisateur" || role=="Jury"){
+            document.getElementById("club").style.display = "none";
+        }
+        else{
+            document.getElementById("club").style.display = "unset";
+        }
+    }
+</script>

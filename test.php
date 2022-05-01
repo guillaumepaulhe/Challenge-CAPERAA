@@ -25,7 +25,7 @@ function create_fiches_poules($db){
         }
     echo $count;
     if($count == 6){
-        $file_handle = fopen('poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -268,7 +268,7 @@ function create_fiches_poules($db){
         </div>');
     }
     if($count == 5){
-        $file_handle = fopen('poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -482,7 +482,7 @@ function create_fiches_poules($db){
         ');
     }
     if($count == 4){
-        $file_handle = fopen('poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -668,7 +668,7 @@ function create_fiches_poules($db){
         ');
     }
     if($count == 3){
-        $file_handle = fopen('poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -833,5 +833,13 @@ function create_fiches_poules($db){
 
 }
 
-create_fiches_poules($db);
+?>
+<form class="case" method="post">
+    <input type="submit" name="valider"  value="Générer les poules" id="valider" />
+</form>
+
+<?php
+    if(array_key_exists('valider', $_POST)) {
+        create_fiches_poules($db);
+    }
 ?>

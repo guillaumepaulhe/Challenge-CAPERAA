@@ -389,10 +389,6 @@ input.inscription{
   display: block;
 }
 
-.inscription input#club{
-  display: none;
-}
-
 .inscription input[type = "submit"]{
   background: none;
   transition: ease-in-out 0.25s;

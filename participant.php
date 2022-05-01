@@ -1,7 +1,6 @@
 <?php  
 include "base.php";
 include "fonctions.php";
-$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Organisateur" )) {
   header("location: login.php");
 }
@@ -18,6 +17,6 @@ search
   if($search == ""){
     $search = "%";
   }
-   get__participants($db,$search);
+  afficher_participants($db,$search);
 ?>
 </ul>

@@ -16,12 +16,14 @@ $_SESSION['url'] = $_SERVER['REQUEST_URI'];
     <input class="inscription" name="age" type="number" placeholder="Age" >
     <input class="inscription" name="taille" type="number" placeholder="Taille" >
     <input class="inscription" name="poids" type="number" placeholder="Poids" >
+
     <select class="inscription" name="sexe" id="">
         <option value="">Sélectionnez le sexe</option>
         <option value="Homme">Homme</option>
         <option value="Femme">Femme</option>
     </select>
-    <select class="inscription" name="Ceinture" id="">
+
+    <select class="inscription" name="Ceinture">
         <option value="">Sélectionnez votre ceinture</option>
         <option value="blanche">blanche</option>
         <option value="blanche et jaune">blanche et jaune</option>
@@ -35,12 +37,13 @@ $_SESSION['url'] = $_SERVER['REQUEST_URI'];
         <option value="marron">marron</option>
     </select>
 
-
-
 <input class="inscription" type="submit" name="" value="Valider l'inscription">
 </form>
-<?php
 
+
+
+
+<?php
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $sexe = $_POST['sexe'];
@@ -48,11 +51,7 @@ $age = $_POST['age'];
 $taille = $_POST['taille'];
 $poids = $_POST['poids'];
 $ceinture = $_POST['Ceinture'];
-
-
 if($nom!=NULL){
     add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids,$ceinture);
 }
-
-
 ?>
