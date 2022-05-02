@@ -3,7 +3,7 @@ $db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root'
 
 
 function get__classement($db){
-	$req_ma_table = $db->prepare("SELECT * FROM participants ORDER BY points DESC");
+	$req_ma_table = $db->prepare("SELECT * FROM participants WHERE points !=0 ORDER BY points DESC");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
 	$res = '';
@@ -324,7 +324,7 @@ function classement_par_club($db){
 	$result_req_ma_table = $req_ma_table->fetchAll();
 	foreach ($result_req_ma_table as $result) {
 		$club = $result['nom'];
-		$req_ma_table2 = $db->prepare("SELECT * FROM participants WHERE Nom_club = '$club' ORDER BY points DESC  ");
+		$req_ma_table2 = $db->prepare("SELECT * FROM participants WHERE points != 0 AND  Nom_club = '$club' ORDER BY points DESC  ");
 		$req_ma_table2->execute();
 		$result_req_ma_table2 = $req_ma_table2->fetchAll();
 		if($result_req_ma_table2!=NULL){
