@@ -181,8 +181,5 @@ else{
     create_poule($db,$nb_poule_de_6,$nb_poule_de_4,$nb_poule_de_5,$nb_poule_de_3,'femme');
 
 }
-
-creat
-
 ?>
 

@@ -56,6 +56,7 @@ function get_rolee($db,$email){
 
     if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
       echo '<li class="menu"><a class="menu" href="feuilles-combats.php">Feuilles de combats</a></li>';
+      echo '<li class="menu"><a class="menu" href="poules.php">Poules</a></li>';
      }
     
     if(isset($_SESSION['email'])){
@@ -66,7 +67,7 @@ function get_rolee($db,$email){
       echo '<li style="float:right"><a class="menu" href="login.php">Se connecter <span class="material-icons icon">person</span></a></li>';
     }
     ?>
-        <li class="menu"><a class="menu" href="poules.php">Poules</a></li>
+        
 
   </ul>
 
