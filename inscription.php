@@ -30,13 +30,14 @@ echo $nom_club;
 
     
     <select class="inscription" id="role" name="role" onchange="changed_role()" required> 
-        <option value="">Veuillez sélectionner un rôle</option>
+        <option value="Veuillez sélectionner un rôle">Veuillez sélectionner un rôle</option>
         <option value="Entraineur">Entraineur</option>
         <option value="Organisateur">Organisateur</option>
         <option value="Jury">Jury</option>
     </select>
 
         <input class="inscription" list="clubs" name="club" id="club" placeholder="Selectionez votre club">
+        <input class="inscription" id="valider" type="submit" name="" value="Valider la demande">
         <datalist id="clubs">
         <?php
         $req = $db->query("SELECT * FROM clubs ORDER BY nom ASC ");
@@ -46,7 +47,8 @@ echo $nom_club;
         ?>
         </datalist>
 
-<input class="inscription" type="submit" name="" value="Valider la demande">
+    
+
 </form>
 
 <?php
@@ -55,16 +57,3 @@ echo $nom_club;
     }
 
 ?>
-
-<script>
-    function changed_role(){
-        var role = document.getElementById("role").value;
-        console.log(role);
-        if(role=="Organisateur" || role=="Jury"){
-            document.getElementById("club").style.display = "none";
-        }
-        else{
-            document.getElementById("club").style.display = "unset";
-        }
-    }
-</script>

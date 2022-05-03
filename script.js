@@ -65,3 +65,15 @@ function classement3(a,b,c){
     document.getElementById('ranka2').value = ranks[1]
     document.getElementById('rankb3').value = ranks[2]
 }
+
+
+function changed_role(){
+    var role = document.getElementById("role").value;
+    console.log(role);
+    if(role=="Organisateur" || role=="Jury" || role=="Veuillez sélectionner un rôle"){
+        document.getElementById("club").style.display = "none";
+    }
+    else{
+        document.getElementById("club").style.display = "unset";
+    }
+}

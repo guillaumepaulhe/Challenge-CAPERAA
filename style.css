@@ -390,7 +390,7 @@ input.inscription{
 }
 
 .inscription input#club{
-  display: none;
+  /* display: none; */
 }
 
 .inscription input[type = "submit"]{
