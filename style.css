@@ -536,7 +536,7 @@ div.grid-container{
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 10px;
-  margin-left: 5%;
+  /* margin-left: 5%; */
 }
 
 div.cases{
@@ -603,7 +603,7 @@ div.cc{
 
 div.infos_combat{
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1fr 1fr;
+  grid-template-columns: 0.2fr 0.8fr 0.8fr 1fr;
   text-align: left;
   
 }
@@ -615,7 +615,7 @@ p.score_combat#exp{
   width: 150px;
 }
 
-p.score_combat#total_score{
+p.score_combat#total{
   width: 50px;
 }
 
@@ -646,7 +646,7 @@ div.zebi{
 
 div.combatant{
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1fr 1fr;
+  grid-template-columns: 0.2fr 0.8fr 0.8fr 1fr;
   text-align: left;
 }
 
@@ -856,3 +856,28 @@ div.duree{
 {
   transform: none;
 }
+
+input.vfiche{
+  transition: ease-in-out 0.25s;
+  background-color: #407cff;
+  border: 1px solid #407cff;
+  border-radius: 8px;
+  display: none;
+  margin: 20px auto;
+  padding: 7px 5px;
+  border-radius: 24px;
+  color: white;
+}
+
+input.vfiche:hover{
+transition: ease-in-out 0.25s;
+background-color: #3168dd;
+border: 1px solid #407cff;
+}
+
+form.vfiche{
+  display: flex;
+  justify-content: center;
+}
+
+

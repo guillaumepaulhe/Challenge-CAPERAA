@@ -852,3 +852,10 @@ div.duree{
 {
   transform: none;
 }
+
+form#classement{
+  width: 150px;
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(0px,50px));
+}

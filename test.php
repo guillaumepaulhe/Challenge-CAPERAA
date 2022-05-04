@@ -87,6 +87,7 @@ function create_fiches_poules($db){
             $noms[$count] = $result['Nom'];
             $prenoms[$count] = $result['Prenom'];
             $clubs[$count] = $result['Nom_club'];
+            $id[$count] = $result['idParticipant'];
             $poule = $result['Poule'];
         }
     echo $count;
@@ -96,6 +97,7 @@ function create_fiches_poules($db){
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
         $clubs = '.var_export($clubs, true).';
+        $id = '.var_export($id, true).';
         $poule = '.$poule.';
         include "base.php";
         ?>

@@ -27,7 +27,7 @@ if (isset($_POST['email'])){
 <p>Vous êtes nouveau ici? <a href="inscription.php">S'inscrire</a></p>
 <?php if (! empty($message)) { ?>
     <p class="errorMessage"><?php echo $message; ?></p>
-<?php } ?>
+<?php } ?>  
 </form>
 
 

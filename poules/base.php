@@ -19,9 +19,9 @@ function get_rolee($db,$email){
 <head>
   <link rel="preconnect" href="../https://fonts.googleapis.com">
   <link rel="preconnect" href="../https://fonts.gstatic.com" crossorigin>
-  <link href="../https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
-  <link href="../https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="../http://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="http://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
   <script src="script.js"></script>
   <meta charset="UTF-8">

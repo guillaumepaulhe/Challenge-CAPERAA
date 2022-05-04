@@ -65,3 +65,28 @@ function classement3(a,b,c){
     document.getElementById('ranka2').value = ranks[1]
     document.getElementById('rankb3').value = ranks[2]
 }
+
+
+function changed_role(){
+    var role = document.getElementById("role").value;
+    console.log(role);
+    if(role=="Organisateur" || role=="Jury" || role=="Veuillez sélectionner un rôle"){
+        document.getElementById("club").style.display = "none";
+    }
+    else{
+        document.getElementById("club").style.display = "unset";
+    }
+}
+
+function coockies_points(){
+    document.cookie = "pointsa1="+document.getElementById("totalrandtecha1").value
+    document.cookie = "pointsa2="+document.getElementById("totalrandtecha2").value
+    document.cookie = "pointsb3="+document.getElementById("totalrandtechb3").value
+    document.cookie = "pointsb4="+document.getElementById("totalrandtechb4").value
+    document.cookie = "pointsc5="+document.getElementById("totalrandtechc5").value
+    document.cookie = "pointsc6="+document.getElementById("totalrandtechc6").value
+}   
+
+function show_confirm(){
+    document.getElementById('testt').style.display = "block";
+}

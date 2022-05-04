@@ -77,3 +77,12 @@ function changed_role(){
         document.getElementById("club").style.display = "unset";
     }
 }
+
+function coockies_points(){
+    document.cookie = "pointsa1="+document.getElementById("totalrandtecha1").value
+    document.cookie = "pointsa2="+document.getElementById("totalrandtecha2").value
+    document.cookie = "pointsb3="+document.getElementById("totalrandtechb3").value
+    document.cookie = "pointsb4="+document.getElementById("totalrandtechb4").value
+    document.cookie = "pointsc5="+document.getElementById("totalrandtechc5").value
+    document.cookie = "pointsc6="+document.getElementById("totalrandtechc6").value
+}   
