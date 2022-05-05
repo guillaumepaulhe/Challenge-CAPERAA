@@ -554,6 +554,7 @@ div.case-2{
 }
 
 div.case-3{
+  margin-left: 20px;
   width: 150px;
   height: 150px;
   display : grid;

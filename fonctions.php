@@ -314,45 +314,45 @@ function classement_par_club($db){
 	$req_ma_table = $db->prepare("SELECT nom FROM clubs ORDER BY nom ASC ");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
+	echo'<ul class="case">';
+	$i = 0;
 	foreach ($result_req_ma_table as $result) {
 		$club = $result['nom'];
-		$req_ma_table2 = $db->prepare("SELECT * FROM participants WHERE points != 0 AND  Nom_club = '$club' ORDER BY points DESC  ");
+		$req_ma_table2 = $db->prepare("SELECT SUM(points) AS points_club FROM participants WHERE Nom_club = '$club'");
 		$req_ma_table2->execute();
 		$result_req_ma_table2 = $req_ma_table2->fetchAll();
-		if($result_req_ma_table2!=NULL){
-		echo '<div>';
-		echo '<h2>'.$club.' : </h2>' .'<br>';
-		echo '<ul class="case_club">';
-
-		}
-		$i = 0;
 		foreach ($result_req_ma_table2 as $result2) {
+			$points = $result2['points_club'];
+			if($points!=0){
+				$req_ma_table3 = $db->prepare("UPDATE clubs SET points = '$points' WHERE nom = '$club'");
+				$req_ma_table3->execute();
+			}
+			else{
+				$req_ma_table3 = $db->prepare("UPDATE clubs SET points = 0 WHERE nom = '$club'");
+			}
+		}	
+	}
+	$req_ma_table = $db->prepare("SELECT * FROM clubs ORDER BY points DESC ");
+	$req_ma_table->execute();
+	$result_req_ma_table = $req_ma_table->fetchAll();
+	foreach ($result_req_ma_table as $result) {
+		if($result['points']!=0){
 			$i++;
-			$nom = $result2['Nom'];
-			$prenom = $result2['Prenom'];
-			$points = $result2['points'];	
-			
 			if($i==1){
-				echo '<li class="classement-club"> <p class="classement">🥇'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
+				echo '<li class="classement"> <p class="classement">🥇'.$i.'</p>'. $result['nom'] . ' : ' . $result['points'] . '</p></li>';
 			}
 			if($i==2){
-				echo '<li class="classement-club"> <p class="classement">🥈'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
+				echo '<li class="classement"> <p class="classement">🥈'.$i.'</p>'. $result['nom'] . ' : ' . $result['points'] . '</p></li>';
 			}
 			if($i==3){
-				echo '<li class="classement-club"> <p class="classement">🥉'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
+				echo '<li class="classement"> <p class="classement">🥉'.$i.'</p>'. $result['nom'] . ' : ' . $result['points'] . '</p></li>';
 			}
 			if($i >3){
-			echo '<li class="classement-club"> <p class="classement">'.$i.'</p> <p class="classement">Nom : '.$nom.'</p><p class="classement">Prénom : '.$prenom.'</p> <p class="classement">Points : '.$points.'</p></li>';
-			}
+			echo '<li class="classement"> <p class="classement">'.$i. '</p>'. $result['nom'] . ' : ' . $result['points'] . '</p></li>';
 		}
-		if($result_req_ma_table2!=NULL){
-		echo '</ul>';
-		}
-	if($result_req_ma_table2!=NULL){
-	echo '</div>';
 		}
 	}
-}	
+}
 
 
 
