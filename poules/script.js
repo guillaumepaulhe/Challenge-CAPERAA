@@ -78,13 +78,35 @@ function changed_role(){
     }
 }
 
-function coockies_points(){
+function coockies_points6(){
     document.cookie = "pointsa1="+document.getElementById("totalrandtecha1").value
     document.cookie = "pointsa2="+document.getElementById("totalrandtecha2").value
     document.cookie = "pointsb3="+document.getElementById("totalrandtechb3").value
     document.cookie = "pointsb4="+document.getElementById("totalrandtechb4").value
     document.cookie = "pointsc5="+document.getElementById("totalrandtechc5").value
     document.cookie = "pointsc6="+document.getElementById("totalrandtechc6").value
+}   
+
+function coockies_points5(){
+    document.cookie = "pointsa1="+document.getElementById("totalrandtecha1").value
+    document.cookie = "pointsa2="+document.getElementById("totalrandtecha2").value
+    document.cookie = "pointsb3="+document.getElementById("totalrandtechb3").value
+    document.cookie = "pointsb4="+document.getElementById("totalrandtechb4").value
+    document.cookie = "pointsc5="+document.getElementById("totalrandtechc5").value
+}   
+
+function coockies_points4(){
+    document.cookie = "pointsa1="+document.getElementById("totalrandtecha1").value
+    document.cookie = "pointsa2="+document.getElementById("totalrandtecha2").value
+    document.cookie = "pointsb3="+document.getElementById("totalrandtechb3").value
+    document.cookie = "pointsb4="+document.getElementById("totalrandtechb4").value
+}   
+
+
+function coockies_points3(){
+    document.cookie = "pointsa1="+document.getElementById("totalrandtecha1").value
+    document.cookie = "pointsa2="+document.getElementById("totalrandtecha2").value
+    document.cookie = "pointsb3="+document.getElementById("totalrandtechb3").value
 }   
 
 function show_confirm(){

@@ -6,11 +6,43 @@ if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Jury" )) {
   }
 poules($db);
 $poules =1;
-function create_poule($db,$nb6,$nb4,$nb5,$nb3,$sexe){
+
+
+function oui($db,$sexe,$age){
+    if($age == 'poussin'){
+        $a = 8;
+        $b = 9;
+    }
+    if($age == 'benjamin'){
+        $a = 10;
+        $b = 11;
+    }
+    $req_ma_table = $db->prepare("SELECT COUNT(nom) FROM participants WHERE Sexe = '$sexe' AND age BETWEEN $a AND $b" );
+            $req_ma_table->execute();
+            $result_req_ma_table = $req_ma_table->fetchAll();
+            foreach ($result_req_ma_table as $result) {
+                $nb = $result['COUNT(nom)'];
+            }
+            return $nb;
+}
+
+
+function create_poule($db,$nb6,$nb5,$nb4,$nb3,$sexe,$age){
     $offset = 0;
+    if($age == 'poussin'){
+        $a = 8;
+        $b = 9;
+        $c = 'poussin';
+        
+    }
+    if($age == 'benjamin'){
+        $a = 10;
+        $b = 11;
+        $c = 'benjamin';
+    }
     global $poules;
         for($i=1;$i<=$nb6;$i++){
-            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' ORDER BY Poids DESC LIMIT $offset,6" );
+            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' AND age BETWEEN $a AND $b ORDER BY Poids DESC LIMIT $offset,6" );
             $req_ma_table->execute();
             $result_req_ma_table = $req_ma_table->fetchAll();
             foreach ($result_req_ma_table as $result) {
@@ -25,12 +57,12 @@ function create_poule($db,$nb6,$nb4,$nb5,$nb3,$sexe){
             echo '<br>';
         }
         for($i=1;$i<=$nb5;$i++){
-            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' ORDER BY Poids DESC LIMIT $offset,5" );
+            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' AND age BETWEEN $a AND $b ORDER BY Poids DESC LIMIT $offset,5" );
             $req_ma_table->execute();
             $result_req_ma_table = $req_ma_table->fetchAll();
             foreach ($result_req_ma_table as $result) {
                 $id = $result['idParticipant'];
-                $req_ma_table = $db->prepare("UPDATE participants SET Poule = '$poules' WHERE idParticipant = '$id' AND Poule NOT BETWEEN 1 AND '$poules'");
+                $req_ma_table = $db->prepare("UPDATE participants SET Poule = '$poules' WHERE idParticipant = '$id' AND Poule NOT BETWEEN 1 AND '$poules' AND age BETWEEN $a AND $b");
                 $req_ma_table->execute();   
                 echo 'Nom : '. $result["Nom"] . ' => Poule : ' . $result['Poule'];  
                 echo '<br>';
@@ -40,12 +72,12 @@ function create_poule($db,$nb6,$nb4,$nb5,$nb3,$sexe){
             echo '<br>';
         }
         for($i=1;$i<=$nb4;$i++){
-            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' ORDER BY Poids DESC LIMIT $offset,4" );
+            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' AND age BETWEEN $a AND $b ORDER BY Poids DESC LIMIT $offset,4" );
             $req_ma_table->execute();
             $result_req_ma_table = $req_ma_table->fetchAll();
             foreach ($result_req_ma_table as $result) {
                 $id = $result['idParticipant'];
-                $req_ma_table = $db->prepare("UPDATE participants SET Poule = '$poules' WHERE idParticipant = '$id'");
+                $req_ma_table = $db->prepare("UPDATE participants SET Poule = '$poules' WHERE idParticipant = '$id' AND age BETWEEN $a AND $b");
                 $req_ma_table->execute();   
                 echo 'Nom : '. $result["Nom"] . ' => Poule : ' . $result['Poule'];  
                 echo '<br>';
@@ -55,12 +87,12 @@ function create_poule($db,$nb6,$nb4,$nb5,$nb3,$sexe){
             echo '<br>';
         }
         for($i=1;$i<=$nb3;$i++){
-            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' ORDER BY Poids DESC LIMIT $offset,3" );
+            $req_ma_table = $db->prepare("SELECT * FROM participants WHERE Sexe = '$sexe' AND age BETWEEN $a AND $b ORDER BY Poids DESC LIMIT $offset,3" );
             $req_ma_table->execute();
             $result_req_ma_table = $req_ma_table->fetchAll();
             foreach ($result_req_ma_table as $result) {
                 $id = $result['idParticipant'];
-                $req_ma_table = $db->prepare("UPDATE participants SET Poule = '$poules' WHERE idParticipant = '$id'");
+                $req_ma_table = $db->prepare("UPDATE participants SET Poule = '$poules' WHERE idParticipant = '$id' AND age BETWEEN $a AND $b");
                 $req_ma_table->execute();   
                 echo 'Nom : '. $result["Nom"] . ' => Poule : ' . $result['Poule'];  
                 echo '<br>';
@@ -93,10 +125,18 @@ function create_fiches_poules($db){
             $clubs[$count] = $result['Nom_club'];
             $id[$count] = $result['idParticipant'];
             $poule = $result['Poule'];
+            $sexe = $result['Sexe'];
+            $agee = $result['Age']; 
+        }
+        if($agee == 8 || $agee == 9){
+            $age = 'poussin';
+        }
+        if($agee == 10 || $agee == 11){
+            $age = 'benjamin';
         }
     echo $count;
     if($count == 6){
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -307,7 +347,7 @@ function create_fiches_poules($db){
         <input class="grid-btn" id="noir" disabled></input>
         <input type="number" class="grid-btn" min=0 max=10 name="qtyrandc6" onchange="findTotal(\'qtyrandc6\',\'totalrandc6\'),total(\'totalc6\',\'totalrandc6\',\'totalrandtechc6\')"></input>
         <input class="grid-btn" id="noir" disabled></input>
-        <input type="number" class="grid-btn" min=0 max=10 name="qtyrandc6" onchange="findTotal(\'qtyrandc6\',\'totalrandc6\'),total(\'totalc6\',\'totalrandc6\',\'totalrandtechc6\'),classement6(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\',\'totalrandtechb4\',\'totalrandtechc5\',\'totalrandtechc6\')"></input>
+        <input type="number" class="grid-btn" min=0 max=10 name="qtyrandc6" onchange="findTotal(\'qtyrandc6\',\'totalrandc6\'),total(\'totalc6\',\'totalrandc6\',\'totalrandtechc6\'),classement6(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\',\'totalrandtechb4\',\'totalrandtechc5\',\'totalrandtechc6\'),coockies_points6(),show_confirm()"></input>
         <input class="grid-btn" id="noir" disabled></input>
         <input class="grid-btn" id="noir" disabled></input>
         </div>
@@ -332,15 +372,49 @@ function create_fiches_poules($db){
         <input disabled type="number" class="grid-btn" name="totalrandc6" id="totalrandc6"></input>
         <input disabled type="number" class="grid-btn" name="totalrandtechc6" id="totalrandtechc6"></input>
         <input disabled type="number" class="grid-btn" name="rankc6" id="rankc6"></input>
+        <p></p>
+        <form action="" class="vfiche"  method="post">
+        <input type="submit" value="Valider la fiche" name="testt" id="testt"  class="vfiche">
+        </form>
         </div>
 
         <div class="zebi">
         <p>Randoris Techniques : Couples A/B B/C A/C</p>
         <p>Randoris compétition : 1/3 2/6 1/5 4/6 3/5 2/4</p>
-        </div>');
+        </div>
+        
+        <?php
+
+        $points = array (
+            1 => $_COOKIE[\'pointsa1\'],
+            2 => $_COOKIE[\'pointsa2\'],
+            3 => $_COOKIE[\'pointsb3\'],
+            4 => $_COOKIE[\'pointsb4\'],
+            5 => $_COOKIE[\'pointsc5\'],
+            6 => $_COOKIE[\'pointsc6\']
+          );
+       
+          function testt($db){
+            global $points;
+            global $id;
+            for($i=1;$i<=6;$i++){
+                $a = $points[$i];
+                $b = $id[$i];
+                $req_ma_table = $db->prepare("UPDATE participants SET points = points + $a WHERE idParticipant = $b");
+                $req_ma_table->execute();
+                $result_req_ma_table = $req_ma_table->fetchAll();
+            }
+        }
+        if(array_key_exists(\'testt\',$_POST)){
+                testt($db);
+        }
+
+?>
+        
+        ');
     }
     if($count == 5){
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -522,7 +596,7 @@ function create_fiches_poules($db){
         <input class="grid-btn" id="noir" disabled></input>
         <input type="number" class="grid-btn" min=0 max=10 name="qtyrandc5" onchange="findTotal(\'qtyrandc5\',\'totalrandc5\'),total(\'totalc5\',\'totalrandc5\',\'totalrandtechc5\')"></input>
         <input class="grid-btn" id="noir" disabled></input>
-        <input type="number" class="grid-btn" min=0 max=10 name="qtyrandc5" onchange="findTotal(\'qtyrandc5\',\'totalrandc5\'),total(\'totalc5\',\'totalrandc5\',\'totalrandtechc5\'),classement5(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\',\'totalrandtechb4\',\'totalrandtechc5\')"></input>
+        <input type="number" class="grid-btn" min=0 max=10 name="qtyrandc5" onchange="findTotal(\'qtyrandc5\',\'totalrandc5\'),total(\'totalc5\',\'totalrandc5\',\'totalrandtechc5\'),classement5(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\',\'totalrandtechb4\',\'totalrandtechc5\'),coockies_points5(),show_confirm()"></input>
         <input class="grid-btn" id="noir" disabled></input>
         <input class="grid-btn" id="noir" disabled></input>
         <input class="grid-btn" id="noir" disabled></input>
@@ -545,16 +619,48 @@ function create_fiches_poules($db){
         <input disabled type="number" class="grid-btn" name="totalrandc5" id="totalrandc5"></input>
         <input disabled type="number" class="grid-btn" name="totalrandtechc5" id="totalrandtechc5"></input>
         <input disabled type="number" class="grid-btn" name="rankc5" id="rankc5"></input>
+        <p></p>
+        <form action="" class="vfiche"  method="post">
+        <input type="submit" value="Valider la fiche" name="testt" id="testt"  class="vfiche">
+        </form>
         </div>
 
         <div class="zebi">
         <p>Randoris Techniques : Couples A/B A1C5/A2B5 B3/C5</p>
         <p>Randoris compétition : 1/3 1/5 4/5 2/4 2/3</p>
         </div>
+
+        <?php
+
+        $points = array (
+            1 => $_COOKIE[\'pointsa1\'],
+            2 => $_COOKIE[\'pointsa2\'],
+            3 => $_COOKIE[\'pointsb3\'],
+            4 => $_COOKIE[\'pointsb4\'],
+            5 => $_COOKIE[\'pointsc5\']
+          );
+       
+          function testt($db){
+            global $points;
+            global $id;
+            for($i=1;$i<=5;$i++){
+                $a = $points[$i];
+                $b = $id[$i];
+                $req_ma_table = $db->prepare("UPDATE participants SET points = points + $a WHERE idParticipant = $b");
+                $req_ma_table->execute();
+                $result_req_ma_table = $req_ma_table->fetchAll();
+            }
+        }
+        if(array_key_exists(\'testt\',$_POST)){
+                testt($db);
+        }
+
+?>
+        
         ');
     }
     if($count == 4){
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -709,7 +815,7 @@ function create_fiches_poules($db){
         <input class="grid-btn" id="noir" disabled></input>
         <input class="grid-btn" id="noir" disabled></input>
         <input type="number" class="grid-btn" min=0 max=10 name="qtyrandb4" onchange="findTotal(\'qtyrandb4\',\'totalrandb4\'),total(\'totalb4\',\'totalrandb4\',\'totalrandtechb4\')"></input>
-        <input type="number" class="grid-btn" min=0 max=10 name="qtyrandb4" onchange="findTotal(\'qtyrandb4\',\'totalrandb4\'),total(\'totalb4\',\'totalrandb4\',\'totalrandtechb4\'),classement4(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\',\'totalrandtechb4\')""> </input>
+        <input type="number" class="grid-btn" min=0 max=10 name="qtyrandb4" onchange="findTotal(\'qtyrandb4\',\'totalrandb4\'),total(\'totalb4\',\'totalrandb4\',\'totalrandtechb4\'),classement4(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\',\'totalrandtechb4\'),coockies_points4(),show_confirm()"> </input>
         <input class="grid-btn" id="noir" disabled></input>
         <input class="grid-btn" id="noir" disabled></input>
         <input class="grid-btn" id="noir" disabled></input>
@@ -730,6 +836,11 @@ function create_fiches_poules($db){
         <input disabled type="number" class="grid-btn" name="totalrandb4" id="totalrandb4"></input>
         <input disabled type="number" class="grid-btn" name="totalrandtechb4" id="totalrandtechb4"></input>
         <input disabled type="number" class="grid-btn" name="rankb4" id="rankb4"></input>
+        <p></p>
+        <form action="" class="vfiche"  method="post">
+        <input type="submit" value="Valider la fiche" name="testt" id="testt"  class="vfiche">
+        </form>
+        
         </div>
         </div>
 
@@ -737,10 +848,36 @@ function create_fiches_poules($db){
         <p>Randoris Techniques : Couples A/B A1B3/A2B4</p>
         <p>Randoris compétition : 1/3 1/4 2/4 2/3</p>
         </div>
+        
+        <?php
+
+        $points = array (
+            1 => $_COOKIE[\'pointsa1\'],
+            2 => $_COOKIE[\'pointsa2\'],
+            3 => $_COOKIE[\'pointsb3\'],
+            4 => $_COOKIE[\'pointsb4\']
+          );
+       
+          function testt($db){
+            global $points;
+            global $id;
+            for($i=1;$i<=4;$i++){
+                $a = $points[$i];
+                $b = $id[$i];
+                $req_ma_table = $db->prepare("UPDATE participants SET points = points + $a WHERE idParticipant = $b");
+                $req_ma_table->execute();
+                $result_req_ma_table = $req_ma_table->fetchAll();
+            }
+        }
+        if(array_key_exists(\'testt\',$_POST)){
+                testt($db);
+        }
+
+?>
         ');
     }
     if($count == 3){
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -870,7 +1007,7 @@ function create_fiches_poules($db){
         <input class="grid-btn" id="noir" disabled> 
         <input class="grid-btn" id="noir" disabled> 
         <input type="number" name="qtyrandb3" class="grid-btn" min=0 max=10 onchange="findTotal(\'qtyrandb3\',\'totalrandb3\'),total(\'totalb3\',\'totalrandb3\',\'totalrandtechb3\')"> 
-        <input type="number" name="qtyrandb3" class="grid-btn" min=0 max=10 onchange="findTotal(\'qtyrandb3\',\'totalrandb3\'),total(\'totalb3\',\'totalrandb3\',\'totalrandtechb3\'),classement3(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\')"> 
+        <input type="number" name="qtyrandb3" class="grid-btn" min=0 max=10 onchange="findTotal(\'qtyrandb3\',\'totalrandb3\'),total(\'totalb3\',\'totalrandb3\',\'totalrandtechb3\'),classement3(\'totalrandtecha1\',\'totalrandtecha2\',\'totalrandtechb3\'),coockies_points3(),show_confirm()"> 
         <input class="grid-btn" id="noir" disabled> 
         <input class="grid-btn" id="noir" disabled> 
         <input class="grid-btn" id="noir" disabled>     
@@ -889,14 +1026,43 @@ function create_fiches_poules($db){
         <input type="number" name="ranka2" id="ranka2" class="grid-btn"  disabled> 
         <input type="number" name="totalrandb3" id="totalrandb3" class="grid-btn"  disabled> 
         <input type="number" name="totalrandtechb3" id="totalrandtechb3" class="grid-btn"  disabled> 
-        <input type="number" name="rankb3" id="rankb3" class="grid-btn"  disabled> 
+        <input type="number" name="rankb3" id="rankb3" class="grid-btn"  disabled>
+        <p></p>
+        <form action="" class="vfiche"  method="post">
+        <input type="submit" value="Valider la fiche" name="testt" id="testt"  class="vfiche">
+        </form> 
         </div>
 
         </div>
         <div class="zebi">
             <p>Randoris Techniques : Couples A1A2 A1B3 A2B3</p>
             <p>Randoris compétition : 1/3 1/2 2/3</p>
-        </div>');
+        </div>
+        
+        <?php
+
+        $points = array (
+            1 => $_COOKIE[\'pointsa1\'],
+            2 => $_COOKIE[\'pointsa2\'],
+            3 => $_COOKIE[\'pointsb3\']
+          );
+       
+          function testt($db){
+            global $points;
+            global $id;
+            for($i=1;$i<=3;$i++){
+                $a = $points[$i];
+                $b = $id[$i];
+                $req_ma_table = $db->prepare("UPDATE participants SET points = points + $a WHERE idParticipant = $b");
+                $req_ma_table->execute();
+                $result_req_ma_table = $req_ma_table->fetchAll();
+            }
+        }
+        if(array_key_exists(\'testt\',$_POST)){
+                testt($db);
+        }
+
+?>');
     }
         $count = 0;
     }
@@ -919,49 +1085,94 @@ function reset_poules($db){
     if(array_key_exists('generate', $_POST)) {
         echo 'Homme : <br>';
         $nb_participants_homme = get_nb_participants($db,'Homme');
-        $reste_homme = $nb_participants_homme % 6;
+        $nb_participants_homme_poussin = oui($db,'Homme','poussin');
+        $nb_participants_homme_benjamin = oui($db,'Homme','benjamin');
+
+        $reste_homme_poussin = $nb_participants_homme_poussin % 6;
+        $reste_homme_benjamin = $nb_participants_homme_benjamin % 6;
+
         echo 'nombre participants Homme : ' . $nb_participants_homme . '<br>';
-        echo 'reste calcul homme : '.$reste_homme;
+        echo 'nombre participants Homme poussin : ' . $nb_participants_homme_poussin . '<br>';
+        echo 'nombre participants Homme benjamin : ' . $nb_participants_homme_benjamin . '<br>';
         echo '<br>';
-        if($reste_homme == 0){
-            echo 'nombre de poules de 6 Homme : ' . $nb_participants_homme / 6;
+        if($reste_homme_poussin == 0){
+            echo 'nombre de poules de 6 Homme poussin : ' . $nb_participants_homme_poussin / 6;
             echo '<br>';
-            create_poule($db,($nb_participants_homme/6),0,0,0,'Homme');
+            // create_poule($db,($nb_participants_homme/6),0,0,0,'Homme');
+            create_poule($db,($nb_participants_homme_poussin/6),0,0,0,'Homme','poussin');
         }
         else{
-            if($reste_homme >= 3){
-                echo 'nombre de poules de 6 Homme : ' . ($nb_participants_homme - $reste_homme) /6 . ' reste : ' . $reste_homme;
-                echo ' <br> 1 Poule de ' . $reste_homme . 'Homme';
+            if($reste_homme_poussin >= 3){
+                echo 'nombre de poules de 6 Homme : ' . ($nb_participants_homme_poussin - $reste_homme_poussin) /6 . ' reste : ' . $reste_homme_poussin;
+                echo ' <br> 1 Poule de ' . $reste_homme_poussin . 'Homme';
                 echo '<br>';
                 echo '<br>';
-                $nb_poule_de_6 = ($nb_participants_homme - $reste_homme) /6;
-                if($reste_homme == 3) $nb_poule_de_3 = 1;
-                if($reste_homme == 4) $nb_poule_de_4 = 1;
-                if($reste_homme == 5) $nb_poule_de_5 = 1;
+                $nb_poule_de_6_p = ($nb_participants_homme_poussin - $reste_homme_poussin) /6;
+                if($reste_homme_poussin == 3) $nb_poule_de_3_p = 1;
+                if($reste_homme_poussin == 4) $nb_poule_de_4_p = 1;
+                if($reste_homme_poussin == 5) $nb_poule_de_5_p = 1;
             }
-            if($reste_homme == 1){
-                echo '<br> nombre de poules de 6 Homme : ' . (($nb_participants_homme - $reste_homme) /6 -1);
-                echo '<br> reste  : ' . ($reste_homme + 6) . ' participants Homme';
+            if($reste_homme_poussin == 1){
+                echo '<br> nombre de poules de 6 Homme : ' . (($nb_participants_homme_poussin - $reste_homme_poussin) /6 -1);
+                echo '<br> reste  : ' . ($reste_homme_poussin + 6) . ' participants Homme';
                 echo '<br> Poule de 4 Homme : 1 <br> Poule de 3 Homme : 1 <br> <br>';
-                $nb_poule_de_6 = (($nb_participants_homme - $reste_homme) /6 -1);
-                $nb_poule_de_5 = 0;
-                $nb_poule_de_4 = 1;
-                $nb_poule_de_3 = 1;
+                $nb_poule_de_6_p = (($nb_participants_homme_poussin - $reste_homme_poussin) /6 -1);
+                $nb_poule_de_5_p = 0;
+                $nb_poule_de_4_p = 1;
+                $nb_poule_de_3_p = 1;
             }
-            if($reste_homme == 2){
-                echo '<br> nombre de poules de 6 Homme  : ' . (($nb_participants_homme - $reste_homme) /6 -1);
-                echo '<br> reste  : ' . ($reste_homme + 6) . ' participants Homme ';
+            if($reste_homme_poussin == 2){
+                echo '<br> nombre de poules de 6 Homme  : ' . (($nb_participants_homme - $reste_homme_poussin) /6 -1);
+                echo '<br> reste  : ' . ($reste_homme_poussin + 6) . ' participants Homme ';
                 echo '<br> Poule de 4 Homme : 2';
-                $nb_poule_de_6 = (($nb_participants_homme - $reste_homme) /6 -1);
-                $nb_poule_de_5 = 0;
-                $nb_poule_de_4 = 2;
-                $nb_poule_de_3 = 0;
+                $nb_poule_de_6_p = (($nb_participants_homme_poussin - $reste_homme_poussin) /6 -1);
+                $nb_poule_de_5_p = 0;
+                $nb_poule_de_4_p = 2;
+                $nb_poule_de_3_p = 0;
             }
         
-            create_poule($db,$nb_poule_de_6,$nb_poule_de_4,$nb_poule_de_5,$nb_poule_de_3,'Homme');
+            create_poule($db,$nb_poule_de_6_p,$nb_poule_de5_p,$nb_poule_de_4_p,$nb_poule_de_3_p,'Homme','poussin');
         
         }
+        if($reste_homme_benjamin == 0){
+            echo 'nombre de poules de 6 Homme benjamin : ' . $nb_barticipants_homme_benjamin / 6;
+            echo '<br>';
+            // create_boule($db,($nb_barticipants_homme/6),0,0,0,'Homme');
+            create_boule($db,($nb_barticipants_homme_benjamin/6),0,0,0,'Homme','benjamin');
+        }
+        else{
+            if($reste_homme_benjamin >= 3){
+                echo 'nombre de poules de 6 Homme : ' . ($nb_barticipants_homme_benjamin - $reste_homme_benjamin) /6 . ' reste : ' . $reste_homme_benjamin;
+                echo ' <br> 1 Poule de ' . $reste_homme_benjamin . 'Homme';
+                echo '<br>';
+                echo '<br>';
+                $nb_boule_de_6_b = ($nb_barticipants_homme_benjamin - $reste_homme_benjamin) /6;
+                if($reste_homme_benjamin == 3) $nb_boule_de_3_b = 1;
+                if($reste_homme_benjamin == 4) $nb_boule_de_4_b = 1;
+                if($reste_homme_benjamin == 5) $nb_boule_de_5_b = 1;
+            }
+            if($reste_homme_benjamin == 1){
+                echo '<br> nombre de poules de 6 Homme : ' . (($nb_barticipants_homme_benjamin - $reste_homme_benjamin) /6 -1);
+                echo '<br> reste  : ' . ($reste_homme_benjamin + 6) . ' participants Homme';
+                echo '<br> Poule de 4 Homme : 1 <br> Poule de 3 Homme : 1 <br> <br>';
+                $nb_boule_de_6_b = (($nb_barticipants_homme_benjamin - $reste_homme_benjamin) /6 -1);
+                $nb_boule_de_5_b = 0;
+                $nb_boule_de_4_b = 1;
+                $nb_boule_de_3_b = 1;
+            }
+            if($reste_homme_benjamin == 2){
+                echo '<br> nombre de poules de 6 Homme  : ' . (($nb_barticipants_homme - $reste_homme_benjamin) /6 -1);
+                echo '<br> reste  : ' . ($reste_homme_benjamin + 6) . ' participants Homme ';
+                echo '<br> Poule de 4 Homme : 2';
+                $nb_boule_de_6_b = (($nb_barticipants_homme_benjamin - $reste_homme_benjamin) /6 -1);
+                $nb_boule_de_5_b = 0;
+                $nb_boule_de_4_b = 2;
+                $nb_boule_de_3_b = 0;
+            }
         
+            create_poule($db,$nb_boule_de_6_b,$nb_boule_de5_b,$nb_boule_de_4_b,$nb_boule_de_3_b,'Homme','benjamin');
+        
+        }
         // ---------------------------femme---------------------------
         echo 'Femme : <br>';
         $nb_participants_femme = get_nb_participants($db,'Femme');
@@ -971,7 +1182,7 @@ function reset_poules($db){
         
         if($reste_femme == 0){
             echo 'nombre de poules de 6 femme : ' . $nb_participants_femme / 6;
-            create_poule($db,($nb_participants_femme/6),0,0,0,'femme');
+            // create_poule($db,($nb_participants_femme/6),0,0,0,'femme');
         }
         else{
         
@@ -1005,7 +1216,7 @@ function reset_poules($db){
                 $nb_poule_de_4 = 2;
                 $nb_poule_de_3 = 0;
             }
-            create_poule($db,$nb_poule_de_6,$nb_poule_de_4,$nb_poule_de_5,$nb_poule_de_3,'femme');
+            // create_poule($db,$nb_poule_de_6,$nb_poule_de_4,$nb_poule_de_5,$nb_poule_de_3,'femme');
         
         }
     }
