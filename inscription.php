@@ -29,14 +29,14 @@ echo $nom_club;
     <input class="inscription" type="password" name="mdp" placeholder="Mot de passe" required>
 
     
-    <select class="inscription" id="role" name="role" onchange="changed_role()" required> 
+    <select class="inscription" id="role" name="role" onchange="changed_role()" required > 
         <option value="Veuillez sélectionner un rôle">Veuillez sélectionner un rôle</option>
         <option value="Entraineur">Entraineur</option>
         <option value="Organisateur">Organisateur</option>
         <option value="Jury">Jury</option>
     </select>
 
-        <input class="inscription" list="clubs" name="club" id="club" placeholder="Selectionez votre club">
+        <input class="inscription" list="clubs" name="club" id="club" placeholder="Selectionez votre club" style="display: none;">
         <input class="inscription" id="valider" type="submit" name="" value="Valider la demande">
         <datalist id="clubs">
         <?php
