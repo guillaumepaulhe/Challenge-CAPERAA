@@ -4,7 +4,6 @@ include 'fonctions.php';
 if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Jury" )) {
     header("location: login.php");
   }
-poules($db);
 $poules =1;
 
 function oui($db,$sexe,$age){
@@ -175,6 +174,7 @@ function create_fiches_poules($db){
         <div class="score_combat">
         <p id="exp" class="score_combat"> Expression technique YAKUSOKUGEIKO </p>
         <p id="total" class="score_combat">Total technique</p>
+        <p id="randori" class="score_combat">Combat RANDORI</p>
         </div>
 
 
@@ -453,6 +453,7 @@ function create_fiches_poules($db){
         <div class="score_combat">
         <p id="exp" class="score_combat"> Expression technique YAKUSOKUGEIKO </p>
         <p id="total" class="score_combat">Total technique</p>
+        <p id="randori" class="score_combat">Combat RANDORI</p>
         </div>
 
         <div class="total_combat">
@@ -699,6 +700,7 @@ function create_fiches_poules($db){
         <div class="score_combat">
         <p id="exp" class="score_combat"> Expression technique YAKUSOKUGEIKO </p>
         <p id="total" class="score_combat">Total technique</p>
+        <p id="randori" class="score_combat">Combat RANDORI</p>
         </div>
 
         <div class="total_combat">
@@ -919,6 +921,7 @@ function create_fiches_poules($db){
         <div class="score_combat">
         <p id="exp" class="score_combat"> Expression technique YAKUSOKUGEIKO </p>
         <p id="total_score" class="score_combat">Total technique</p></div>
+        <p id="randori" class="score_combat">Combat RANDORI</p>
 
 
         <div class="total_combat">
@@ -1071,10 +1074,30 @@ function create_fiches_poules($db){
     }
 }
 function reset_poules($db){
-  $req_ma_table = $db->prepare("UPDATE participants SET Poule = NULL");
-  $req_ma_table->execute();
-  $result_req_ma_table = $req_ma_table->fetchAll();
-}
+	$req_ma_table2 = $db->prepare("SELECT MAX(Poule) FROM participants");
+    $req_ma_table2->execute();
+    $result_req_ma_table2 = $req_ma_table2->fetchAll();
+	foreach ($result_req_ma_table2 as $result) {
+		$max_poule = $result['MAX(Poule)'];
+	}
+
+    for($i=1;$i<=$max_poule;$i++){
+        if (file_exists("poules/poule".$i."-Homme-poussin.php")){
+            unlink("poules/poule".$i."-Homme-poussin.php"); 
+        }
+        if (file_exists("poules/poule".$i."-Femme-poussin.php")) {
+            unlink("poules/poule".$i."-Femme-poussin.php"); 
+        }
+        if (file_exists("poules/poule".$i."-Homme-benjamin.php")) {
+            unlink("poules/poule".$i."-Homme-benjamin.php"); 
+        }
+        if (file_exists("poules/poule".$i."-Femme-benjamin.php")) {
+            unlink("poules/poule".$i."-Femme-benjamin.php");
+        }
+    }
+    $req_ma_table = $db->prepare("UPDATE participants SET Poule = NULL");
+    $req_ma_table->execute();
+    $result_req_ma_table = $req_ma_table->fetchAll();}
 ?>
 <form class="case" method="post">
     <input type="submit" name="generate"  value="Générer les poules" id="generate" />
@@ -1271,4 +1294,5 @@ function reset_poules($db){
     if(array_key_exists('reset', $_POST)){
         reset_poules($db);
     }
+    poules($db);
 ?>

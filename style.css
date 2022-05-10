@@ -610,9 +610,13 @@ div.infos_combat{
 
 div.score_combat{
   display: flex;
+  align-items: center;
 }
 p.score_combat#exp{
   width: 150px;
+}
+p.score_combat#randori{
+  margin-left: 100px;
 }
 
 p.score_combat#total{
