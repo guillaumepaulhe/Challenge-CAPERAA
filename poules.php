@@ -135,8 +135,8 @@ function create_fiches_poules($db){
         }
     echo $count;
     if($count == 6){
-        // $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
+        // $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -414,8 +414,8 @@ function create_fiches_poules($db){
         ');
     }
     if($count == 5){
-        // $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
+        // $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -661,8 +661,8 @@ function create_fiches_poules($db){
         ');
     }
     if($count == 4){
-        // $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
+        // $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -879,8 +879,8 @@ function create_fiches_poules($db){
         ');
     }
     if($count == 3){
-        // $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
-        $file_handle = fopen('poules/poule'.$i.'.php', 'w');
+        $file_handle = fopen('poules/poule'.$i.'-'.$sexe.'-'.$age.'.php', 'w');
+        // $file_handle = fopen('poules/poule'.$i.'.php', 'w');
         fwrite($file_handle,'<?php
         $noms = '.var_export($noms, true).';
         $prenoms = '.var_export($prenoms, true).';
@@ -1102,7 +1102,7 @@ function reset_poules($db){
             echo 'nombre de poules de 6 Homme poussin : ' . $nb_participants_homme_poussin / 6;
             echo '<br>';
             // create_poule($db,($nb_participants_homme/6),0,0,0,'Homme');
-            // create_poule($db,($nb_participants_homme_poussin/6),0,0,0,'Homme','poussin');
+            create_poule($db,($nb_participants_homme_poussin/6),0,0,0,'Homme','poussin');
         }
         else{
             if($reste_homme_poussin >= 3){
@@ -1145,7 +1145,7 @@ function reset_poules($db){
         }
         else{
             if($reste_homme_benjamin >= 3){
-                echo 'nombre de poules de 6 Homme benjamin: ' . ($nb_barticipants_homme_benjamin - $reste_homme_benjamin) /6 . ' reste : ' . $reste_homme_benjamin;
+                echo 'nombre de poules de 6 Homme benjamin: ' . ($nb_participants_homme_benjamin - $reste_homme_benjamin) /6 . ' reste : ' . $reste_homme_benjamin;
                 echo ' <br> 1 Poule de ' . $reste_homme_benjamin . 'Homme';
                 echo '<br>';
                 echo '<br>';
@@ -1164,7 +1164,7 @@ function reset_poules($db){
                 $nb_boule_de_3_b = 1;
             }
             if($reste_homme_benjamin == 2){
-                echo '<br> nombre de poules de 6 Homme  : ' . (($nb_barticipants_homme - $reste_homme_benjamin) /6 -1);
+                echo '<br> nombre de poules de 6 Homme benjamin  : ' . (($nb_participants_homme_benjamin - $reste_homme_benjamin) /6 -1);
                 echo '<br> reste  : ' . ($reste_homme_benjamin + 6) . ' participants Homme ';
                 echo '<br> Poule de 4 Homme : 2';
                 $nb_boule_de_6_b = (($nb_participants_homme_benjamin - $reste_homme_benjamin) /6 -1);
@@ -1177,49 +1177,94 @@ function reset_poules($db){
         
         }
         // ---------------------------femme---------------------------
-        echo 'Femme : <br>';
-        $nb_participants_femme = get_nb_participants($db,'Femme');
-        $reste_femme = $nb_participants_femme % 6;
-        echo 'nombre participants Femme : ' . $nb_participants_femme . '<br>';
-        echo 'reste calcul femme : '.$reste_femme;
-        
-        if($reste_femme == 0){
-            echo 'nombre de poules de 6 femme : ' . $nb_participants_femme / 6;
+        echo 'femme : <br>';
+        $nb_participants_femme = get_nb_participants($db,'femme');
+        $nb_participants_femme_poussin = oui($db,'femme','poussin');
+        $nb_participants_femme_benjamin = oui($db,'femme','benjamin');
+
+        $reste_femme_poussin = $nb_participants_femme_poussin % 6;
+        $reste_femme_benjamin = $nb_participants_femme_benjamin % 6;
+
+        // echo 'nombre participants femme : ' . $nb_participants_femme . '<br>';
+        echo 'nombre participants femme poussin : ' . $nb_participants_femme_poussin . '<br>';
+        echo 'nombre participants femme benjamin : ' . $nb_participants_femme_benjamin . '<br>';
+        echo '<br>';
+        if($reste_femme_poussin == 0){
+            echo 'nombre de poules de 6 femme poussin : ' . $nb_participants_femme_poussin / 6;
+            echo '<br>';
             // create_poule($db,($nb_participants_femme/6),0,0,0,'femme');
+            create_poule($db,($nb_participants_femme_poussin/6),0,0,0,'femme','poussin');
         }
         else{
-        
-            if($reste_femme >= 3){
-                echo 'nombre de poules de 6 femme : ' . ($nb_participants_femme - $reste_femme) /6 . ' reste : ' . $reste_femme;
-                echo ' <br> 1 Poule de ' . $reste_femme . 'femme';
+            if($reste_femme_poussin >= 3){
+                $nb_poule_de_6_p = ($nb_participants_femme_poussin - $reste_femme_poussin) /6;
+                if(0 > $nb_poule_de_6_p) $nb_poule_de_6_p = 0;
+                echo 'nombre de poules de 6 femme poussin : ' . $nb_poule_de_6_p. ' reste : ' . $reste_femme_poussin;
+                echo ' <br> 1 Poule de ' . $reste_femme_poussin . 'femme poussin';
                 echo '<br>';
                 echo '<br>';
-                $nb_poule_de_6 = ($nb_participants_femme - $reste_femme) /6;
-                if($reste_femme == 3) $nb_poule_de_3 = 1;
-                if($reste_femme == 4) $nb_poule_de_4 = 1;
-                if($reste_femme == 5) $nb_poule_de_5 = 1;
+                if($reste_femme_poussin == 3) $nb_poule_de_3_p = 1;
+                if($reste_femme_poussin == 4) $nb_poule_de_4_p = 1;
+                if($reste_femme_poussin == 5) $nb_poule_de_5_p = 1;
             }
-            if($reste_femme == 1){
-                echo '<br> nombre de poules de 6 femme : ' . (($nb_participants_femme - $reste_femme) /6 -1);
-                echo '<br> reste  : ' . ($reste_femme + 6) . ' participants femme';
+            if($reste_femme_poussin == 1){
+                    echo '<br> reste  : ' . ($reste_femme_poussin + 6) . ' participants femme';
                 echo '<br> Poule de 4 femme : 1 <br> Poule de 3 femme : 1 <br> <br>';
-                $nb_poule_de_6 = (($nb_participants_femme - $reste_femme) /6 -1);
-                $nb_poule_de_5 = 0;
-                $nb_poule_de_4 = 1;
-                $nb_poule_de_3 = 1;
+                $nb_poule_de_6_p = (($nb_participants_femme_poussin - $reste_femme_poussin) /6 -1);
+                $nb_poule_de_5_p = 0;
+                $nb_poule_de_4_p = 1;
+                $nb_poule_de_3_p = 1;
             }
-            if($reste_femme == 2){
-                echo '<br> nombre de poules de 6 femme  : ' . (($nb_participants_femme - $reste_femme) /6 -1);
-                echo '<br> reste  : ' . ($reste_femme + 6) . ' participants femme ';
+            if($reste_femme_poussin == 2){
+                echo '<br> nombre de poules de 6 femme  : ' . (($nb_participants_femme - $reste_femme_poussin) /6 -1);
+                echo '<br> reste  : ' . ($reste_femme_poussin + 6) . ' participants femme ';
                 echo '<br> Poule de 4 femme : 2';
-                echo '<br>';
-                echo '<br>';
-                $nb_poule_de_6 = (($nb_participants_femme - $reste_femme) /6 -1);
-                $nb_poule_de_5 = 0;
-                $nb_poule_de_4 = 2;
-                $nb_poule_de_3 = 0;
+                $nb_poule_de_6_p = (($nb_participants_femme_poussin - $reste_femme_poussin) /6 -1);
+                $nb_poule_de_5_p = 0;
+                $nb_poule_de_4_p = 2;
+                $nb_poule_de_3_p = 0;
             }
-            // create_poule($db,$nb_poule_de_6,$nb_poule_de_4,$nb_poule_de_5,$nb_poule_de_3,'femme');
+        
+            create_poule($db,$nb_poule_de_6_p,$nb_poule_de_5_p,$nb_poule_de_4_p,$nb_poule_de_3_p,'femme','poussin');
+        
+        }
+        if($reste_femme_benjamin == 0){
+            echo 'nombre de poules de 6 femme benjamin : ' . $nb_participants_femme_benjamin / 6;
+            echo '<br>';
+            // create_boule($db,($nb_barticipants_femme/6),0,0,0,'femme');
+            create_poule($db,($nb_participants_femme_benjamin/6),0,0,0,'femme','benjamin');
+        }
+        else{
+            if($reste_femme_benjamin >= 3){
+                echo 'nombre de poules de 6 femme benjamin: ' . ($nb_participants_femme_benjamin - $reste_femme_benjamin) /6 . ' reste : ' . $reste_femme_benjamin;
+                echo ' <br> 1 Poule de ' . $reste_femme_benjamin . 'femme';
+                echo '<br>';
+                echo '<br>';
+                $nb_boule_de_6_b = ($nb_participants_femme_benjamin - $reste_femme_benjamin) /6;
+                if($reste_femme_benjamin == 3) $nb_boule_de_3_b = 1;
+                if($reste_femme_benjamin == 4) $nb_boule_de_4_b = 1;
+                if($reste_femme_benjamin == 5) $nb_boule_de_5_b = 1;
+            }
+            if($reste_femme_benjamin == 1){
+                echo '<br> nombre de poules de 6 femme benjamin : ' . (($nb_participants_femme_benjamin - $reste_femme_benjamin) /6 -1);
+                echo '<br> reste  : ' . ($reste_femme_benjamin + 6) . ' participants femme';
+                echo '<br> Poule de 4 femme : 1 <br> Poule de 3 femme : 1 <br> <br>';
+                $nb_boule_de_6_b = (($nb_participants_femme_benjamin - $reste_femme_benjamin) /6 -1);
+                $nb_boule_de_5_b = 0;
+                $nb_boule_de_4_b = 1;
+                $nb_boule_de_3_b = 1;
+            }
+            if($reste_femme_benjamin == 2){
+                echo '<br> nombre de poules de 6 femme benjamin  : ' . (($nb_participants_femme_benjamin - $reste_femme_benjamin) /6 -1);
+                echo '<br> reste  : ' . ($reste_femme_benjamin + 6) . ' participants femme ';
+                echo '<br> Poule de 4 femme : 2';
+                $nb_boule_de_6_b = (($nb_participants_femme_benjamin - $reste_femme_benjamin) /6 -1);
+                $nb_boule_de_5_b = 0;
+                $nb_boule_de_4_b = 2;
+                $nb_boule_de_3_b = 0;
+            }
+        
+            create_poule($db,$nb_boule_de_6_b,$nb_boule_de_5_b,$nb_boule_de_4_b,$nb_boule_de_3_b,'femme','benjamin');
         
         }
     }

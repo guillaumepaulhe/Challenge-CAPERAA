@@ -1,7 +1,13 @@
 <?php
 session_start();
 error_reporting (E_ALL ^ E_NOTICE);
-$db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root');
+try{
+$db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root', array(
+  PDO::ATTR_TIMEOUT => 2, // in seconds
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+));
+} catch (PDOException $e) { 
+}
 
 function get_rolee($db,$email){
 	$req_ma_table = $db->prepare("SELECT Role FROM utilisateurs WHERE email = '$email'");

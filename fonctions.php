@@ -376,8 +376,17 @@ function poules($db){
 		$max_poule = $result['MAX(Poule)'];
 	}
 	for($i=1;$i<=$max_poule;$i++){
+		$req_ma_table = $db->prepare("SELECT * FROM participants WHERE Poule = $i");
+		$req_ma_table->execute();
+		$result_req_ma_table = $req_ma_table->fetchAll();
+		foreach ($result_req_ma_table as $result) {
+			$agee = $result['Age'];
+			$sexe = $result['Sexe'];
+		}
+		if($agee == 8 || $agee == 9) $age = 'poussin';
+		if($agee == 10 || $agee == 11) $age = 'benjamin';
 		echo '<li class="poule" style="list-style-type: none;">';
-		echo '<a href=\'poules/poule' . $i .'.php\'>Fiche Poule n° '.$i.'</a>';
+		echo '<a href=\'poules/poule'.$i.'-'.$sexe.'-'.$age.'.php\'>Fiche Poule n° '.$i.' '.$sexe.' '.$age.'</a>';
 		echo '</li>';
 	}
 	echo '</ul>';
