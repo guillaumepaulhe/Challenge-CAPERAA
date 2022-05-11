@@ -579,6 +579,7 @@ div.entete{
   text-align: center;
   position: sticky; 
   left: 80%; 
+  margin-top: -150px;
 }
 
 div.aa{
@@ -883,4 +884,19 @@ form.vfiche{
   justify-content: center;
 }
 
+input.poules{
+  transition: ease-in-out 0.25s;
+  background-color: #407cff;
+  border: 1px solid #407cff;
+  border-radius: 8px;
+  margin: 20px auto;
+  padding: 7px 5px;
+  border-radius: 24px;
+  color: white;
+}
 
+input.poules:hover{
+  transition: ease-in-out 0.25s;
+  background-color: #3168dd;
+  border: 1px solid #407cff;
+  }

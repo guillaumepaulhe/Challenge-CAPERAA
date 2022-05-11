@@ -55,7 +55,6 @@ function get_rolee($db,$email){
     }
 
     if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
-      echo '<li class="menu"><a class="menu" href="feuilles-combats.php">Feuilles de combats</a></li>';
       echo '<li class="menu"><a class="menu" href="poules.php">Poules</a></li>';
      }
     
