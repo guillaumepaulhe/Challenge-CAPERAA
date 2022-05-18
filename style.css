@@ -78,7 +78,6 @@ ul.menu {
   margin-left: 5%;
   margin-top: 0.5%;
   margin-bottom: 0.5%;
-
 }
 
 li.menu {
@@ -96,7 +95,7 @@ li a.menu {
 
 li a:hover.menu {
   background-color: #407cff;
-border-radius: 50px;
+  border-radius: 50px;
   transition: ease-in-out 0.25s;
   
 }
@@ -900,3 +899,86 @@ input.poules:hover{
   background-color: #3168dd;
   border: 1px solid #407cff;
   }
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  background-color: #2e2e2e;
+  border-radius:  0 0 33px 33px;
+  width: 148.683px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+div.grid-users{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+  grid-gap: 50px;
+}
+
+div.card-users{
+  height: 150px;
+  width: 100px;
+
+}
+div.pp-users{
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+}
+
+
+
+div.nom-users{
+  text-align: center;
+}
+
+.btn-users{
+  position: absolute;
+  cursor: pointer;
+  background-color: rgba(64, 124, 255, 0);
+  border: none;
+  width: 100px;
+  height: 100px;
+}
+
+.pp-users:hover{
+  background-color: #407cff;
+}
+
+
+/* --------------Grid Poules-------------- */
+
+div.grid-poules{
+  display: grid;
+  grid-template-columns: auto auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.btn_poules{
+  display: flex;
+  align-items: center;
+}
+
+.btn_poules form{
+  display: flex;
+flex-direction: column;
+}
+

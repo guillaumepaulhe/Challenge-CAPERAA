@@ -51,7 +51,16 @@ function get_rolee($db,$email){
     }
 
     if (get_rolee($db,$_SESSION['email']) == "Administrateur") {
-     echo '<li class="menu"><a class="menu" href="demande-inscription.php">Inscriptions en attentes</a></li>';
+    //  echo '<li class="menu"><a class="menu" href="demande-inscription.php">Inscriptions en attentes</a></li>';
+    echo'
+    <li class="dropdown menu">
+    <a class="menu">Administration</a>
+    <div class="dropdown-content">
+    <a class="menu" href="test.php">Test</a>
+    <a class="menu" href="demande-inscription.php">Demandes d\'inscription</a>
+    <a class="menu" href="users.php">Gérer les utilisateurs</a>
+    </div>
+    </li>';
     }
 
     if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
@@ -79,7 +88,7 @@ function get_rolee($db,$email){
     <ul id="menu">
     <li class=""><a class="" href="index.php"><span class="material-icons icon">home</span> Accueil </a></li>
     <li class=""><a class="" href="classement.php"><span class="material-icons icon">format_list_bulleted</span> Classement </a></li>
-      <?php
+    <?php
     if(!isset($_SESSION['email']) || get_rolee($db,$_SESSION['email']) == "Administrateur"){
       echo '<li class=""><a class="" href="inscription.php"> <span class="material-icons icon">assignment</span> Inscription </a></li>';
     }

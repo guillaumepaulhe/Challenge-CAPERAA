@@ -6,14 +6,6 @@ if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Jury" )) {
   }
 $poules =1;
 
-
-?>
-<form class="case" method="post">
-    <input class="poules" type="submit" name="generate"  value="Générer les poules" id="generate" />
-    <input class="poules" type="submit" name="fiches"  value="Créer les fiches de poules" id="fiches" />
-    <input class="poules" type="submit" name="reset"  value="Réinitialiser les poules" id="reset" />
-</form>
-<?php
     if(array_key_exists('fiches', $_POST)) {
         create_fiches_poules($db);
     }
@@ -201,5 +193,18 @@ $poules =1;
     if(array_key_exists('reset', $_POST)){
         reset_poules($db);
     }
-    poules($db);
-?>
+    ?>
+    <div class='grid-poules'>
+        <div class="btn_poules">
+            <form method="post">
+                <input class="poules" type="submit" name="generate"  value="Générer les poules" id="generate" />
+                <input class="poules" type="submit" name="fiches"  value="Créer les fiches de poules" id="fiches" />
+                <input class="poules" type="submit" name="reset"  value="Réinitialiser les poules" id="reset" />
+            </form>
+        </div>
+        <div class="list_poules">
+            <?php
+            poules($db);
+            ?>
+        </div>
+    </div>
