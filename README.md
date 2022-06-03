@@ -1,4 +1,4 @@
 # Challenge-CAPERAA
 Projet BTS SN 2ème année
 
-Ste web: https://challenge-caperaa.ml
+[Ste web:] (https://challenge-caperaa.ml){:target="\_blank"}
