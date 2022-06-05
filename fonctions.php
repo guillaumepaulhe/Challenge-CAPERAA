@@ -42,7 +42,6 @@ function afficher_participants($db,$search){
 		$prenom = $result['Prenom'];
 		$sexe = $result['Sexe'];
 		$age = $result['Age'];
-		$taille = $result['Taille'];		
 		$poids = $result['Poids'];
 		$club = $result['Nom_club'];
 		$ceinture = $result['Ceinture'];
@@ -52,55 +51,43 @@ function afficher_participants($db,$search){
 		$edit_prenom = $result['Prenom'];
 		$edit_sexe = $result['Sexe'];
 		$edit_age = $result['Age'];		
-		$edit_taille = $result['Taille'];
 		$edit_poids = $result['Poids'];
 		$edit_ceinture = $result['Ceinture'];
 		
 
 		$id =  $result['idParticipant'];
-		$file_handle = fopen($id.'.php', 'w');
+		$file_handle = fopen('participants/'.$id.'.php', 'w');
 
 
 		fwrite($file_handle,'
 		<?php
 		include "base.php";
-		include "fonctions.php";
+		include "../fonctions.php";
 		if (get_role($db,$_SESSION[\'email\']) != ("Administrateur" || "Organisateur" )) {
 			header("location: login.php");
 		  }
 		$s = "'.$sexe.'";
 		$id = "'.$id.'";
-		$db = new PDO("mysql:host=localhost;dbname=caperaa;charset=utf8", "root", "root");
 		error_reporting (E_ALL ^ E_NOTICE);
-		$edit_nom = $_POST[\'nom\'];
-		$edit_prenom = $_POST[\'prenom\'];
-		$edit_sexe = $_POST[\'sexe\'];
+		$edit_nom = strtoupper($_POST[\'nom\']);
+		$edit_prenom = ucfirst(strtolower($_POST[\'prenom\']));
+		$edit_sexe = ucfirst(strtolower($_POST[\'sexe\']));
 		$edit_age = $_POST[\'age\'];
-		$edit_taille = $_POST[\'taille\'];
 		$edit_poids = $_POST[\'poids\'];
-		$edit_ceinture = $_POST[\'ceinture\'];
-		echo $edit_nom;
-		echo $edit_prenom;
-		echo $edit_sexe;
-		echo $edit_age;
-		echo $edit_taille;
-		echo $edit_poids;
-		echo $edit_ceinture;
+		$edit_ceinture = ucfirst(strtolower($_POST[\'ceinture\']));
 		?> 
 
 		
 		<form method="post" class="inscription"> 
-		<a class="inscription" href="participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
+		<a class="inscription" href="../participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
 		<label>Prénom</label> 
 		<input class="inscription" name="prenom" type="text" value="'.$edit_prenom.'">
 		<label>Nom</label>
-		<input class="inscription" name="nom" class="case" type="text" value="'.$edit_nom.'">
+		<input class="inscription" name="nom" type="text" value="'.$edit_nom.'">
 		<label>Age</label> 
 		<input class="inscription" name="age" type="number" value="'.$edit_age.'">
 		<label>Poids</label>
 		<input class="inscription" name="poids" type="number" value="'.$edit_poids.'">
-		<label>Taille</label> 
-		<input class="inscription" name="taille" type="number" value="'.$edit_taille.'"> 
 		<label>Sexe</label> 
 		<?php
 		if ($s == "Homme"){
@@ -118,7 +105,7 @@ function afficher_participants($db,$search){
     	</select>\';
 	} 
 	if(array_key_exists(\'valider\', $_POST)) {
-		edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_taille,$edit_sexe,$edit_ceinture);
+		edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_sexe,$edit_ceinture);
 	}
 	if(array_key_exists(\'refuser\', $_POST)) {
 		delete_participant_id($db,$id);
@@ -150,19 +137,20 @@ function afficher_participants($db,$search){
 			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = \'$id\'");
 			$req_ma_table->execute();
 			unlink($id . \'.php\');
-			header("location: participant.php");
+			header("location: ../participant.php");
 		}
 
-		function edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_taille,$edit_sexe,$edit_ceinture){
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Taille = $edit_taille, Sexe = \'$edit_sexe\', Ceinture = \'$edit_ceinture\'  WHERE idParticipant =  \'$id\'");
+		function edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_sexe,$edit_ceinture){
+		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Sexe = \'$edit_sexe\', Ceinture = \'$edit_ceinture\'  WHERE idParticipant =  \'$id\'");
 		$edit_req_ma_table->execute();
+        header("location: ../participant.php");
 		}
 		?>
 		');
 		
 		
 		fclose($file_handle);
-		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p> <p class="case">Taille : '.$taille.' cm</p> <p class="case">Sexe : '.$sexe.'</p> <p class = "case">Club :  '.$club.'</p> <p class = "case">Ceinture : '.$ceinture.'</p> <br><button onclick="location.href=\''.$id.'.php\'" id="'.$id.'" class="modifier">Modifier</button></li>';
+		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p><p class="case">Sexe : '.$sexe.'</p> <p class = "case">Club :  '.$club.'</p> <p class = "case">Ceinture : '.$ceinture.'</p> <br><button onclick="location.href=\'participants/'.$id.'.php\'" id="'.$id.'" class="modifier">Modifier</button></li>';
 	}
 		
 }
@@ -198,6 +186,15 @@ function get_role($db,$email){
 	}
 	return $role;
 }
+
+function recupemail($db, $email2){  // Recupère l'adresse mail de l'utilisateur connecté
+    $valeur = $db->prepare("SELECT email FROM users WHERE email= '$email2'");
+    $valeur->execute();
+    $result_valeur = $valeur->fetchAll();
+    foreach ($result_valeur as $result ) {
+      $valeur = $result['email'];
+      return $valeur;
+  }}
 
 function get_nom_club($db){
 	$email = $_SESSION["email"];
@@ -311,7 +308,7 @@ function poule($db){
 }
 
 function classement_par_club($db){
-	$req_ma_table = $db->prepare("SELECT nom FROM clubs ORDER BY nom ASC ");
+	$req_ma_table = $db->prepare("SELECT clubs.nom,participants.points FROM clubs,participants WHERE participants.points > 0 AND clubs.nom = participants.Nom_club ORDER BY `clubs`.`nom` ASC");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
 	echo'<ul class="case">';
@@ -322,17 +319,24 @@ function classement_par_club($db){
 		$req_ma_table2->execute();
 		$result_req_ma_table2 = $req_ma_table2->fetchAll();
 		foreach ($result_req_ma_table2 as $result2) {
-			$points = $result2['points_club'];
-			if($points!=0){
+			    $points = $result2['points_club'];
 				$req_ma_table3 = $db->prepare("UPDATE clubs SET points = '$points' WHERE nom = '$club'");
 				$req_ma_table3->execute();
-			}
-			else{
-				$req_ma_table3 = $db->prepare("UPDATE clubs SET points = 0 WHERE nom = '$club'");
-			}
 		}	
 	}
-	$req_ma_table = $db->prepare("SELECT * FROM clubs ORDER BY points DESC ");
+    // $req_ma_table = $db->prepare("SELECT clubs.nom,participants.points FROM clubs,participants WHERE clubs.points > 0 AND participants.points = 0 AND clubs.nom = participants.Nom_club");
+    // $req_ma_table->execute();
+    // $result_req_ma_table = $req_ma_table->fetchAll();
+    // foreach ($result_req_ma_table as $result) {
+    //         $club = $result['nom'];
+    //         $req_ma_table3 = $db->prepare("UPDATE clubs SET points = 0 WHERE nom = '$club'");
+    //         $req_ma_table3->execute();
+        
+        
+    // }
+
+    
+	$req_ma_table = $db->prepare("SELECT * FROM clubs WHERE points != 0 ORDER BY points DESC ");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
 	foreach ($result_req_ma_table as $result) {
@@ -490,9 +494,9 @@ function create_poule($db,$nb6,$nb5,$nb4,$nb3,$sexe,$age){
 
 function create_fiches_poules($db){
     $count = 0;
-    $noms[5];
-    $prenoms[5];
-    $clubs[5];
+    $noms[5] = array();
+    $prenm[5] = array();
+    $clubs[5] = array();
     $req_ma_table = $db->prepare("SELECT MAX(Poule) FROM participants");
     $req_ma_table->execute();
     $result_req_ma_table = $req_ma_table->fetchAll();

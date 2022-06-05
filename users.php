@@ -24,10 +24,10 @@ function afficher_users($db){
           echo  '<p>'.$result['Nom'].'</p>
         <p>'.$result['Prenom'].'</p>
         <p>'.$result['Role'].'</p>
-        <form method="post">
-        <input type="submit" name="valider'.$result['idUser'].'" class="case material-icons" value="edit" id="valider"/>
-        <input type="submit" name="refuser'.$result['idUser'].'" class="case material-icons " value="delete" id="refuser"/>
-        </form>
+        <form class="case" method="post">
+			<input type="submit" name="valider" class="edit_user material-icons" value="edit" id="valider" />
+			<input type="submit" name="refuser" class="edit_user material-icons" value="delete" id="refuser"/>
+			</form>
         </div>
         </div>';
     }
@@ -38,7 +38,9 @@ function afficher_users($db){
 // }
 
 if(array_key_exists('refuser', $_POST)) {
-    delete_user($db,$id);
+    // delete_user($db,$id);
+    echo 'refuser' . $id;
+    javascript::getElementById($id)->remove();
 }
 
 

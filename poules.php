@@ -1,9 +1,10 @@
 <?php
 include 'base.php';
 include 'fonctions.php';
-if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Jury" )) {
-    header("location: login.php");
-  }
+if ((get_role($db,$_SESSION['email']) !="Administrateur") && (get_role($db,$_SESSION['email']) !="Jury")) {
+    echo "<p class='errorMessage'>Vous n'avez pas les droits pour accéder à cette page</p>";
+    die;
+}
 $poules =1;
 
     if(array_key_exists('fiches', $_POST)) {

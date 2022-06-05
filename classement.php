@@ -1,6 +1,8 @@
 <?php  
 include "base.php";
 include "fonctions.php";
+include "scroll-top.php";
+
 ?>
 <h1>Classement global</h1>
 <ul class="case">

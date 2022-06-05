@@ -29,8 +29,8 @@ echo $nom_club;
     <input class="inscription" type="password" name="mdp" placeholder="Mot de passe" required>
 
     
-    <select class="inscription" id="role" name="role" onchange="changed_role()" required > 
-        <option value="Veuillez sélectionner un rôle">Veuillez sélectionner un rôle</option>
+    <select  class="inscription" id="role" name="role" onchange="changed_role()" required > 
+        <option disabled selected value="">Sélectionnez votre rôle</option>
         <option value="Entraineur">Entraineur</option>
         <option value="Organisateur">Organisateur</option>
         <option value="Jury">Jury</option>

@@ -1,7 +1,10 @@
 <?php
 include "base.php";
 require('fonctions.php');
-  
+$url = $_GET['url'];
+if($url == ""){
+  $url = "index.php";
+}
 if (isset($_POST['email'])){
   $email = stripslashes($_REQUEST['email']);
   $password = stripslashes($_REQUEST['password']);
@@ -12,7 +15,7 @@ if (isset($_POST['email'])){
 }
   if( ($result['email'] == $email || $result['pseudo'] == $email )&& $result['password'] == hash('sha256', $password)){
       $_SESSION['email'] = $result['email'];
-      header("Location: index.php");
+      header("Location: $url");
   }else{
     $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
   }

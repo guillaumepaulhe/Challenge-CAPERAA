@@ -1,10 +1,8 @@
 <?php
 session_start();
 error_reporting (E_ALL ^ E_NOTICE);
-$db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root', array(
-  PDO::ATTR_TIMEOUT => 1, // in seconds
-  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-));    
+$db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root');
+    
 function get_rolee($db,$email){
 	$req_ma_table = $db->prepare("SELECT Role FROM utilisateurs WHERE email = '$email'");
 	$req_ma_table->execute();
@@ -56,9 +54,9 @@ function get_rolee($db,$email){
     //  echo '<li class="menu"><a class="menu" href="../demande-inscription.php">Inscriptions en attentes</a></li>';
     echo'
     <li class="dropdown menu">
-    <a class="menu">Administration
-    <span>&#9660;</span></a>
+    <a class="menu">Administration</a>
     <div class="dropdown-content">
+    <a class="menu" href="../test.php">Test</a>
     <a class="menu" href="../demande-inscription.php">Demandes d\'inscription</a>
     <a class="menu" href="../users.php">Gérer les utilisateurs</a>
     </div>

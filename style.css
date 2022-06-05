@@ -201,7 +201,7 @@ input.case#refuser{
   transition: ease-in-out 0.25s;
   background-color: #ff4040;
   margin: auto 5px;
-  }
+}
 
 input.case#valider:hover{
   transition:ease-in-out 0.25s;
@@ -386,10 +386,6 @@ input.inscription{
   margin: 5px auto;
   text-align: center;
   display: block;
-}
-
-.inscription input#club{
-  /* display: none; */
 }
 
 .inscription input[type = "submit"]{
@@ -828,7 +824,7 @@ div.duree{
  */
 #menu
 {
-  position: absolute;
+  position: fixed;
   width: 50vw;
   height:100vh;
   margin: -80px 0 0 -50px;
@@ -904,6 +900,7 @@ input.poules:hover{
 .dropdown {
   position: relative;
   display: inline-block;
+  cursor: default;
 }
 
 .dropdown-content {
@@ -911,18 +908,29 @@ input.poules:hover{
   position: fixed;
   background-color: #2e2e2e;
   border-radius:  0 0 33px 33px;
-  width: 148.683px;
+  width: 169.317px;
   z-index: 1;
+}
+.dropdown-content-responsive {
+  display: none;
+  padding: 0 15px;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
+.dropdown:hover .dropdown-content-responsive {
+  display: flex;
+  flex-direction: column;
+}
+
 div.grid-users{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
-  grid-gap: 50px;
+  grid-gap: 100px;
+  margin-left: 25%;
+  margin-top: 25vh
 }
 
 div.card-users{
@@ -982,3 +990,56 @@ div.btn_poules{
 flex-direction: column;
 }
 
+p.result{
+  margin-left: 5%;
+}
+
+input.edit_user#valider{
+  border-radius: 50px;
+  border: none;
+  box-shadow: 0px 0px 20px rgb(17, 17, 17);
+  transition: ease-in-out 0.25s;
+  background-color: #407cff;
+  margin: auto 5px;
+  }
+  
+input.edit_user#refuser{
+  border-radius: 50px;
+  border: none;
+  box-shadow: 0px 0px 20px rgb(17, 17, 17);
+  transition: ease-in-out 0.25s;
+  background-color: #ff4040;
+  margin: auto 5px;
+}
+
+label.file-upload{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: ease-in-out 0.25s;
+  background-color: #407cff;
+  border: 1px solid #407cff;
+  border-radius: 10px;
+  color: white;
+  width: fit-content;
+  margin: auto;
+}
+
+label.file-upload:hover{
+  transition: ease-in-out 0.25s;
+  background-color: #3168dd;
+}
+
+.btn{
+  height: 50px;
+  width: 50px;
+  background-color: #407cff;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}

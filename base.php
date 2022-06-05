@@ -2,7 +2,7 @@
 session_start();
 error_reporting (E_ALL ^ E_NOTICE);
 $db = new PDO('mysql:host=localhost;dbname=caperaa;charset=utf8', 'root', 'root');
-
+    
 function get_rolee($db,$email){
 	$req_ma_table = $db->prepare("SELECT Role FROM utilisateurs WHERE email = '$email'");
 	$req_ma_table->execute();
@@ -54,9 +54,9 @@ function get_rolee($db,$email){
     //  echo '<li class="menu"><a class="menu" href="demande-inscription.php">Inscriptions en attentes</a></li>';
     echo'
     <li class="dropdown menu">
-    <a class="menu">Administration</a>
+    <a class="menu">Administration
+    <span>&#9660;</span></a>
     <div class="dropdown-content">
-    <a class="menu" href="test.php">Test</a>
     <a class="menu" href="demande-inscription.php">Demandes d\'inscription</a>
     <a class="menu" href="users.php">Gérer les utilisateurs</a>
     </div>
@@ -102,8 +102,20 @@ function get_rolee($db,$email){
     }
 
     if (get_rolee($db,$_SESSION['email']) == "Administrateur") {
-     echo '<li class=""><a class="" href="demande-inscription.php">Inscriptions en attentes</a></li>';
+    // echo '<li class=""><a class="" href="demande-inscription.php">Inscriptions en attentes</a></li>';
+    echo'
+    <li class="dropdown">
+    <a class="">Administration <span class="material-icons icon">keyboard_arrow_down</span> </a>
+    <div class="dropdown-content-responsive">
+    <a class="" href="demande-inscription.php">Demandes d\'inscription</a>
+    <a class="" href="users.php">Gérer les utilisateurs</a>
+    </div>
+    </li>';
     }
+    
+    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
+      echo '<li class=""><a class="" href="poules.php">Poules</a></li>';
+     }
 
     if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
       echo '<li class=""><a class="" href="feuilles-combats.php">Feuilles de combats</a></li>';
