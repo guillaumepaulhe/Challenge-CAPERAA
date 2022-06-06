@@ -13,7 +13,6 @@ function get_rolee($db,$email){
 	return $role;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,13 +22,18 @@ function get_rolee($db,$email){
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="http://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="Logo(2).png">
   <title>Challenge CAPERAA</title>
 </head>
 <body>
+<div class="btn">
+<span class="material-icons">
+arrow_upward
+</span>
+</div>
+<script src="script.js"></script>
 <img src="Banniere.png" width=100% id="baniere">
 
   <ul class="menu">
@@ -42,11 +46,11 @@ function get_rolee($db,$email){
       echo '<li class="menu"><a class="menu" href="inscription.php">Inscription</a></li>';
     }
 
-    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Entraineur")) {
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur" || get_rolee($db,$_SESSION['email']) == "Entraineur") {
       echo '<li class="menu"><a class="menu" href="inscription-combatant.php">Inscription combattants</a></li>';
     }
 
-    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Organisateur")) {
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur" || get_rolee($db,$_SESSION['email']) == "Organisateur") {
       echo '<li class="menu"><a class="menu" href="participant.php">Participants</a></li>';
     }
 
@@ -63,7 +67,7 @@ function get_rolee($db,$email){
     </li>';
     }
 
-    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur" || get_rolee($db,$_SESSION['email']) == "Jury") {
       echo '<li class="menu"><a class="menu" href="poules.php">Poules</a></li>';
      }
     
@@ -93,11 +97,11 @@ function get_rolee($db,$email){
       echo '<li class=""><a class="" href="inscription.php"> <span class="material-icons icon">assignment</span> Inscription </a></li>';
     }
 
-    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Entraineur")) {
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur" || get_rolee($db,$_SESSION['email']) == "Entraineur") {
       echo '<li class=""><a class="" href="inscription-combatant.php">Inscription combattants</a></li>';
     }
 
-    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Organisateur")) {
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur" || get_rolee($db,$_SESSION['email']) == "Organisateur") {
       echo '<li class=""><a class="" href="participant.php">Participants</a></li>';
     }
 
@@ -113,16 +117,12 @@ function get_rolee($db,$email){
     </li>';
     }
     
-    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
+    if (get_rolee($db,$_SESSION['email']) == "Administrateur" || get_rolee($db,$_SESSION['email']) == "Jury") {
       echo '<li class=""><a class="" href="poules.php">Poules</a></li>';
-     }
-
-    if (get_rolee($db,$_SESSION['email']) == ("Administrateur" || "Jury")) {
-      echo '<li class=""><a class="" href="feuilles-combats.php">Feuilles de combats</a></li>';
      }
     
     if(isset($_SESSION['email'])){
-      echo '<li><a class="" href="logout.php">Se déconnecter </a></li>';
+      echo '<li><a class="" href="logout.php"><span class="material-icons icon">logout</span> Se déconnecter </a></li>';
     }
 
     if(!isset($_SESSION['email'])){

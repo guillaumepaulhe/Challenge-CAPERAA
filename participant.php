@@ -1,8 +1,8 @@
-<?php  
+<?php
 include "base.php";
 include "fonctions.php";
-include "scroll-top.php";
-if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Organisateur" )) {
+
+if (get_role($db, $_SESSION['email']) != "Administrateur" && get_role($db, $_SESSION['email']) != "Entraineur") {
   header("location: login.php");
 }
 ?>
@@ -12,17 +12,20 @@ if (get_role($db,$_SESSION['email']) != ("Administrateur" || "Organisateur" )) {
   <input type="search" name="search" id="" class="search" placeholder="Rechercher">
 </form>
 <?php
-  $search = $_POST['search'];
-  if($search != NULL){
-    echo '<p class = "result">Résultat de la recherche pour : "'.$search.'"</p>';
-
-  }
-  ?>
-  <ul class="case-participant">
+$search = $_POST['search'];
+if ($search != NULL) {
+  echo '<p class = "result">Résultat de la recherche pour : "' . $search . '"</p>';
+}
+?>
+<ul class="case-participant">
   <?php
-  if($search == ""){
+  if ($search == "") {
     $search = "%";
   }
-  afficher_participants($db,$search);
-?>
+  afficher_participants($db, $search);
+  ?>
 </ul>
+
+
+
+

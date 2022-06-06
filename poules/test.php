@@ -62,7 +62,7 @@ $points = array(
 );
 include "base.php";
 try {
-    $db = new PDO('mysql:host=192.168.1.31;dbname=caperaa;charset=utf8', 'root', 'root', array(
+    $db = new PDO('mysql:host=a;dbname=caperaa;charset=utf8', 'root', 'root', array(
         PDO::ATTR_TIMEOUT => 1, // in seconds
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ));

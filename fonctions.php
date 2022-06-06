@@ -29,9 +29,6 @@ function get__classement($db){
 
 
 function afficher_participants($db,$search){
-	if($search==""){
-		$search = "%";
-	}
 	$req_ma_table = $db->prepare("SELECT * FROM participants WHERE Nom LIKE '%$search%' OR Prenom LIKE '%$search%'");
 	$req_ma_table->execute();
 	$result_req_ma_table = $req_ma_table->fetchAll();
@@ -46,118 +43,117 @@ function afficher_participants($db,$search){
 		$club = $result['Nom_club'];
 		$ceinture = $result['Ceinture'];
 
-
 		$edit_nom = $result['Nom'];
 		$edit_prenom = $result['Prenom'];
-		$edit_sexe = $result['Sexe'];
 		$edit_age = $result['Age'];		
 		$edit_poids = $result['Poids'];
-		$edit_ceinture = $result['Ceinture'];
 		
-
 		$id =  $result['idParticipant'];
 		$file_handle = fopen('participants/'.$id.'.php', 'w');
 
 
 		fwrite($file_handle,'
-		<?php
-		include "base.php";
-		include "../fonctions.php";
-		if (get_role($db,$_SESSION[\'email\']) != ("Administrateur" || "Organisateur" )) {
-			header("location: login.php");
-		  }
-		$s = "'.$sexe.'";
-		$id = "'.$id.'";
-		error_reporting (E_ALL ^ E_NOTICE);
-		$edit_nom = strtoupper($_POST[\'nom\']);
-		$edit_prenom = ucfirst(strtolower($_POST[\'prenom\']));
-		$edit_sexe = ucfirst(strtolower($_POST[\'sexe\']));
-		$edit_age = $_POST[\'age\'];
-		$edit_poids = $_POST[\'poids\'];
-		$edit_ceinture = ucfirst(strtolower($_POST[\'ceinture\']));
-		?> 
+            <?php
+            include "base.php";
+            include "../fonctions.php";
+            if (get_role($db,$_SESSION[\'email\']) != ("Administrateur" || "Organisateur" )) {
+                header("location: login.php");
+            }
+            $s = "'.$sexe.'";
+            $id = "'.$id.'";
+            error_reporting (E_ALL ^ E_NOTICE);
+            $edit_nom = strtoupper($_POST[\'nom\']);
+            $edit_prenom = ucfirst(strtolower($_POST[\'prenom\']));
+            $edit_sexe = ucfirst(strtolower($_POST[\'sexe\']));
+            $edit_age = $_POST[\'age\'];
+            $edit_poids = $_POST[\'poids\'];
+            $edit_ceinture = ucfirst(strtolower($_POST[\'ceinture\']));
+            ?> 
 
-		
-		<form method="post" class="inscription"> 
-		<a class="inscription" href="../participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
-		<label>Prénom</label> 
-		<input class="inscription" name="prenom" type="text" value="'.$edit_prenom.'">
-		<label>Nom</label>
-		<input class="inscription" name="nom" type="text" value="'.$edit_nom.'">
-		<label>Age</label> 
-		<input class="inscription" name="age" type="number" value="'.$edit_age.'">
-		<label>Poids</label>
-		<input class="inscription" name="poids" type="number" value="'.$edit_poids.'">
-		<label>Sexe</label> 
-		<?php
-		if ($s == "Homme"){
-		echo \'<select class="inscription" name="sexe" id="" value=Homme required>
-        <option value="">Sélectionnez votre sexe</option>
-        <option value="Homme" selected >Homme</option>
-        <option value="Femme">Femme</option>
-    	</select>\';
-		} 
-		if ($s == "Femme"){
-		echo \'<select class="inscription" name="sexe" id="" value=Femme required>
-        <option value="">Sélectionnez votre sexe</option>
-        <option value="Homme">Homme</option>
-        <option value="Femme" selected >Femme</option>
-    	</select>\';
-	} 
-	if(array_key_exists(\'valider\', $_POST)) {
-		edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_sexe,$edit_ceinture);
-	}
-	if(array_key_exists(\'refuser\', $_POST)) {
-		delete_participant_id($db,$id);
-	}
-		?>
-		<label>Ceinture</label> 
-		<select class="inscription" name="ceinture" id="">
-        <option value="">Sélectionnez votre ceinture</option>
-        <option value="blanche">blanche</option>
-        <option value="blanche et jaune">blanche et jaune</option>
-        <option value="jaune">jaune</option>
-        <option value="jaune et orange">jaune et orange</option>
-        <option value="orange">orange</option>
-        <option value="orange et verte">orange et verte</option>
-        <option value="verte">verte</option>
-        <option value="verte et bleue">verte et bleue</option>
-        <option value="bleue">bleue</option>
-        <option value="marron">marron</option>
-    	</select>
-		<div>
-		<input class="inscription" name="valider" type="submit" value="Valider"> 
-		<input type="submit" name="refuser" class="inscription" id="refuser" value="Retirer ce combatant" /> </form>
+            
+            <form method="post" class="inscription"> 
+            <a class="inscription" href="../participant.php" > <span class="material-icons icon">arrow_back</span> Retour</a>
+            <label>Prénom</label> 
+            <input class="inscription" name="prenom" type="text" value="'.$edit_prenom.'">
+            <label>Nom</label>
+            <input class="inscription" name="nom" type="text" value="'.$edit_nom.'">
+            <label>Age</label> 
+            <input class="inscription" name="age" type="number" value="'.$edit_age.'">
+            <label>Poids</label>
+            <input class="inscription" name="poids" type="number" value="'.$edit_poids.'">
+            <label>Sexe</label> 
+            <?php
+            if ($s == "Homme"){
+            echo \'<select class="inscription" name="sexe" id="" value=Homme required>
+            <option value="">Sélectionnez votre sexe</option>
+            <option value="Homme" selected >Homme</option>
+            <option value="Femme">Femme</option>
+            </select>\';
+            } 
+            if ($s == "Femme"){
+            echo \'<select class="inscription" name="sexe" id="" value=Femme required>
+            <option value="">Sélectionnez votre sexe</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme" selected >Femme</option>
+            </select>\';
+            } 
+            if(array_key_exists(\'valider\', $_POST)) {
+                edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_sexe,$edit_ceinture);
+            }
+            if(array_key_exists(\'refuser\', $_POST)) {
+                delete_participant_id($db,$id);
+            }
+            ?>
+            <label>Ceinture</label> 
+            <select class="inscription" name="ceinture" id="">
+            <option value="">Sélectionnez votre ceinture</option>
+            <option value="blanche">blanche</option>
+            <option value="blanche et jaune">blanche et jaune</option>
+            <option value="jaune">jaune</option>
+            <option value="jaune et orange">jaune et orange</option>
+            <option value="orange">orange</option>
+            <option value="orange et verte">orange et verte</option>
+            <option value="verte">verte</option>
+            <option value="verte et bleue">verte et bleue</option>
+            <option value="bleue">bleue</option>
+            <option value="marron">marron</option>
+            </select>
+            <div>
+            <input class="inscription" name="valider" type="submit" value="Valider"> 
+            <input type="submit" name="refuser" class="inscription" id="refuser" value="Retirer ce combatant" /> </form>
 
 
 
-		<?php
+            <?php
 
-		function delete_participant_id($db,$id){
-			$req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = \'$id\'");
-			$req_ma_table->execute();
-			unlink($id . \'.php\');
-			header("location: ../participant.php");
-		}
+            function delete_participant_id($db,$id){
+                $req_ma_table = $db->prepare("DELETE FROM participants WHERE `idParticipant` = \'$id\'");
+                $req_ma_table->execute();
+                unlink($id . \'.php\');
+                header("location: ../participant.php");
+            }
 
-		function edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_sexe,$edit_ceinture){
-		$edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Sexe = \'$edit_sexe\', Ceinture = \'$edit_ceinture\'  WHERE idParticipant =  \'$id\'");
-		$edit_req_ma_table->execute();
-        header("location: ../participant.php");
-		}
-		?>
+            function edit($db,$id,$edit_nom,$edit_prenom,$edit_age,$edit_poids,$edit_sexe,$edit_ceinture){
+            $edit_req_ma_table = $db->prepare("UPDATE participants SET Nom = \'$edit_nom\', Prenom = \'$edit_prenom\', Age = $edit_age, Poids = $edit_poids, Sexe = \'$edit_sexe\', Ceinture = \'$edit_ceinture\'  WHERE idParticipant =  \'$id\'");
+            $edit_req_ma_table->execute();
+            header("location: ../participant.php");
+            }
+            ?>
 		');
 		
 		
 		fclose($file_handle);
-		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> <p class="case">Poids : '.$poids." ".' kg</p><p class="case">Sexe : '.$sexe.'</p> <p class = "case">Club :  '.$club.'</p> <p class = "case">Ceinture : '.$ceinture.'</p> <br><button onclick="location.href=\'participants/'.$id.'.php\'" id="'.$id.'" class="modifier">Modifier</button></li>';
+		echo '<li class="case"> <p class="case">Nom : '.$nom.'</p> <p class="case">Prenom : '.$prenom.'</p> <p class="case">Age : '.$age.'</p> 
+        <p class="case">Poids : '.$poids." ".' kg</p><p class="case">Sexe : '.$sexe.'</p> <p class = "case">Club :  '.$club.'</p> 
+        <p class = "case">Ceinture : '.$ceinture.'</p> <br><button onclick="location.href=\'participants/'.$id.'.php\'" id="'.$id.'" class="modifier">Modifier</button></li>';
 	}
 		
 }
 
-function add_participants($db,$nom,$prenom,$sexe,$age,$taille,$poids,$ceinture){
+function add_participants($db,$nom,$prenom,$sexe,$age,$poids,$ceinture){
 	$nom_club = get_nom_club($db);
-    $req_ma_table = $db->prepare("INSERT INTO participants (Nom,Prenom,Sexe,Age,Taille,Poids,Nom_club,Ceinture) VALUES ('$nom','$prenom','$sexe','$age','$taille','$poids','$nom_club','$ceinture')");
+    $req_ma_table = $db->prepare("INSERT INTO participants (Nom,Prenom,Sexe,Age,Poids,Nom_club,Ceinture) 
+    VALUES ('$nom','$prenom','$sexe','$age','$poids','$nom_club','$ceinture')");
 	$req_ma_table->execute();
 } 
 

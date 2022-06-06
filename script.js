@@ -1,3 +1,23 @@
+// afficher.btn lorsqu'on a scroll
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 200) {
+    document.getElementsByClassName("btn")[0].style.display = "flex";
+  } else {
+    document.getElementsByClassName("btn")[0].style.display = "none";
+  }
+}
+
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  });
+});
+
+
 function findTotal(a, total) {
     var arr = document.getElementsByName(a)
     var tot = 0
